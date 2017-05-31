@@ -30,11 +30,14 @@ RSpec.feature "user can add items to a cart" do
       visit items_path
       expect(page).to have_content("computer")
 
+      click_link "computer"
+      expect(page).to have_content("computer")
+
       click_button "Add to Cart"
       expect(page).to have_content("You added 1 computer to your cart.")
     end
 
-    it "user can add item to cart from item view page" do
+    it "user can add item to cart from items page" do
       category = Category.create(name: "Tech")
       category.items = Item.create(name: "computer",
                                   desc: "makes a rock think",
@@ -82,20 +85,40 @@ RSpec.feature "user can add items to a cart" do
 
       click_button "Add to Cart"
       click_button "Add to Cart"
-
-      expect(page).to have_content("Cart: 2")
+      
+      within "header nav" do
+        expect(page).to have_content("Cart: 2")
+      end
     end   
+
+    it "total number of items in cart increments in view cart page" do
+      category = Category.create(name: "Tech")
+      category.items = Item.create(name: "computer",
+                                  desc: "makes a rock think",
+                                  price: 300,
+                                  status: 0,
+                                  photo: "https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macos-sierra-macbook-pro-thunderbolt3-hero.jpg"
+      )
+
+      visit items_path
+      expect(page).to have_content("computer")
+
+      click_button "Add to Cart"
+      click_button "Add to Cart"
+      
+      within "header nav" do
+        expect(page).to have_content("Cart: 2")
+        click_link ("Cart: 2")
+      end
+
+      expect(current_path).to eq "/cart"
+      expect(page).to have_css("img[src*='https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macos-sierra-macbook-pro-thunderbolt3-hero.jpg']")
+      expect(page).to have_content("computer")
+      expect(page).to have_content("makes a rock think")
+      expect(page).to have_content("$300")
+      expect(page).to have_content("Total: $600")
+
+    end  
   end
   
 end
-
-
-
-
-When I visit any page with an item on it
-I should see a link or button for "Add to Cart"
-When I click "Add to cart" for that item
-And I click a link or button to view cart
-And my current path should be "/cart"
-And I should see a small image, title, description and price for the item I just added
-And there should be a "total" price for the cart that should be the sum of all items in the cart

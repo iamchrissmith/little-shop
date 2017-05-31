@@ -35,8 +35,10 @@ RSpec.feature "user can browse items by category" do
     expect(page).to have_content("rake")
     expect(page).to have_content("hose")
 
-    click_link "Categories"
-    click_link "Tech"
+    within "header nav" do
+      click_link "Categories"
+      click_link "Tech"
+    end
 
     expect(page).to have_content("computer")
     expect(page).to have_content("USB")
