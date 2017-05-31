@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "user can browse items by category" do
+RSpec.feature "user can browse items by category" do
   it "user can visit category and browse items belonging to that category" do
     category = Category.create(name: "Tech")
     category.items = Item.create(name: "computer",
