@@ -21,7 +21,7 @@ RSpec.feature "New User can Create an Account" do
       fill_in "City", with: "Somewhere"
       select "CO", from: "state"
       fill_in "ZipCode", with: "12345"
-      select "Home", from: "address_type"
+      # select "Shipping", from: "address_type"
       fill_in "Password", with: "123abc"
 
       click_button "Submit"

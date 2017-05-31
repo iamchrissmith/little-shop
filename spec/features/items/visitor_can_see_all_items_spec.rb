@@ -11,7 +11,6 @@ RSpec.feature "Visitor views all items (/items)" do
       visit items_path
 
       expect(page).to have_content "All Items"
-      expect(page).to have_content
       expect(page).to have_link item_1.name, href: item_path(item_1)
       # expect(page).to have_link "Add to Cart", href: cart_path(item_id: item_1.id)
       expect(page).to have_link item_2.name, href: item_path(item_2)
