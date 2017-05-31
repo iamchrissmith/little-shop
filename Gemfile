@@ -55,5 +55,5 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'pry-rails'
   gem 'database_cleaner'
-  gem 'erb2haml'
+  gem 'rubocop'
 end
