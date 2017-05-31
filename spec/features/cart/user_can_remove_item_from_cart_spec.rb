@@ -1,11 +1,4 @@
 require 'rails_helper'
-=begin
-As as visitor
-When I visit "/cart" #what path is this?
-And I click "Remove"
-expect(current_path).to eq("/cart")
-expect(page).to have_content("ITEM removed")
-=end
 
 RSpec.feature "Visitor can remove an item in the cart" do
   scenario "a visitor see the cart page that contains items" do
