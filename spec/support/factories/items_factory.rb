@@ -2,17 +2,14 @@ FactoryGirl.define do
   factory :item do
     description 'The best one'
     price 11.99
-    # categories #[category]
-    # category
+    after(:create) do |item|
+      item.categories << create(:category)
+    end
     sequence(:name) { |n| "Whatchmacallit#{n}" } 
   end
 
   # trait :with_photo do
 
-  # end
-
-  # trait :categories do
-    # transient {category_path 1}
   # end
 
   trait :with_many_categories do
