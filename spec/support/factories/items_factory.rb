@@ -1,11 +1,11 @@
 FactoryGirl.define do
-  sequence(:name) { |n| "Whatchmacallit#{n}" } 
-
   factory :item do
-    name
     description 'The best one'
     price 11.99
-    categories [category]
+    after(:create) do |item|
+      item.categories << create(:category)
+    end
+    sequence(:name) { |n| "Whatchmacallit#{n}" } 
   end
 
   # trait :with_photo do

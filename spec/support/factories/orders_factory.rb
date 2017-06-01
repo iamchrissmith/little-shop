@@ -9,21 +9,21 @@ FactoryGirl.define do
     end  
   end
 
-  trait :is_paid do
-    after(:create) do |order|
-      order.paid!
-    end
-  end
+#   trait :is_paid do
+#     after(:create) do |order|
+#       order.paid!
+#     end
+#   end
 
-  trait :is_completed do
-    after(:create) do |order|
-      order.completed!
-    end
-  end
+#   trait :is_completed do
+#     after(:create) do |order|
+#       order.completed!
+#     end
+#   end
 
-  trait :is_cancelled do
-    after(:create) do |order|
-      order.cancelled!
-    end
-  end  
-end
+#   trait :is_cancelled do
+#     after(:create) do |order|
+#       order.cancelled!
+#     end
+#   end  
+# end
