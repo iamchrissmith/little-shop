@@ -11,7 +11,7 @@ Rspec.describe "User wants to see items in cart" do
     end
   end
 
-  scenario "They see items in cart" do
+  xscenario "They see items in cart" do
     click_on('Cart')
 
     within(page.find('div', text: "#{@items[0].name}")) do
@@ -19,7 +19,7 @@ Rspec.describe "User wants to see items in cart" do
     end
   end
 
-  scenario "They lower an item quantity in cart" do
+  xscenario "They lower an item quantity in cart" do
     click_on('Cart')
     within(page.find('div', text: "#{@items[0].name}")) do
       select '1', from: 'quantity'

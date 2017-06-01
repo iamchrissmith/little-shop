@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.feature "User can see retired items" #do
+RSpec.feature "User can see retired items" do
   let! (:item) = create(:item, :is_retired)
   context "as a user" #do
-    scenario "it can view a retired item" #do
+    xscenario "it can view a retired item" do
 
       visit item_path(item)
 
@@ -11,6 +11,6 @@ RSpec.feature "User can see retired items" #do
       expect(page).to not_have_content("Add to Cart")
       expect(page).to have_content("Item Retired")
 
-    #end
-  #end
-#end
+    end
+  end
+end

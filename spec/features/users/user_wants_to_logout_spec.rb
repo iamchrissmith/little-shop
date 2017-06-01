@@ -2,7 +2,7 @@ require 'rails_helper'
 
 Rspec.describe "User wants to logout" do
 
-  scenerio "and they are successfully logged out" do
+  xscenario "and they are successfully logged out" do
     user = create(:user)
 
     # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)

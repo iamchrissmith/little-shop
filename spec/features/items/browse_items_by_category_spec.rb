@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "user can browse items by category" do
-  it "user can visit category and browse items belonging to that category" do
+  xit "user can visit category and browse items belonging to that category" do
     item1 = create(:item, category: "Garden")
     item2 = create(:item, category: "Garden")
     item3 = create(:item, category: "Tech")

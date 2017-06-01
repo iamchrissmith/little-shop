@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'New User can Create an Account' do
   context 'when not logged in' do
-    scenario 'a visitor can create an account' do
+    xscenario 'a visitor can create an account' do
       visit root_path
 
       expect(page).to have_link 'Login', href: login_path
