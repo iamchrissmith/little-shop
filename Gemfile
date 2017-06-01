@@ -45,7 +45,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 gem 'haml', '~> 5.0'
 
 group :development, :test do
@@ -61,4 +61,5 @@ group :development, :test do
   gem 'erb2haml'
   gem 'pry-state'
   gem 'pry-byebug'
+
 end
