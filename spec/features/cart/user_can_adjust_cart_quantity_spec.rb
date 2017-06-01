@@ -19,25 +19,14 @@ RSpec.feature "Visitor can adjust cart quantity" do
     visit cart_path
 
     expect(page).to have_content(item.name)
-<<<<<<< HEAD
     expect(page).to have_content(order.item.quantity)
-=======
     expect(page).to have_content(order.quantity)
->>>>>>> cart_item_removal
 
     #select_quantity_increase
     click_on("Update Cart")
 
     expect(current_path).to eq(cart_path)
-<<<<<<< HEAD
     expect(page).to have_content(order.item.quantity + 1)
     expect(page).to have_content(order.quantity + 1)
-
-
-=======
-    
->>>>>>> cart_item_removal
-
-
   end
 end
