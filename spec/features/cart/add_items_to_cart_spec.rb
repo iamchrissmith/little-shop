@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "user can add items to a cart" do
-  context "as a guest user is not logged in"
+  context "as a guest user is not logged in" do
     xit "user can add item to cart from items page" do
       item = create(:item)
 
@@ -112,7 +112,7 @@ RSpec.feature "user can add items to a cart" do
 
       click_button "Add to Cart"
       click_button "Add to Cart"
-      
+
       within "header nav" do
         expect(page).to have_content("Cart: 2")
         click_link ("Cart: 2")

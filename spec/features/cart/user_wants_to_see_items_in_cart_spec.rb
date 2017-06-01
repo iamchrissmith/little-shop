@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.describe "User wants to see items in cart" do
+RSpec.describe "User wants to see items in cart" do
 
   before do
     @items = create_list(:item, 3)
