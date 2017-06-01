@@ -85,9 +85,6 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-<<<<<<< HEAD
-    i18n (0.8.4)
-=======
     haml (5.0.1)
       temple (>= 0.8.0)
       tilt
@@ -96,8 +93,7 @@ GEM
       haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
-    i18n (0.8.1)
->>>>>>> development
+    i18n (0.8.4)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2)
