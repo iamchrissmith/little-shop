@@ -10,7 +10,7 @@ RSpec.describe 'Admin wants to see an order' do
     visit(admin_dashboard_path(@admin))
   end
 
-  scenario 'admin visits order show page' do
+  xscenario 'admin visits order show page' do
 
     within(find('div', text: @order.id)) do
       click_link 'View Order'

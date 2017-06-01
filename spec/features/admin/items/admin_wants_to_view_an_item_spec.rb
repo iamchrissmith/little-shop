@@ -10,7 +10,7 @@ RSpec.describe 'Admin wants to view an item' do
     visit admin_dashboard_path(@admin)
   end
 
-  scenario 'admin can see items' do
+  xscenario 'admin can see items' do
     click_link 'View All Items'
 
     expect(page).to have_current_path(admin_items_path)
