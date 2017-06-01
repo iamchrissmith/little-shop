@@ -6,7 +6,7 @@ FactoryGirl.define do
 
     after(:create) do |order, evaluator|
       order.items = create_list(:item, evalutor.item_count)
-    end  
+    end
   end
 
 #   trait :is_paid do
@@ -25,5 +25,5 @@ FactoryGirl.define do
 #     after(:create) do |order|
 #       order.cancelled!
 #     end
-#   end  
-# end
+#   end
+end
