@@ -1,7 +1,6 @@
 FactoryGirl.define do
-  sequence(:name) { |n| "Tech#{n}" }
   factory :category do
-    name
+    sequence(:name) { |n| "Tech#{n}" }
   end
 
   trait :with_items do
