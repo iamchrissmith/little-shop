@@ -6,6 +6,7 @@ RSpec.feature "Visitor can adjust cart quantity" do
     #     description: "Presta valve 700x42c Bicyle Inner Tube",
     #     price: 11.99, status: 1)
     # order = Order.create!()
+    let! (:item) = create(:item)
     let! (:order) = create(:order)
 
     visit cart_path
