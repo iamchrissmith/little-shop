@@ -132,11 +132,3 @@ RSpec.descibe 'Admin wants to see all orders' do
     end
   end
 end
-
-# Still to be added
-
-# And I have links to transition between statuses
-#
-# I can click on "cancel" on individual orders which are "paid" or "ordered"
-# I can click on "mark as paid" on orders that are "ordered"
-# I can click on "mark as completed" on orders that are "paid"
