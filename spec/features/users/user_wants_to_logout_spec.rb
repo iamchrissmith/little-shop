@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.describe "User wants to logout" do
+RSpec.describe "User wants to logout" do
 
   xscenario "and they are successfully logged out" do
     user = create(:user)

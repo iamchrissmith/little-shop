@@ -61,5 +61,4 @@ group :development, :test do
   gem 'erb2haml'
   gem 'pry-state'
   gem 'pry-byebug'
-
 end

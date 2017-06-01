@@ -1,13 +1,13 @@
 FactoryGirl.define do
-  factory :order do
-    user
-
-    transient { item_count 1 }
-
-    after(:create) do |order, evaluator|
-      order.items = create_list(:item, evalutor.item_count)
-    end
-  end
+  # factory :order do
+  #   user
+  #
+  #   transient { item_count 1 }
+  #
+  #   after(:create) do |order, evaluator|
+  #     order.items = create_list(:item, evalutor.item_count)
+  #   end
+  # end
 
 #   trait :is_paid do
 #     after(:create) do |order|
