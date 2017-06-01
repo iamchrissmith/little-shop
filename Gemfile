@@ -46,7 +46,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 group :development, :test do
   gem 'rspec-rails'
   gem 'rails-controller-testing'
@@ -57,5 +57,5 @@ group :development, :test do
   gem 'pry-rails'
   gem 'database_cleaner'
   gem 'rubocop'
-  gem 'faker'
+
 end
