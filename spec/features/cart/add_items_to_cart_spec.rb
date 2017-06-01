@@ -2,14 +2,18 @@ require 'rails_helper'
 
 RSpec.feature "user can add items to a cart" do
   context "as a guest user is not logged in" do
-    xit "user can add item to cart from items page" do
+    it "user can add item to cart from items page" do
       item = create(:item)
 
       visit items_path
       expect(page).to have_content(item.name)
 
       click_button "Add to Cart"
-      expect(page).to have_content("You added 1 #{item.name} to your cart.")
+      expect(page).to have_content("You now have 1 #{item.name} in your cart.")
+
+      click_button "Add to Cart"
+      expect(page).to have_content("You now have 2 #{item.name}s in your cart.")
+
 
       within "header nav" do
         expect(page).to have_content("Cart: 2")
@@ -37,7 +41,10 @@ RSpec.feature "user can add items to a cart" do
       expect(page).to have_content(item.name)
 
       click_button "Add to Cart"
-      expect(page).to have_content("You added 1 #{item.name} to your cart.")
+      expect(page).to have_content("You added 1 #{item.name} in your cart.")
+
+      click_button "Add to Cart"
+      expect(page).to have_content("You now have 2 #{item.name}s in your cart.")
 
       within "header nav" do
         expect(page).to have_content("Cart: 2")
