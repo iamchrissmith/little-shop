@@ -101,11 +101,9 @@ And I should see a link for "Logout"
 
 As a visitor
 When I visit "/"
-Then I should see a link for "Login"
-And when I click "Login"
-And I should be on the "/login" page
-And I should see a link to "Create Account"
-And when I click link "Create Account"
+Then I should see a link for "Sign Up"
+And when I click "Sign Up"
+And I should be on the "/users/new" page
 And I fill in my desired credentials
 And I submit my information
 Then my current page should be "/dashboard"
