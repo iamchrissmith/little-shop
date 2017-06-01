@@ -33,7 +33,7 @@ RSpec.feature "User can checkout with cart" #do
       click_on("Checkout")
 
       expect(current_path).to eq('/orders')
-      #And I should see the order I just placed in a table
+      # And I should see the order I just placed in a table
 
     #end
   #end
