@@ -5,7 +5,7 @@ RSpec.feature 'User security' do
     let(:user) { create(:user) }
     let(:user_2) { create(:user) }
 
-    scenario 'I cannot view other users\' order data' do
+    xscenario 'I cannot view other users\' order data' do
       user_order = create(:order, user: user)
       user_2_order = create(:order, user: user_2)
       user_order.items << create_list(:item, 2)
@@ -28,9 +28,9 @@ RSpec.feature 'User security' do
       expect(page).not_to have_content user_2_order.items.first.price
     end
 
-    scenario 'I cannot view other user\'s profile'
+    xscenario 'I cannot view other user\'s profile'
 
-    scenario 'I cannot view admin screens' do
+    xscenario 'I cannot view admin screens' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit admin_dashboard_path
@@ -38,19 +38,19 @@ RSpec.feature 'User security' do
       expect(page).to have_content 'The page you were looking for doesn\'t exist.'
     end
 
-    scenario 'I cannot become an admin'
+    xscenario 'I cannot become an admin'
   end
 
   context 'as an unauthenticated user' do
-    scenario 'I cannot view past order data' do
+    xscenario 'I cannot view past order data' do
       visit orders_path
 
       expect(page).to have_content 'The page you were looking for doesn\'t exist.'
     end
 
-    scenario 'Checkout directs me to create account'
+    xscenario 'Checkout directs me to create account'
 
-    scenario 'I cannot view admin screens' do
+    xscenario 'I cannot view admin screens' do
       visit admin_dashboard_path
 
       expect(page).to have_content 'The page you were looking for doesn\'t exist.'
