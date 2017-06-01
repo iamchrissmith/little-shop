@@ -1,5 +1,7 @@
 class CartsController < ApplicationController
+
   include ActionView::Helpers::TextHelper
+
   def create
     # binding.pry
     id = params[:item_id].to_s
