@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Visitor can remove an item in the cart" do
-  scenario "a visitor see the cart page that contains items" do
+  xscenario "a visitor see the cart page that contains items" do
     # item = Item.create!(name: "700x42c tube",
     #     description: "Presta valve 700x42c Bicyle Inner Tube",
     #     price: 11.99, status: 0)

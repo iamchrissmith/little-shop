@@ -13,7 +13,7 @@ RSpec.descibe 'Admin wants to see all orders' do
     allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(admin)
   end
 
-  scenario 'and sees all orders' do
+  xscenario 'and sees all orders' do
     visit(admin_dashboard_path(@admin))
 
     within(page.find('orders-view')) do
@@ -23,7 +23,7 @@ RSpec.descibe 'Admin wants to see all orders' do
     end
   end
 
-  scenario 'and sees total counts for each order status' do
+  xscenario 'and sees total counts for each order status' do
     visit(admin_dashboard_path(@admin))
 
     it 'sees all ordered orders' do
@@ -52,7 +52,7 @@ RSpec.descibe 'Admin wants to see all orders' do
       end
     end
 
-    it 'sees all paid orders' do
+    xit 'sees all paid orders' do
       within(page.find('div', text: 'Paid')) do
         expect(page).to have_content(Order.all_paid.count)
 
@@ -79,7 +79,7 @@ RSpec.descibe 'Admin wants to see all orders' do
       end
     end
 
-    it 'sees all cancelled orders' do
+    xit 'sees all cancelled orders' do
       within(page.find('div', text: 'Cancelled')) do
         expect(page).to have_content(Order.all_cancelled.count)
 
@@ -105,7 +105,7 @@ RSpec.descibe 'Admin wants to see all orders' do
       end
     end
 
-    it 'sees all completed orders' do
+    xit 'sees all completed orders' do
       within(page.find('div', text: 'Completed')) do
         expect(page).to have_content(Order.all_completed.count)
 
@@ -140,4 +140,3 @@ end
 # I can click on "cancel" on individual orders which are "paid" or "ordered"
 # I can click on "mark as paid" on orders that are "ordered"
 # I can click on "mark as completed" on orders that are "paid"
-

@@ -7,7 +7,7 @@ RSpec.describe "User wants to login" do
     visit login_path
   end
 
-  scenerio "and they log in" do
+  xscenario "and they log in" do
 
     within("form") do
       fill_in "email", with: @user.username
@@ -21,7 +21,7 @@ RSpec.describe "User wants to login" do
     expect(page).to have_content("Logout")
   end
 
-  scenerio "and they enter wrong password" do
+  xscenario "and they enter wrong password" do
 
     within("form") do
       fill_in "email", with: @user.username
@@ -33,7 +33,7 @@ RSpec.describe "User wants to login" do
     expect(page).to have_content('Incorrect Password or Username')
   end
 
-  scenerio "and they enter wrong username" do
+  xscenario "and they enter wrong username" do
 
     within("form") do
       fill_in "email", with: 'celinedion'

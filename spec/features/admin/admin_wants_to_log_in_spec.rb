@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin wants to log in' do
 
-  scenario 'and logs in' do
+  xscenario 'and logs in' do
     admin = create(:user, :as_admin)
 
     visit('/login')
