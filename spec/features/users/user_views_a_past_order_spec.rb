@@ -12,10 +12,15 @@ RSpec.feature 'Logged In User can View Past Orders' do
 
     expect(page).to have_content(user.name)
     expect(page).to have_content('Orders:')
-    expect(page).to have_content(orders[0].name)
-    expect(page).to have_content(orders[1].name)
-    expect(page).to have_content(orders[2].name)
+    expect(page).to have_content(orders[0].id)
+    expect(page).to have_content(orders[1].id)
+    expect(page).to have_content(orders[2].id)
 
-    #how to access items in orders?
+    click_link order[0].id
+
+    expect(path).to eq("user/#{user.id}/orders/#{order[0].id}")
+    expect(page).to have_content("Order: #{order[0].id}")
+    
+    #how to check for listed out items?
   end
 end
