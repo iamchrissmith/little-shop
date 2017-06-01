@@ -15,6 +15,7 @@ RSpec.feature "user can browse items by category" do
       click_link item_1.categories[0].name
     end
 
+    expect(current_path).to eq("/categories/#{item_1.categories[0].id}")
     expect(page).to have_content(item_1.name)
     expect(page).to_not have_content(item_2.name)
   end

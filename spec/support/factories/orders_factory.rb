@@ -8,7 +8,6 @@ FactoryGirl.define do
   #     order.items = create_list(:item, evalutor.item_count)
   #   end
   # end
-
 #   trait :is_paid do
 #     after(:create) do |order|
 #       order.paid!
