@@ -1,9 +1,13 @@
 # Little Shop
 
 [![Stories in Ready](https://badge.waffle.io/iamchrissmith/little-shop.svg?label=ready&title=Ready)](http://waffle.io/iamchrissmith/little-shop)
-[![Build Status](https://semaphoreci.com/api/v1/iamchrissmith/little-shop/branches/master/badge.svg)](https://semaphoreci.com/iamchrissmith/little-shop)
+[![Development Build Status](https://semaphoreci.com/api/v1/iamchrissmith/little-shop/branches/development/badge.svg)](https://semaphoreci.com/iamchrissmith/little-shop)
+[![Master Build Status](https://semaphoreci.com/api/v1/iamchrissmith/little-shop/branches/development/badge.svg)](https://semaphoreci.com/iamchrissmith/little-shop)
+
 [DTR](https://gist.github.com/TomSoucie/802fba808aadcf4dd5cc7c099b029d74)
+
 [DB Schema](http://ondras.zarovi.cz/sql/demo/?keyword=caat-little-shop)
+
 
 # User Stories
 
@@ -101,11 +105,9 @@ And I should see a link for "Logout"
 
 As a visitor
 When I visit "/"
-Then I should see a link for "Login"
-And when I click "Login"
-And I should be on the "/login" page
-And I should see a link to "Create Account"
-And when I click link "Create Account"
+Then I should see a link for "Sign Up"
+And when I click "Sign Up"
+And I should be on the "/users/new" page
 And I fill in my desired credentials
 And I submit my information
 Then my current page should be "/dashboard"

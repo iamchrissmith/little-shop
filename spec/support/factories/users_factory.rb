@@ -1,22 +1,22 @@
-FactoryGirl.define do
-  sequence(:email) { |n| "user#{n}" }
+# FactoryGirl.define do
 
-  factory :user do
-    first_name 'Jen'
-    last_name  'Doe'
-    email
-    password   'jen'
-  end
+#   factory :user do
+#     first_name 'Jen'
+#     last_name  'Doe'
+#     password   'jen'
 
-  trait :as_admin do
-    after(:create) do |user|
-      user.admin!
-    end
-  end
+#     sequence(:email) { |n| "user#{n}" }
+#   end
 
-  trait :with_address do
-    after(:create) do |user|
-      user.address = address
-    end
-  end
-end
+#   trait :as_admin do
+#     after(:create) do |user|
+#       user.admin!
+#     end
+#   end
+
+#   trait :with_address do
+#     after(:create) do |user|
+#       user.address = address
+#     end
+#   end
+# end

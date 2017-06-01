@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature "Visitor can adjust cart quantity" do
   xscenario "a visitor can change quantity of an item in their cart" do
     context "increase quantity in the cart" do
-      let! (:item) = create(:item)
-      let! (:order) = create(:order)
+      let! (:item) { create(:item) }
+      let! (:order) { create(:order) }
 
       visit cart_path
 
@@ -21,8 +21,8 @@ RSpec.feature "Visitor can adjust cart quantity" do
     end
 
     context "decrease quantity in the cart" do
-      let! (:item) = create(:item)
-      let! (:order) = create(:order)
+      let! (:item) { create(:item) }
+      let! (:order) { create(:order) }
 
       visit_cart_path
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.descibe 'Admin wants to see all orders' do
+RSpec.describe 'Admin wants to see all orders' do
 
   before do
     @orders = create_list(:order, 3)

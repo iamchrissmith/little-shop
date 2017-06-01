@@ -1,28 +1,22 @@
 require 'rails_helper'
 
 RSpec.feature "user can browse items by category" do
-  xit "user can visit category and browse items belonging to that category" do
-    item1 = create(:item, category: "Garden")
-    item2 = create(:item, category: "Garden")
-    item3 = create(:item, category: "Tech")
-    item4 = create(:item, category: "Tech")
-    # are the two above, different?
+  let!(:item_1) { create(:item) }
+  let!(:item_2) { create(:item) }
+
+  it "user can visit category and browse items belonging to that category" do
 
     visit items_path
-    expect(page).to have_content(item1.name)
-    expect(page).to have_content(item2.name)
-    expect(page).to have_content(item3.name)
-    expect(page).to have_content(item4.name)
-
+    expect(page).to have_content(item_1.name)
+    expect(page).to have_content(item_2.name)
 
     within "header nav" do
       click_link "Categories"
-      click_link "Tech"
+      click_link item_1.categories[0].name
     end
 
-    expect(page).to have_content(item3.name)
-    expect(page).to have_content(item4.name)
-    expect(page).to_not have_content(item1.name)
-    expect(page).to_not have_content(item2.name)
+    expect(current_path).to eq("/categories/#{item_1.categories[0].id}")
+    expect(page).to have_content(item_1.name)
+    expect(page).to_not have_content(item_2.name)
   end
 end
