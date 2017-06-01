@@ -7,8 +7,7 @@ Rspec.describe "User wants to see items in cart" do
     # @user = create(:user)
     visit(root_path)
     within(page.find('div', text: "#{@item[0].name}")) do
-      click_on "Add to Cart"
-      click_on "Add to Cart"
+      2.times { click_on "Add to Cart" }
     end
   end
 
