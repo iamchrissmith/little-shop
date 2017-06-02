@@ -1,4 +1,4 @@
 %h1 All Items
 - @items.each do |item|
   = link_to item.name, item_path(item)
-  = button_to "Add to Cart", carts_path(item_id: item.id), :class => "btn btn_primary"
+  = button_to "Add to Cart", cart_path(item_id: item.id), :class => "btn btn_primary"

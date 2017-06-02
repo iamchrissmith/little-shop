@@ -3,16 +3,15 @@ class CartsController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def create
-    # binding.pry
     id = params[:item_id].to_s
     item = Item.find(id)
-    session[:cart] ||= {}
-    session[:cart][id] = (session[:cart][id] || 0) + 1
+    @cart.add_item(id)
+    session[:cart] = @cart.contents
+    
     flash[:notice] = "You now have #{pluralize(session[:cart][id], item.name)} in your cart."
     redirect_to root_path
   end
 
   def show
-    @cart = Cart.new(session[:cart])
   end
 end
