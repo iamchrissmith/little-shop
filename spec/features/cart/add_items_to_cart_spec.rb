@@ -64,7 +64,7 @@ RSpec.feature "user can add items to a cart" do
 
     it "total number of particular item in cart increments" do
       item = create(:item)
-      item_2 = create(:item)
+      item_2 = create(:item, price: 100)
 
       visit items_path
       expect(page).to have_content(item.name)
@@ -100,7 +100,7 @@ RSpec.feature "user can add items to a cart" do
 
     it "total number of items in cart increments in nav bar" do
       item = create(:item)
-      item_2 = create(:item)
+      item_2 = create(:item, price: 100)
 
       visit items_path
       expect(page).to have_content(item.name)
@@ -140,7 +140,7 @@ RSpec.feature "user can add items to a cart" do
 
     xit "total number of items in cart increments in view cart page" do
       item = create(:item)
-      item_2 = create(:item)
+      item_2 = create(:item, price: 100)
 
 
       visit items_path
