@@ -18,7 +18,7 @@ class Cart
   end
 
   def total_price
-    binding.pry
-    items.contents
+    # binding.pry
+    items[0].price * total_count
   end
 end

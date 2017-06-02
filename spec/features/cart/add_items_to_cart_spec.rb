@@ -4,7 +4,6 @@ RSpec.feature "user can add items to a cart" do
   context "as a guest user is not logged in" do
     it "user can add item to cart from items page" do
       item = create(:item)
-
       visit items_path
       expect(page).to have_content(item.name)
 
@@ -15,7 +14,6 @@ RSpec.feature "user can add items to a cart" do
       click_button "Add to Cart"
       expect(page).to have_content("You now have 2 #{item.name}s in your cart.")
       expect(page).to have_content("Cart: 2")
-
 
       within "header nav" do
         expect(page).to have_content("Cart: 2")
@@ -66,6 +64,8 @@ RSpec.feature "user can add items to a cart" do
 
     xit "total number of particular item in cart increments" do
       item = create(:item)
+      item_2 = create(:item)
+
 
       visit items_path
       expect(page).to have_content(item.name)
@@ -92,6 +92,8 @@ RSpec.feature "user can add items to a cart" do
 
     xit "total number of items in cart increments in nav bar" do
       item = create(:item)
+      item_2 = create(:item)
+
 
       visit items_path
       expect(page).to have_content(item.name)
@@ -116,6 +118,8 @@ RSpec.feature "user can add items to a cart" do
 
     xit "total number of items in cart increments in view cart page" do
       item = create(:item)
+      item_2 = create(:item)
+      
 
       visit items_path
       expect(page).to have_content(item.name)
