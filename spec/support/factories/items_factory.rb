@@ -2,10 +2,12 @@ FactoryGirl.define do
   factory :item do
     description 'The best one'
     price 11.99
+
     after(:create) do |item|
       item.categories << create(:category)
     end
-    sequence(:name) { |n| "Whatchmacallit#{n}" } 
+    
+    sequence(:name) { |n| "Whatchmacallit#{n}" }
   end
 
   # trait :with_photo do
@@ -20,7 +22,7 @@ FactoryGirl.define do
     end
   end
 
-  trait :is_retired do 
+  trait :is_retired do
     after(:create) do |item|
       item.retired!
     end
