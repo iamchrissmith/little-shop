@@ -12,14 +12,16 @@
   .form-group
     = f.label(:last_name, class:"sr-only required")
     = f.text_field(:last_name, class:"form-control", placeholder: "Last Name")
-  .form-group
-    = f.label(:address, class:"sr-only")
-    = f.text_field(:address, class:"form-control", placeholder: "Street Address")
-  .form-group
-    = f.label(:city, class:"sr-only")
-    = f.text_field(:city, class:"form-control", placeholder: "City")
-  .form-group
-    = collection_select(:user, :state_id, State.all, :id, :abbr, prompt: true)
-  .form-group
-    = f.label(:zipcode, class:"sr-only")
-    = f.text_field(:zipcode, class:"form-control", placeholder: "Zipcode")
+  = f.fields_for :address do |a|
+    .form-group
+      = a.label(:address, class:"sr-only")
+      = a.text_field(:address, class:"form-control", placeholder: "Street Address")
+    .form-group
+      = a.label(:city, class:"sr-only")
+      = a.text_field(:city, class:"form-control", placeholder: "City")
+    .form-group
+      = a.collection_select(:user, :state_id, State.all, :id, :abbr, prompt: true)
+    .form-group
+      = a.label(:zipcode, class:"sr-only")
+      = a.text_field(:zipcode, class:"form-control", placeholder: "Zipcode")
+  f.submit
