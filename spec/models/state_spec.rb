@@ -1,29 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe State, type: :model do
-  describe 'validations' do
-    it 'is invalid without a name' do
-      state = build(:state, name: '')
-      expect(state).to be_invalid
-    end
 
-    it 'is invalid without an abbr' do
-      state = build(:state, abbr: '')
-      expect(state).to be_invalid
-    end
+  describe 'Validations' do
+
+    it { should have_many(:cities) }
+    it { should validate_presence_of(:name) }
+    it { should validate_uniqueness_of(:name) }
+    it { should validate_presence_of(:abbr) }
+    it { should validate_uniqueness_of(:abbr) }
   end
 
-  context 'with valid attributes' do
-    it 'user is valid with all required attributes' do
-      state = build(:state)
-      expect(state).to be_valid
-    end
-  end
+  define 'Factory' do
 
-  describe 'relationships' do
-    it 'has many cities' do
-      state = build(:state)
-      expect(state).to respond_to(:cities)
+    it 'should be a State' do
+      expect(create(:state)).to be_a(State)
+    end
+
+    it 'should have attributes' do
+      state = create(:state)
+
+      expect(state.name).to be_a(String)
+      expect(state.abbr).to be_a(String)
+    end
+
+    describe 'traits' do
+
+      it 'should have cities' do
+        state = create(:state, :with_cities, city_count: 3)
+        expect(state.cities.count).to eq(3)
+      end
     end
   end
 end

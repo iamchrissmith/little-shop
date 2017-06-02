@@ -1,49 +1,33 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  describe 'validations' do
-    it 'is invalid without a city' do
-      address = build(:address, city: nil)
-      expect(address).to be_invalid
-    end
+RSpec.describe Address, type: :model do
 
-    it 'is invalid without an address' do
-      address = build(:address, address: '')
-      expect(address).to be_invalid
-    end
+  describe 'Validations' do
 
-    it 'is invalid without a user' do
-      address = build(:address, user: nil)
-      expect(address).to be_invalid
-    end
+    it { should belong_to(:city) }
+    it { should belong_to(:user) }
+    it { should have_one(:state).through(:city) }
+    it { should validate_presence_of(:city_id) }
+    it { should validate_presence_of(:user_id) }
+    it { should validate_presence_of(:address) }
+    it { should validate_presence_of(:zipcode) }
 
-    it 'is invalid without a zipcode' do
-      address = build(:address, zipcode: '')
-      expect(address).to be_invalid
-    end
   end
 
-  context 'with valid attributes' do
-    it 'address is valid with all required attributes' do
-      address = build(:address)
-      expect(address).to be_valid
-    end
-  end
+  describe 'Factory' do
 
-  describe 'relationships' do
-    it 'has one user' do
-      address = create(:address)
-      expect(address).to respond_to(:user)
+    it 'is a Address' do
+      expect(create(:address)).to be_a(Address)
     end
 
-    it 'has one city' do
+    it 'has attributes' do
       address = create(:address)
-      expect(address).to respond_to(:city)
-    end
 
-    it 'has one state' do
-      address = create(:address)
-      expect(address).to respond_to(:state)
+      expect(address.user).to be_a(User)
+      expect(address.city).to be_a(City)
+
+      expect(address.address).to be_a(String)
+      expect(address.zipcode).to be_a(String)
     end
   end
 end
