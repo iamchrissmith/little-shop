@@ -38,7 +38,24 @@ RSpec.feature 'New User can Create an Account' do
       end
     end
     context 'when a required field is not included' do
-      scenario 'a visitor sees a form error'
+      scenario 'shows an error for missing first name' do
+        visit new_user_path
+
+        fill_in 'Email', with: 'test@test.com'
+        fill_in 'First Name', with: ''
+        fill_in 'Last Name', with: 'Last'
+        fill_in 'Address', with: '123 Street Ave'
+        fill_in 'City', with: 'Somewhere'
+        select state.abbr, from: 'user[address][city][state_id]'
+        fill_in 'Zipcode', with: '12345'
+        # select 'Shipping', from: 'address_type'
+        fill_in 'Password', with: '123abc'
+
+        click_button 'Create User'
+
+        expect(current_path).to eq new_user_path
+        expect(page).to have_content "Missing First name"
+      end
     end
   end
 end
