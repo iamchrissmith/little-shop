@@ -16,7 +16,7 @@ FactoryGirl.define do
 
   trait :with_address do
     after(:create) do |user|
-      user.address = address
+      user.addresses << address
     end
   end
 end

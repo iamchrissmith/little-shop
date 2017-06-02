@@ -1,6 +1,6 @@
-# FactoryGirl.define do
-#   factory :state do
-#     name 'Colorado'
-#     abbr 'CO'
-#   end
-# end
+FactoryGirl.define do
+  factory :state do
+    name 'Colorado'
+    abbr 'CO'
+  end
+end
