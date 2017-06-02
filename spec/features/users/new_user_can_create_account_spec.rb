@@ -110,6 +110,20 @@ RSpec.feature 'New User can Create an Account' do
 
         expect(page).to have_content "Email has already been taken"
       end
+
+      scenario 'no error for missing address' do
+        visit new_user_path
+
+        fill_in 'Email', with: 'test@test.com'
+        fill_in 'First Name', with: 'Test'
+        fill_in 'Last Name', with: 'Last'
+        fill_in 'Password', with: '123abc'
+
+        click_button 'Create User'
+
+        expect(current_path).to eq dashboard_path
+        expect(page).to have_content 'Logged in as Test Last'
+      end
     end
   end
 end

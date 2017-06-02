@@ -7,10 +7,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    city = City.create(city_params)
-    address = city.addresses.create(address_params)
     @user = User.create(user_params)
-    @user.addresses << address
+    city = City.create(city_params)
+    if city.save
+      address = city.addresses.create(address_params)
+      @user.addresses << address
+    end
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Logged in as #{full_name(@user)}"
