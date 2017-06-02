@@ -13,13 +13,17 @@ RSpec.describe Order, type: :model do
       expect(create(:order)).to be_a(Order)
     end
 
+    it 'should default to ordered' do
+      expect(create(:order).ordered?).to be_truthy
+    end
+
     it 'has a user' do
       order = create(:order)
       expect(order.user).to be_a(User)
     end
 
     it 'has many order_items' do
-      order = create(:order, item_count: 3)
+      order = create(:order, :with_items, item_count: 3)
 
       expect(order.order_items.count).to eq(3)
       order.order_items.each do |order_item|
@@ -28,12 +32,25 @@ RSpec.describe Order, type: :model do
     end
 
     it 'has many items' do
-      order = create(:order, item_count: 3)
+      order = create(:order, :with_items, item_count: 3)
 
       expect(order.items.count).to eq(3)
       order.items.each do |item|
         expect(item).to be_a(Item)
       end
     end
+
+    it 'can be paid' do
+      expect(create(:order, status: 'paid').paid?).to be_truthy
+    end
+
+    it 'can be completed' do
+      expect(create(:order, status: 'completed').completed?).to be_truthy
+    end
+
+    it 'can be cancelled' do
+      expect(create(:order, status: 'cancelled').cancelled?).to be_truthy
+    end
+
   end
 end

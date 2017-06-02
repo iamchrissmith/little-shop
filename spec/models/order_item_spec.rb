@@ -9,11 +9,11 @@ RSpec.describe OrderItem, type: :model do
 
   describe 'Factories' do
 
-    it 'is a OrderItem' do
+    it 'is an OrderItem' do
       expect(create(:order_item)).to be_a(OrderItem)
     end
 
-    it 'has an item and a user' do
+    it 'has attributes' do
       order_item = create(:order_item)
 
       expect(order_item.item).to be_a(Item)
@@ -21,10 +21,9 @@ RSpec.describe OrderItem, type: :model do
     end
   end
 
-  describe 'Methods' do
-    it 'sets price' do
-      order = create(:order)
-      order_item = order.order_items.last
+  describe 'Callbacks' do
+    it 'sets_price before save' do
+      order_item = create(:order, :with_items, item_count: 3).order_items.last
 
       expect(order_item.price).to eq(order_item.item.price)
     end
