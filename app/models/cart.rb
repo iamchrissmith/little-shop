@@ -14,11 +14,10 @@ class Cart
   end
 
   def items
-    Item.where('id = (?)',contents.keys)
+    Item.where('id in (?)',contents.keys)
   end
 
   def total_price
-    # binding.pry
     items[0].price * total_count
   end
 end

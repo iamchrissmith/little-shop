@@ -62,22 +62,28 @@ RSpec.feature "user can add items to a cart" do
       # expect(page).to have_content("Total: $600")
     end
 
-    xit "total number of particular item in cart increments" do
+    it "total number of particular item in cart increments" do
       item = create(:item)
       item_2 = create(:item)
-
 
       visit items_path
       expect(page).to have_content(item.name)
 
-      click_button "Add to Cart"
-      click_button "Add to Cart"
+      within(:css, ".item-#{item.id}") do
+        click_button "Add to Cart"
+      end
+      expect(page).to have_content("You now have 1 #{item.name} in your cart.")
 
-      expect(page).to have_content("You have 2 #{item.name}s in your cart.")
+      within(:css, ".item-#{item_2.id}") do
+        click_button "Add to Cart"
+        click_button "Add to Cart"
+      end
+
+      expect(page).to have_content("You now have 2 #{item_2.name}s in your cart.")
 
       within "header nav" do
-        expect(page).to have_content("Cart: 2")
-        click_link ("Cart: 2")
+        expect(page).to have_content("Cart: 3")
+        click_link ("Cart: 3")
       end
 
       expect(current_path).to eq "/cart"
@@ -119,7 +125,7 @@ RSpec.feature "user can add items to a cart" do
     xit "total number of items in cart increments in view cart page" do
       item = create(:item)
       item_2 = create(:item)
-      
+
 
       visit items_path
       expect(page).to have_content(item.name)
