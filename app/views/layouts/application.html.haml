@@ -19,6 +19,6 @@
               -categories.each do |category|
                 %li
                   = link_to category.name, category_path(category)
-        = link_to "Cart: #{@cart.total_count}", carts_path          
+        = link_to "Cart: #{@cart.total_count}", cart_path(@cart)          
     = render "shared/flash"
     = yield

@@ -10,9 +10,11 @@ RSpec.feature "user can add items to a cart" do
 
       click_button "Add to Cart"
       expect(page).to have_content("You now have 1 #{item.name} in your cart.")
+      expect(page).to have_content("Cart: 1")
 
       click_button "Add to Cart"
       expect(page).to have_content("You now have 2 #{item.name}s in your cart.")
+      expect(page).to have_content("Cart: 2")
 
 
       within "header nav" do
@@ -34,7 +36,7 @@ RSpec.feature "user can add items to a cart" do
     xit "user can add item to cart from item view page" do
       item = create(:item)
 
-      visit items_path
+      visit item_path(:item)
       expect(page).to have_content(item.name)
 
       click_link item.name
