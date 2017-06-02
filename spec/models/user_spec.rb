@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "validations"do
-  it "is invalid without a first name" do
+  describe "validations" do
+    it "is invalid without a first name" do
       user = build(:user, first_name: '')
       expect(user).to be_invalid
     end
@@ -26,6 +26,30 @@ RSpec.describe User, type: :model do
     it "is invalid without a password" do
       user = build(:user, password: '')
       expect(user).to be_invalid
+    end
+  end
+
+  context "with valid attributes" do
+    it "user is valid with all required attributes" do
+      user = build(:user)
+      expect(user).to be_valid
+    end
+  end
+
+  describe "relationships" do
+    it "has many addresses" do
+      user = create(:user)
+      expect(user).to respond_to(:addresses)
+    end
+
+    it "has many cities" do
+      user = create(:user)
+      expect(user).to respond_to(:cities)
+    end
+
+    it "has many states" do
+      user = create(:user)
+      expect(user).to respond_to(:states)
     end
   end
 end
