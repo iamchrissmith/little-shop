@@ -1,3 +1,4 @@
+# sets up base inheritence for mailers
 class ApplicationMailer < ActionMailer::Base
   default from: 'from@example.com'
   layout 'mailer'
