@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
   get '/login', to: 'sessions#new'
+  get '/logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'users#show'
 

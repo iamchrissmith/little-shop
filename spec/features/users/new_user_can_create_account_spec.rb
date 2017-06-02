@@ -26,7 +26,6 @@ RSpec.feature 'New User can Create an Account' do
         click_button 'Create User'
 
         expect(current_path).to eq dashboard_path
-        expect(page).to have_content 'New Account Created!'
         expect(page).to have_content 'Logged in as Test Last'
         expect(page).to have_content 'Your Profile'
         expect(page).to have_content '123 Street Ave'

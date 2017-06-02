@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
+
   def new
     @user = User.new
   end
@@ -7,11 +9,15 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:success] = 'New Account Created!'
+      flash[:success] = "Logged in as #{full_name(@user)}"
       redirect_to dashboard_path
     else
       render :new
     end
+  end
+
+  def show
+
   end
 
   private
