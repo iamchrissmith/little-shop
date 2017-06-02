@@ -1,55 +1,44 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'validations' do
-    it 'is invalid without a first name' do
-      user = build(:user, first_name: '')
-      expect(user).to be_invalid
-    end
 
-    it 'is invalid without a last name' do
-      user = build(:user, last_name: '')
-      expect(user).to be_invalid
-    end
+  describe 'Validations' do
 
-    it 'is invalid without an email' do
-      user = build(:user, email: '')
-      expect(user).to be_invalid
-    end
+    it { should have_many(:addresses) }
+    it { should have_many(:cities).through(:addresses) }
+    it { should have_many(:states).through(:cities) }
 
-    it 'is invalid without a unique email' do
-      user_first = create(:user)
-      user = build(:user, email: user_first.email)
-      expect(user).to be_invalid
-    end
+    it { should have_secure_password }
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email).case_insensitive }
 
-    it 'is invalid without a password' do
-      user = build(:user, password: '')
-      expect(user).to be_invalid
-    end
   end
 
-  context 'with valid attributes' do
-    it 'user is valid with all required attributes' do
-      user = build(:user)
-      expect(user).to be_valid
-    end
-  end
+  describe 'Factory' do
 
-  describe 'relationships' do
-    it 'has many addresses' do
-      user = create(:user)
-      expect(user).to respond_to(:addresses)
+    it 'should be a User' do
+      expect(create(:user)).to be_a(User)
     end
 
-    it 'has many cities' do
+    it 'should have attributes' do
       user = create(:user)
-      expect(user).to respond_to(:cities)
-    end
 
-    it 'has many states' do
-      user = create(:user)
-      expect(user).to respond_to(:states)
+      expect(user.first_name).to be_a(String)
+      expect(user.last_name).to be_a(String)
+      expect(user.email).to be_a(String)
+
+      user.addresses.each do |address|
+        expect(address).to be_a(Address)
+      end
+
+      describe 'traits' do
+
+        it 'with address' do
+          user = create(:user, :with_address)
+        end
+      end
     end
   end
 end
