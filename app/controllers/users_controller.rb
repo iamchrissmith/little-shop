@@ -22,24 +22,25 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
 
-   def user_params
-     params.require(:user).permit(:first_name, :last_name, :email, :password)
-   end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
+  end
 
-   def address_params
-     params.require(:user).require(:address).permit(:address, :zipcode)
-   end
+  def address_params
+    params.require(:user).require(:address).permit(:address, :zipcode)
+  end
 
-   def city_params
-     params.require(:user).require(:address).require(:city).permit(:name, :state_id)
-   end
+  def city_params
+    params.require(:user)
+          .require(:address)
+          .require(:city).permit(:name, :state_id)
+  end
 
-   def set_user
-     @user = current_user
-   end
+  def set_user
+    @user = current_user
+  end
 end

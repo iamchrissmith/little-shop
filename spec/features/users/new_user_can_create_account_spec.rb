@@ -108,7 +108,7 @@ RSpec.feature 'New User can Create an Account' do
 
         click_button 'Create User'
 
-        expect(page).to have_content "Email has already been taken"
+        expect(page).to have_content 'Email has already been taken'
       end
 
       scenario 'no error for missing address' do
