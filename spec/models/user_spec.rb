@@ -32,13 +32,6 @@ RSpec.describe User, type: :model do
       user.addresses.each do |address|
         expect(address).to be_a(Address)
       end
-
-      describe 'traits' do
-
-        it 'with address' do
-          user = create(:user, :with_address)
-        end
-      end
     end
   end
 end
