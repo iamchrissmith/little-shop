@@ -68,6 +68,8 @@ RSpec.feature "user can add items to a cart" do
 
       visit items_path
       expect(page).to have_content(item.name)
+      expect(page).to have_content(item_2.name)
+
 
       within(:css, ".item-#{item.id}") do
         click_button "Add to Cart"
@@ -96,20 +98,30 @@ RSpec.feature "user can add items to a cart" do
       # expect(page).to have_content("Total: $600")
     end
 
-    xit "total number of items in cart increments in nav bar" do
+    it "total number of items in cart increments in nav bar" do
       item = create(:item)
       item_2 = create(:item)
 
-
       visit items_path
       expect(page).to have_content(item.name)
+      expect(page).to have_content(item_2.name)
 
-      click_button "Add to Cart"
-      click_button "Add to Cart"
+      within(:css, ".item-#{item.id}") do
+        click_button "Add to Cart"
+      end
+
+      expect(page).to have_content("You now have 1 #{item.name} in your cart.")
+
+      within(:css, ".item-#{item_2.id}") do
+        click_button "Add to Cart"
+        click_button "Add to Cart"
+      end
+
+      expect(page).to have_content("You now have 2 #{item_2.name}s in your cart.")
 
       within "header nav" do
-        expect(page).to have_content("Cart: 2")
-        click_link ("Cart: 2")
+        expect(page).to have_content("Cart: 3")
+        click_link ("Cart: 3")
       end
 
       expect(current_path).to eq "/cart"
@@ -118,8 +130,12 @@ RSpec.feature "user can add items to a cart" do
       expect(page).to have_content(item.name)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content(item_2.name)
+      expect(page).to have_content(item_2.description)
+      expect(page).to have_content(item_2.price)
       expect(page).to have_content("Quantity: 2")
-      # expect(page).to have_content("Total: $600")
+      expect(page).to have_content("Total: $#{((item.price * 1) + (item_2.price * 2))}")
     end
 
     xit "total number of items in cart increments in view cart page" do
