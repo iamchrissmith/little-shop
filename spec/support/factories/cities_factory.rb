@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :city do
-    name 'Denver'
+    sequence :name do |n|
+      "Denver#{n}"
+    end
+
     state
   end
 end

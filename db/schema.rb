@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20170602001537) do
     t.string "name"
     t.text "description"
     t.float "price"
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20170602001537) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.integer "role"
+    t.integer "role", default: 0
     t.string "email"
     t.string "password_digest"
   end

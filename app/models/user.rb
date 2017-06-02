@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :cities, through: :addresses
   has_many :states, through: :cities
   accepts_nested_attributes_for :addresses
+
+  enum role: ['guest', 'member', 'admin']
 end

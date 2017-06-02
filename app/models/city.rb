@@ -4,6 +4,6 @@ class City < ApplicationRecord
 
   accepts_nested_attributes_for :state
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :state_id, presence: true
 end
