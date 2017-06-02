@@ -18,7 +18,7 @@ RSpec.feature 'New User can Create an Account' do
         fill_in 'Last Name', with: 'Last'
         fill_in 'Address', with: '123 Street Ave'
         fill_in 'City', with: 'Somewhere'
-        select state.abbr, from: 'user[address][state_id]'
+        select state.abbr, from: 'user[address][city][state_id]'
         fill_in 'Zipcode', with: '12345'
         # select 'Shipping', from: 'address_type'
         fill_in 'Password', with: '123abc'

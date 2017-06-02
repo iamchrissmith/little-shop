@@ -17,10 +17,12 @@
       = a.label(:address, class:'sr-only')
       = a.text_field(:address, class:'form-control', placeholder: 'Street Address')
     .form-group
-      = a.label(:city, class:'sr-only')
-      = a.text_field(:city, class:'form-control', placeholder: 'City')
-    .form-group
-      = a.collection_select(:state_id, State.all, :id, :abbr, prompt: true)
+      = a.fields_for :city do |c|
+        = c.label(:name, class:'sr-only')
+        = c.text_field(:name, class:'form-control', placeholder: 'City')
+        .form-group
+          = c.fields_for :state do |s|
+            = c.collection_select(:state_id, State.all, :id, :abbr, prompt: true)
     .form-group
       = a.label(:zipcode, class:'sr-only')
       = a.text_field(:zipcode, class:'form-control', placeholder: 'Zipcode')

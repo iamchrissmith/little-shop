@@ -4,5 +4,5 @@ class User < ApplicationRecord
   has_many :addresses
   has_many :cities, through: :addresses
   has_many :states, through: :cities
-  accepts_nested_attributes_for :addresses, :cities, :states
+  accepts_nested_attributes_for :addresses
 end
