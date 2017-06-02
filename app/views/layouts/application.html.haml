@@ -8,6 +8,7 @@
     = javascript_include_tag 'application'
   %body
     %header
+      = render "shared/accounts-nav"
       %nav
         %ul
           %li.dropdown
@@ -18,4 +19,5 @@
               =categories.each do |category|
                 %li
                   = link_to category.name, category_path(category)
+    = render "shared/flash"
     = yield
