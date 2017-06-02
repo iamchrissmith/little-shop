@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'New User can Create an Account' do
+  let!(:state) { create(:state) }
   context 'when not logged in' do
     context 'when all required fields are entered' do
       scenario 'a visitor can create an account' do
@@ -17,14 +18,15 @@ RSpec.feature 'New User can Create an Account' do
         fill_in 'Last Name', with: 'Last'
         fill_in 'Address', with: '123 Street Ave'
         fill_in 'City', with: 'Somewhere'
-        select 'CO', from: 'state'
+        select state.abbr, from: 'user[address][state_id]'
         fill_in 'Zipcode', with: '12345'
         # select 'Shipping', from: 'address_type'
         fill_in 'Password', with: '123abc'
 
-        click_button 'Submit'
+        click_button 'Create User'
 
         expect(current_path).to eq dashboard_path
+        expect(page).to have_content 'New Account Created!'
         expect(page).to have_content 'Logged in as Test Last'
         expect(page).to have_content 'Your Profile'
         expect(page).to have_content '123 Street Ave'
