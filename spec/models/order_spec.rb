@@ -22,22 +22,22 @@ RSpec.describe Order, type: :model do
       expect(order.user).to be_a(User)
     end
 
-    it 'has many order_items' do
-      order = create(:order, :with_items, item_count: 3)
+    describe 'has traits' do
+      it 'has with items' do
+        order = create(:order, :with_items, item_count: 3)
 
-      expect(order.order_items.count).to eq(3)
-      order.order_items.each do |order_item|
-        expect(order_item).to be_a(OrderItem)
+        expect(order.order_items.count).to eq(3)
+        order.order_items.each do |order_item|
+          expect(order_item).to be_a(OrderItem)
+        end
       end
     end
+  end
 
-    it 'has many items' do
-      order = create(:order, :with_items, item_count: 3)
+  describe 'Enums' do
 
-      expect(order.items.count).to eq(3)
-      order.items.each do |item|
-        expect(item).to be_a(Item)
-      end
+    it 'defaults to ordered' do
+      expect(create(:order).ordered?).to be_truthy
     end
 
     it 'can be paid' do
@@ -51,6 +51,5 @@ RSpec.describe Order, type: :model do
     it 'can be cancelled' do
       expect(create(:order, status: 'cancelled').cancelled?).to be_truthy
     end
-
   end
 end

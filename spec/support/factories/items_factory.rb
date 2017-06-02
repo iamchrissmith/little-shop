@@ -7,7 +7,7 @@ FactoryGirl.define do
     description 'The best one'
     price 11.99
 
-    after(:create) do |item|
+    before(:create) do |item|
       item.categories << create(:category)
     end
   end

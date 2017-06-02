@@ -5,6 +5,7 @@ RSpec.describe Item, type: :model do
   describe 'Validations' do
 
     it { should have_many(:categories).through(:item_categories) }
+    it { should validate_presence_of(:categories) }
     it { should have_many(:orders).through(:order_items) }
     it { should validate_presence_of(:name) }
     it { should validate_uniqueness_of(:name) }
@@ -38,6 +39,25 @@ RSpec.describe Item, type: :model do
 
       item = create(:item, :with_more_categories, category_count: 3)
       expect(item.categories.count).to eq(4)
+    end
+  end
+
+  describe 'Enums' do
+
+    it 'defaults to active and can be retired' do
+      item = create(:item)
+      expect(item.active?).to be_truthy
+
+      item.retired!
+      expect(item.retired?).to be_truthy
+    end
+
+    it 'can be retired and made active' do
+      item = create(:item, status: 'retired')
+      expect(item.retired?).to be_truthy
+
+      item.active!
+      expect(item.active?).to be_truthy
     end
   end
 end

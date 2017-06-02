@@ -4,4 +4,9 @@ class Order < ApplicationRecord
   has_many :items, through: :order_items
 
   enum status: ['ordered', 'paid', 'completed', 'cancelled']
+
+  def available_status
+    
+  end
+
 end
