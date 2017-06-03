@@ -26,6 +26,5 @@
   %p= item.description
   %p= item.price
   %p= "Quantity: #{@cart.contents[item.id.to_s]}"
-  binding.pry
   = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn_primary'
 %h3= "Total: $#{@cart.total_price}"
