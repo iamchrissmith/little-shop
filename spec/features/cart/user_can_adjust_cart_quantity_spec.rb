@@ -58,5 +58,18 @@ RSpec.feature 'Visitor can adjust cart quantity' do
       expect(page).to have_content("Total: $#{item.price}")
     end
 
+    scenario 'cannot decrease quantity below 1' do
+      cart = build(:cart, contents: { item.id.to_s => 1 })
+      allow_any_instance_of(ApplicationController).to receive(:current_cart).and_return(cart)
+
+      visit cart_path
+
+      expect(page).to have_content(item.name)
+      within(".item-#{item.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="1"]')
+        expect(page).to have_selector('input[min="1"]')
+      end
+    end
   end
 end
