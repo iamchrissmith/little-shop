@@ -10,8 +10,8 @@ RSpec.describe "User wants to login" do
   scenario "and they log in" do
 
     within("form") do
-      fill_in "email", with: @user.email
-      fill_in "password", with: @user.password
+      fill_in "Email", with: @user.email
+      fill_in "Password", with: @user.password
       click_on "Login"
     end
 
@@ -24,8 +24,8 @@ RSpec.describe "User wants to login" do
   scenario "and they enter wrong password" do
 
     within("form") do
-      fill_in "email", with: @user.email
-      fill_in "password", with: 'hogwash'
+      fill_in "Email", with: @user.email
+      fill_in "Password", with: 'hogwash'
       click_on "Login"
     end
 
@@ -36,8 +36,8 @@ RSpec.describe "User wants to login" do
   scenario "and they enter wrong email" do
 
     within("form") do
-      fill_in "email", with: 'celinedion'
-      fill_in "password", with: @user.password
+      fill_in "Email", with: 'celinedion'
+      fill_in "Password", with: @user.password
       click_on "Login"
     end
 

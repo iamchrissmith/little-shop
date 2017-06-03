@@ -9,8 +9,12 @@ class Cart
     contents.values.sum
   end
 
-  def add_item(id)
-    contents[id.to_s] = (contents[id.to_s] || 0) + 1
+  def add_item(opts)
+    contents[opts[:id].to_s] = (contents[opts[:id].to_s] || 0) + 1
+  end
+
+  def change_quantity(opts)
+    contents[opts[:id].to_s] = opts[:quantity]
   end
 
   def items

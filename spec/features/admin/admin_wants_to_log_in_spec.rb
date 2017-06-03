@@ -8,8 +8,8 @@ RSpec.describe 'Admin wants to log in' do
     visit('/login')
 
     within("form") do
-      fill_in "email", with: admin.email
-      fill_in "password", with: admin.password
+      fill_in "Email", with: admin.email
+      fill_in "Password", with: admin.password
       click_on "Login"
     end
 

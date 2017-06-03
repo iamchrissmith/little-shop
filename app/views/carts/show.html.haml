@@ -1,7 +1,24 @@
 %h1 Your Cart
-- @cart.items.each do |item|
-  %p= item.name
-  %p= item.description
-  %p= item.price
-  %p= "Quantity: #{@cart.contents[item.id.to_s]}"
+%table{:board => 0, :class => "table table-striped"}
+  %tbody
+    %tr
+      %td 
+        %h4 Item
+      %td 
+        %h4 Description
+      %td 
+        %h4 Price
+      %td 
+        %h4 Quantity
+    - @cart.items.each do |item|
+      %tr{:class => "item item-#{item.id}"}
+        %td= item.name
+        %td= item.description
+        %td= item.price
+        %td
+          = form_tag('/cart', method: :put) do
+            = hidden_field_tag :item_id, item.id
+            = label_tag :quantity, 'Quantity: '
+            = number_field_tag :quantity, @cart.contents[item.id.to_s], {min: 1}
+            = submit_tag 'Update Quantity'
 %h3= "Total: $#{@cart.total_price}"
