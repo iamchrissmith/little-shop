@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 
   get '/cart', to: 'carts#show'
   post '/cart', to: 'carts#create'
+  put '/cart', to: 'carts#update'
 end
