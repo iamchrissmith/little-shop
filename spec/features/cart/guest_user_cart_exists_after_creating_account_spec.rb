@@ -18,7 +18,7 @@ RSpec.describe "Visitor wants to see items in cart" do
 
       expect(page).to_not have_link "Checkout", href: new_order_path
       within(".checkout") do
-        expect(page).to have_link "Create Account", new_user_path
+        expect(page).to have_link "Create Account", href: new_user_path
 
         click_on "Create Account"
       end
@@ -43,7 +43,7 @@ RSpec.describe "Visitor wants to see items in cart" do
 
       expect(page).to have_link "Checkout", href: new_order_path
       within(".checkout") do
-        expect(page).to_not have_link "Create Account", new_user_path
+        expect(page).to_not have_link "Create Account", href: new_user_path
       end
     end
   end
@@ -64,7 +64,7 @@ RSpec.describe "Visitor wants to see items in cart" do
 
       expect(page).to_not have_link "Checkout", href: new_order_path
       within(".checkout") do
-        expect(page).to have_link "Login", login_path
+        expect(page).to have_link "Login", href: login_path
 
         click_on "Login"
       end
@@ -87,7 +87,7 @@ RSpec.describe "Visitor wants to see items in cart" do
 
       expect(page).to have_link "Checkout", href: new_order_path
       within(".checkout") do
-        expect(page).to_not have_link "Login", login_path
+        expect(page).to_not have_link "Login", href: login_path
       end
     end
   end
