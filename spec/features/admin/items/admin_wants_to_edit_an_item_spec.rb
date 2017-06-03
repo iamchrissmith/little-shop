@@ -27,6 +27,9 @@ RSpec.describe 'Admin want to edit and item' do
       expect(page).to have_content(item.status)
       expect(page).to have_select('item_status', :selected => 'active')
       expect(page).to have_select('item_status', :options => ['active', 'retired'])
+      item.categories.each do |cat|
+        expect(find_by_id("item_category_ids_#{cat.id}")).to be_truthy
+      end
     end
   end
 
@@ -125,8 +128,26 @@ RSpec.describe 'Admin want to edit and item' do
         click_on 'Update Item'
       end
 
-      expect(page).to have_content('Price is not a number') #This error might be different
+      expect(page).to have_content('Price is not a number')
     end
 
+    it 'does not enter at least one category' do
+      item = Item.all[4]
+      visit edit_admin_item_path(item)
+
+      within 'form' do
+        fill_in 'Name', with: 'Widget'
+        fill_in 'Description', with: 'It bing bong bangs!'
+        fill_in 'Price', with: '3.5'
+
+        item.categories.each do |cat|
+          find_by_id("item_category_ids_#{cat.id}").set(false)
+        end
+
+        click_on 'Update Item'
+      end
+
+      expect(page).to have_content("Categories can't be blank")
+    end
   end
 end
