@@ -2,9 +2,3 @@
 
 %h3= full_name(@user)
 %p= @user.email
-
-- @user.addresses.each do |address|
-  %p= address.address
-  %p= address.city.name
-  %p= address.state.abbr
-  %p= address.zipcode
