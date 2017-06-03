@@ -7,6 +7,21 @@ class Admin::ItemsController < Admin::BaseController
 
   def show; end
 
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = Item.new(item_params)
+
+    if @item.save
+      flash[:success] = "Item #{@item.id} Created"
+      redirect_to admin_items_path
+    else
+      render :new
+    end
+  end
+
   def edit; end
 
   def update
@@ -25,7 +40,7 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :status)
+    params.require(:item).permit(:name, :description, :price, :status, :category_ids => [])
   end
 
 end
