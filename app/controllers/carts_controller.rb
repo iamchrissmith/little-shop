@@ -6,18 +6,14 @@ class CartsController < ApplicationController
   before_action :item, only: [:create, :update]
 
   def create
-    session[:cart] = update_cart(:add_item, item_id)
+    session[:cart] = update_cart(:add_item, {id:item_id})
     flash[:notice] = "You now have #{pluralize(session[:cart][item_id], item.name)} in your cart."
     redirect_to session.delete(:return_to)
   end
 
   def update
     new_quantity = params[:quantity].to_i
-    if new_quantity > current_cart.contents[item_id]
-      session[:cart] = update_cart(:add_item, item_id)
-    else
-      session[:cart] = update_cart(:remove_item, item_id)
-    end
+    session[:cart] = update_cart(:change_quantity, { id: item_id, quantity: new_quantity })
     flash[:notice] = "Quantity of #{item.name} updated."
     redirect_to session.delete(:return_to)
   end
@@ -26,8 +22,8 @@ class CartsController < ApplicationController
 
   private
 
-  def update_cart(action, id)
-    @cart.send(action, id)
+  def update_cart(action, opts)
+    @cart.send(action, opts)
     @cart.contents
   end
 
