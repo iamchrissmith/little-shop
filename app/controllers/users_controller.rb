@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    city = City.create(city_params)
+    city = City.create(city_params) #find_by_name_or_create
     if city.save
       address = city.addresses.create(address_params)
       @user.addresses << address
