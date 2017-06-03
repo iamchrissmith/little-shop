@@ -28,7 +28,6 @@ class Cart
   end
 
   def remove_item(id)
-    # binding.pry
     contents.delete(id)
   end
 end
