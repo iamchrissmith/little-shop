@@ -5,6 +5,10 @@ RSpec.describe Order, type: :model do
   describe 'Validations' do
     it { should belong_to(:user) }
     it { should have_many(:items).through(:order_items) }
+
+    it { should belong_to(:address) }
+    it { should have_one(:city).through(:address) }
+    it { should have_one(:state).through(:city) }
   end
 
   describe 'Factories' do
@@ -19,7 +23,23 @@ RSpec.describe Order, type: :model do
 
     it 'has a user' do
       order = create(:order)
+      order = create(:order)
       expect(order.user).to be_a(User)
+    end
+
+    it 'has an address' do
+      order = create(:order)
+      expect(order.address).to be_a(Address)
+    end
+
+    it 'has a city' do
+      order = create(:order)
+      expect(order.city).to be_a(City)
+    end
+
+    it 'has a state' do
+      order = create(:order)
+      expect(order.state).to be_a(State)
     end
 
     describe 'has traits' do

@@ -1,0 +1,7 @@
+%h1 Your Cart
+- @cart.items.each do |item|
+  %p= item.name
+  %p= item.description
+  %p= item.price
+  %p= "Quantity: #{@cart.contents[item.id.to_s]}"
+%h3= "Total: $#{@cart.total_price}"

@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :categories, :current_user
 
+  before_action :set_cart
+
   def categories
     Category.all
   end
@@ -13,6 +15,10 @@ class ApplicationController < ActionController::Base
 
   def current_admin?
     current_user && current_user.admin?
+  end
+  
+  def set_cart
+    @cart ||= Cart.new(session[:cart])
   end
 
 end

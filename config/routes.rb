@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'items#index'
 
   get '/login', to: 'sessions#new'
@@ -15,4 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: 'users#show'
   end
+  
+  get '/cart', to: 'carts#show'
+  post '/cart', to: 'carts#create'
 end
