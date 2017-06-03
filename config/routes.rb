@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   root to: 'items#index'
 
   get '/login', to: 'sessions#new'
-  get '/logout', to: 'sessions#destroy'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'users#show'
 
@@ -12,6 +13,10 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
   resources :categories, only: [:show]
 
+  namespace :admin do
+    get '/dashboard', to: 'users#show'
+  end
+  
   get '/cart', to: 'carts#show'
   post '/cart', to: 'carts#create'
 end
