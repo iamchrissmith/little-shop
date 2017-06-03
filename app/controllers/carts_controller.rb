@@ -20,6 +20,15 @@ class CartsController < ApplicationController
   end
 
   def show; end
+  
+  def destroy
+    id = params[:item_id].to_s
+    @cart.remove_item(id)
+    session[:cart] = @cart.contents
+    cart_link = "<a href=\"#{url_for(item)}\">#{item.name}</a>"
+    flash[:notice] = "Successfully removed #{cart_link} from your cart"
+    redirect_to cart_path
+  end
 
   private
 
@@ -34,9 +43,17 @@ class CartsController < ApplicationController
 
   def item_id
     params[:item_id].to_s
+    id = params[:item_id].to_s
+    item = Item.find(id)
+    @cart.add_item(id)
+    session[:cart] = @cart.contents
+
+    flash[:notice] = "You now have #{pluralize(session[:cart][id], item.name)} in your cart."
+    redirect_to root_path
   end
 
   def item
     Item.find(item_id)
   end
+
 end

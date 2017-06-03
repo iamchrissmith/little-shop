@@ -24,4 +24,6 @@ end
     status:       0,
     # photo:        Faker::Fillmurray.image
   )
+
+  
 end

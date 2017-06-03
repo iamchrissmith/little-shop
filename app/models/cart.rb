@@ -26,4 +26,9 @@ class Cart
       sum += contents[item.id.to_s] * item.price
     end
   end
+
+  def remove_item(id)
+    # binding.pry
+    contents.delete(id)
+  end
 end
