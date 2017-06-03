@@ -6,7 +6,6 @@ class CartsController < ApplicationController
   before_action :item, only: %i[create update]
 
   def create
-<<<<<<< HEAD
     session[:cart] = update_cart(:add_item, id: item_id)
     flash[:notice] = "You now have #{pluralize(session[:cart][item_id], item.name)} in your cart."
     redirect_to session.delete(:return_to)
@@ -43,9 +42,6 @@ class CartsController < ApplicationController
 
   def item_id
     params[:item_id].to_s
-=======
-
->>>>>>> Remove item from cart
   end
 
   def item
