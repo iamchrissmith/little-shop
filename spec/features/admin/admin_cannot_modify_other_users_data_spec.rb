@@ -4,15 +4,16 @@ RSpec.describe 'Admin cannot modify other users data' do
 
   before do
     @user = create(:user)
-    @admin = create(:user, :as_admin)
+    @admin = create(:user, role: 'admin')
 
-    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(@admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
 
-  xscenario 'admin can visit their own show page' do
-    visit(user_path(@admin))
+  scenario 'admin can visit their own show page' do
+    visit(admin_dashboard_path)
 
-    expect(page).to have_content("#{admin.name}")
+    expect(page).to have_content("#{@admin.first_name}")
+    expect(page).to have_content("#{@admin.last_name}")
   end
 
   xscenario 'admin can edit their own info' do
@@ -28,10 +29,10 @@ RSpec.describe 'Admin cannot modify other users data' do
     expect(page).to have_content('Fiddlefaddle')
   end
 
-  xscenario 'admin cannot visit a users show page' do
-    visit(user_path(@user))
+  scenario 'admin cannot visit a users dashboard path' do
+    visit(dashboard_path)
 
-    expect(page).to have_content("The page you were looking for doesn't exist.")
+    expect(page).to have_current_path(admin_dashboard_path)
   end
 
   xscenario 'admin cannot see a users cart' do
