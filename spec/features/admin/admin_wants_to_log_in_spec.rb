@@ -2,20 +2,22 @@ require 'rails_helper'
 
 RSpec.describe 'Admin wants to log in' do
 
-  xscenario 'and logs in' do
+  scenario 'and logs in' do
     admin = create(:user, role: :admin)
 
     visit('/login')
 
     within("form") do
-      fill_in "email", with: admin.username
+      fill_in "email", with: admin.email
       fill_in "password", with: admin.password
       click_on "Login"
     end
 
-    expect(current_path).to eq(admin_dashboard_path(admin))
-    expect(page).to have_content("Successfully logged in!")
-    expect(page).to have_content("#{admin.username}")
+    expect(current_path).to eq(admin_dashboard_path)
+    expect(page).to have_content("Admin Logged in as #{admin.email}")
+    expect(page).to have_content("#{admin.email}")
+    expect(page).to have_content("#{admin.first_name}")
+    expect(page).to have_content("#{admin.last_name}")
     expect(page).to have_content("Logout")
   end
 end
