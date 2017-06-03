@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.feature "user can add items to a cart" do
-  context "as a guest user is not logged in" do
-    it "user can add item to cart from items page" do
+RSpec.feature 'user can add items to a cart' do
+  context 'as a guest user is not logged in' do
+    it 'user can add item to cart from items page' do
       item = create(:item)
       visit items_path
       expect(page).to have_content(item.name)
