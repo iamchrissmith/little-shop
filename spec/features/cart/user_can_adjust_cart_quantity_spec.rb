@@ -12,17 +12,25 @@ RSpec.feature 'Visitor can adjust cart quantity' do
 
       visit cart_path
 
-      save_and_open_page
       expect(page).to have_content(item.name)
-      expect(page).to have_content('Quantity: 1')
+      within(".item-#{item.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="1"]')
+      end
       expect(page).to have_content("Total: $#{item.price}")
 
-      # select_quantity_increase
-      click_on('Update Cart')
+      within(".item-#{item.id}") do
+        fill_in "quantity", with: "2"
+        click_on('Update Quantity')
+      end
 
       expect(current_path).to eq(cart_path)
-      expect(page).to have_content(order.item.quantity + 1)
-      expect(page).to have_content(order.quantity + 1)
+      expect(page).to have_content("Quantity of #{item.name} updated.")
+      within(".item-#{item.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="2"]')
+      end
+      expect(page).to have_content("Total: $#{item.price * 2}")
     end
 
     xscenario 'decrease quantity in the cart' do

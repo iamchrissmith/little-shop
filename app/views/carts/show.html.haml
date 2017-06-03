@@ -5,8 +5,8 @@
     %p= item.description
     %p= item.price
     .quantity
-      = form_tag ('/cart') do
-        = hidden_field_tag :item_it, item.id
+      = form_tag('/cart', method: :put) do
+        = hidden_field_tag :item_id, item.id
         = label_tag :quantity, 'Quantity: '
         = number_field_tag :quantity, @cart.contents[item.id.to_s]
         = submit_tag 'Update Quantity'
