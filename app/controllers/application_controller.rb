@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :categories, :current_user, :current_admin?, :current_cart, :flash_class
-
   before_action :set_cart
 
   def categories

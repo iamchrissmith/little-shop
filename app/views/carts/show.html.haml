@@ -28,3 +28,7 @@
       %td= ""
       %td
         %h4 Total: $#{@cart.total_price}
+.checkout
+  %h3 You must be signed in to checkout
+  = link_to "Create Account", new_user_path
+  = link_to "Login", login_path

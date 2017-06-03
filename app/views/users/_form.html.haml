@@ -1,5 +1,6 @@
 = form_for @user do |f|
   = render partial: 'shared/errors', locals: { target: @user }
+  = hidden_field('previous_referrer[url]', request_referrer)
   .form-group
     = f.label(:email, class:'sr-only required')
     = f.text_field(:email, class:'form-control', placeholder: 'Email')
