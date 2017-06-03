@@ -193,7 +193,7 @@ Background: An authenticated user
 - I cannot view the administrator screens or use admin functionality
 - I cannot make myself an admin
 
-## [x] Story 17: Unauthenticated users security
+## [ ] Story 17: Unauthenticated users security
 
 Background: An unauthenticated user and their abilities
 
@@ -223,7 +223,7 @@ Background: An unauthenticated user and their abilities
 - When I log in
 - Then I am redirected to "/admin/dashboard"
 
-## [x] Story 20: Admin cannot modify users
+## [ ] Story 20: Admin cannot modify users
 
 - As a logged in Admin
 - I can modify my account data
