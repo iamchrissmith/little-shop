@@ -16,10 +16,10 @@ RSpec.feature 'New User can Create an Account' do
         fill_in 'Email', with: 'test@test.com'
         fill_in 'First Name', with: 'Test'
         fill_in 'Last Name', with: 'Last'
-        fill_in 'Address', with: '123 Street Ave'
-        fill_in 'City', with: 'Somewhere'
-        select state.abbr, from: 'user[address][city][state_id]'
-        fill_in 'Zipcode', with: '12345'
+        # fill_in 'Address', with: '123 Street Ave'
+        # fill_in 'City', with: 'Somewhere'
+        # select state.abbr, from: 'user[address][city][state_id]'
+        # fill_in 'Zipcode', with: '12345'
         # select 'Shipping', from: 'address_type'
         fill_in 'Password', with: '123abc'
 
@@ -28,10 +28,11 @@ RSpec.feature 'New User can Create an Account' do
         expect(current_path).to eq dashboard_path
         expect(page).to have_content 'Logged in as Test Last'
         expect(page).to have_content 'Your Profile'
-        expect(page).to have_content '123 Street Ave'
-        expect(page).to have_content 'Somewhere'
-        expect(page).to have_content '12345'
-        expect(page).to have_content 'CO'
+        expect(page).to have_content 'test@test.com'
+        # expect(page).to have_content '123 Street Ave'
+        # expect(page).to have_content 'Somewhere'
+        # expect(page).to have_content '12345'
+        # expect(page).to have_content 'CO'
         expect(page).to have_link 'Logout', href: logout_path
         expect(page).not_to have_link 'Login', href: login_path
         expect(page).not_to have_link 'Sign Up', href: new_user_path
@@ -44,11 +45,6 @@ RSpec.feature 'New User can Create an Account' do
         fill_in 'Email', with: 'test@test.com'
         fill_in 'First Name', with: ''
         fill_in 'Last Name', with: 'Last'
-        fill_in 'Address', with: '123 Street Ave'
-        fill_in 'City', with: 'Somewhere'
-        select state.abbr, from: 'user[address][city][state_id]'
-        fill_in 'Zipcode', with: '12345'
-        # select 'Shipping', from: 'address_type'
         fill_in 'Password', with: '123abc'
 
         click_button 'Create User'
@@ -62,11 +58,6 @@ RSpec.feature 'New User can Create an Account' do
         fill_in 'Email', with: 'test@test.com'
         fill_in 'First Name', with: 'First'
         fill_in 'Last Name', with: ''
-        fill_in 'Address', with: '123 Street Ave'
-        fill_in 'City', with: 'Somewhere'
-        select state.abbr, from: 'user[address][city][state_id]'
-        fill_in 'Zipcode', with: '12345'
-        # select 'Shipping', from: 'address_type'
         fill_in 'Password', with: '123abc'
 
         click_button 'Create User'
@@ -80,11 +71,6 @@ RSpec.feature 'New User can Create an Account' do
         fill_in 'Email', with: ''
         fill_in 'First Name', with: 'First'
         fill_in 'Last Name', with: 'Last'
-        fill_in 'Address', with: '123 Street Ave'
-        fill_in 'City', with: 'Somewhere'
-        select state.abbr, from: 'user[address][city][state_id]'
-        fill_in 'Zipcode', with: '12345'
-        # select 'Shipping', from: 'address_type'
         fill_in 'Password', with: '123abc'
 
         click_button 'Create User'
@@ -99,30 +85,11 @@ RSpec.feature 'New User can Create an Account' do
         fill_in 'Email', with: user.email
         fill_in 'First Name', with: 'First'
         fill_in 'Last Name', with: 'Last'
-        fill_in 'Address', with: '123 Street Ave'
-        fill_in 'City', with: 'Somewhere'
-        select state.abbr, from: 'user[address][city][state_id]'
-        fill_in 'Zipcode', with: '12345'
-        # select 'Shipping', from: 'address_type'
         fill_in 'Password', with: '123abc'
 
         click_button 'Create User'
 
         expect(page).to have_content 'Email has already been taken'
-      end
-
-      scenario 'no error for missing address' do
-        visit new_user_path
-
-        fill_in 'Email', with: 'test@test.com'
-        fill_in 'First Name', with: 'Test'
-        fill_in 'Last Name', with: 'Last'
-        fill_in 'Password', with: '123abc'
-
-        click_button 'Create User'
-
-        expect(current_path).to eq dashboard_path
-        expect(page).to have_content 'Logged in as Test Last'
       end
     end
   end
