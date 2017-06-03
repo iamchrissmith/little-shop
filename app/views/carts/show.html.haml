@@ -21,11 +21,10 @@
             = label_tag :quantity, 'Quantity: '
             = number_field_tag :quantity, @cart.contents[item.id.to_s], {min: 1}
             = submit_tag 'Update Quantity'
-- @cart.items.each do |item|
-  %p= item.name
-  %p= item.description
-  %p= item.price
-  %p= "Quantity: #{@cart.contents[item.id.to_s]}"
-  binding.pry
-  = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn_primary'
-%h3= "Total: $#{@cart.total_price}"
+            = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn_primary'
+    %tr
+      %td= ""
+      %td= ""
+      %td= ""
+      %td
+        %h4 Total: $#{@cart.total_price}
