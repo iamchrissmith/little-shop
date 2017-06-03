@@ -1,0 +1,17 @@
+= form_for [:admin, @item] do |f|
+  = render partial: 'shared/errors', locals: { target: @item }
+  .form-group
+    = f.label :name
+    = f.text_field :name
+  .form-group
+    = f.label :description
+    = f.text_area :description
+  .form-group
+    = f.label :price
+    = f.text_field :price
+  = f.collection_select(:status, Item.statuses, :first, :first, selected: @item.status)
+  = f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b|
+    = b.label do
+      = b.text
+      = b.check_box
+  = f.submit
