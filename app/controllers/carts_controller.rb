@@ -20,7 +20,7 @@ class CartsController < ApplicationController
   end
 
   def show; end
-  
+
   def destroy
     id = params[:item_id].to_s
     @cart.remove_item(id)
