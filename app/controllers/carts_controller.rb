@@ -4,7 +4,6 @@ class CartsController < ApplicationController
   before_action :set_referrer, only: [:create]
 
   def create
-    # binding.pry
     id = params[:item_id].to_s
     item = Item.find(id)
     session[:cart] = update_cart(:add_item, id)

@@ -12,6 +12,7 @@ RSpec.feature 'Visitor can adjust cart quantity' do
 
       visit cart_path
 
+      save_and_open_page
       expect(page).to have_content(item.name)
       expect(page).to have_content('Quantity: 1')
       expect(page).to have_content("Total: $#{item.price}")
