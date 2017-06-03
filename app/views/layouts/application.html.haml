@@ -12,6 +12,8 @@
     = javascript_include_tag 'application'
   %body
     %header
+      = render "admin/shared/nav" if current_admin?
+      = render "shared/accounts-nav"
       %nav.navbar.navbar-inverse
         %ul.nav.navbar-nav
           %li= link_to "Home", items_path

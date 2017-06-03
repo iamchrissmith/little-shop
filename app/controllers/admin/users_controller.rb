@@ -3,6 +3,9 @@ class Admin::UsersController < Admin::BaseController
 
   def show; end
 
+
+  private
+  
   def set_user
     @user = current_user
   end
