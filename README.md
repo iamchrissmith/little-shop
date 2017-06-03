@@ -85,7 +85,7 @@ Background: My cart has an item in it
 - And the subtotal for that item should decrease
 - And the total for the cart should match that decrease
 
-## [ ] Story 8: Authenticated User
+## [x] Story 8: Authenticated User
 
 - As a registered user
 - When I visit "/"
@@ -101,7 +101,7 @@ Background: My cart has an item in it
 - And I should not see a link for "Login"
 - And I should see a link for "Logout"
 
-## [ ] Story 9: New User Can Create an Account
+## [x] Story 9: New User Can Create an Account
 
 - As a visitor
 - When I visit "/"
@@ -116,7 +116,7 @@ Background: My cart has an item in it
 - And I should not see a link for "Login"
 - And I should see a link for "Logout"
 
-## [ ] Story 10: Guest User
+## [x] Story 10: Guest User
 
 - As a visitor when I have items in my cart
 - And when I visit "/cart"
@@ -126,7 +126,7 @@ Background: My cart has an item in it
 - And I visit "/cart
 - Then I should see all of the data that was there when I was not logged in
 
-## [ ] Story 11: User Can Log Out
+## [x] Story 11: User Can Log Out
 
 - As a logged in user
 - When I click "Logout"
@@ -179,10 +179,10 @@ Background: An existing user and a cart with items
 - When I am logged in
 - And I visit my cart
 - And when I click "Checkout"
-- Then the order should be placed
-- And my current page should be "/orders"
-- And I should see a message "Order was successfully placed"
-- And I should see the order I just placed in a table
+- **Then the order should be placed**
+- **And my current page should be "/orders"**
+- **And I should see a message "Order was successfully placed"**
+- **And I should see the order I just placed in a table**
 
 ## [ ] Story 16: Authenticated users security
 
@@ -193,7 +193,7 @@ Background: An authenticated user
 - I cannot view the administrator screens or use admin functionality
 - I cannot make myself an admin
 
-## [ ] Story 17: Unauthenticated users security
+## [x] Story 17: Unauthenticated users security
 
 Background: An unauthenticated user and their abilities
 
@@ -203,7 +203,7 @@ Background: An unauthenticated user and their abilities
 - I cannot view the administrator screens or use administrator functionality.
 - I cannot make myself an administrator.
 
-## [ ] Story 18: Admin User Dashboard
+## [x] Story 18: Admin User Dashboard
 
 - As a logged in Admin
 - When I visit "/admin/dashboard"
@@ -217,13 +217,13 @@ Background: An unauthenticated user and their abilities
 - When I visit "/admin/dashboard"
 - I get a 404
 
-## [ ] Story 19: Admin logs in
+## [x] Story 19: Admin logs in
 
 - As an Admin
 - When I log in
 - Then I am redirected to "/admin/dashboard"
 
-## [ ] Story 20: Admin cannot modify users
+## [x] Story 20: Admin cannot modify users
 
 - As a logged in Admin
 - I can modify my account data
@@ -263,10 +263,10 @@ Background: An unauthenticated user and their abilities
 - An item must belong to at least one category.
 - The title and description cannot be empty.
 - The title must be unique for all items in the system.
-- The price must be a valid decimal numeric value and greater than zero.
+- The price must be a valid decimal numeric value and **greater than zero.**
 - The photo is optional. If not present, a stand-in photo is used. **(PAPERCLIP)**
 
-## [ ] Story 24: Admin Viewing items
+## [x] Story 24: Admin Viewing items
 
 - As an Admin
 - When I visit "/admin/dashboard"
@@ -281,7 +281,7 @@ Background: An unauthenticated user and their abilities
   - Status
   - Actions (Edit)
 
-## [ ] Story 25: Admin edits an item
+## [x] Story 25: Admin edits an item
 
 Background: an existing item
 
@@ -289,4 +289,4 @@ Background: an existing item
 - When I visit "admin/items"
 - And I click "Edit"
 - Then my current path should be "/admin/items/:ITEM_ID/edit"
-- And I should be able to update title, description, image, and status
+- And I should be able to update title, description, **image**, and status
