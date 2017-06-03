@@ -18,6 +18,8 @@ class Cart
   end
 
   def total_price
-    items[0].price * total_count
+    items.reduce(0) do |sum, item|
+      sum += contents[item.id.to_s] * item.price
+    end
   end
 end
