@@ -22,7 +22,6 @@ RSpec.describe Address, type: :model do
     it 'has attributes' do
       address = create(:address)
 
-
       address.orders.each do |order|
         expect(order).to be_a(Order)
       end

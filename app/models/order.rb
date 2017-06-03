@@ -10,8 +10,5 @@ class Order < ApplicationRecord
 
   enum status: ['ordered', 'paid', 'completed', 'cancelled']
 
-  def available_status
-
-  end
-
+  def available_status; end
 end
