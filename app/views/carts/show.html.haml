@@ -1,7 +1,14 @@
 %h1 Your Cart
 - @cart.items.each do |item|
-  %p= item.name
-  %p= item.description
-  %p= item.price
-  %p= "Quantity: #{@cart.contents[item.id.to_s]}"
+  %div{class: "item item-#{item.id}"}
+    %p= item.name
+    %p= item.description
+    %p= item.price
+    .quantity
+      = form_tag ('/cart') do
+        = hidden_field_tag :item_it, item.id
+        = label_tag :quantity, 'Quantity: '
+        = number_field_tag :quantity, @cart.contents[item.id.to_s]
+        = submit_tag 'Update Quantity'
+      -# %p= "Quantity: #{}"
 %h3= "Total: $#{@cart.total_price}"
