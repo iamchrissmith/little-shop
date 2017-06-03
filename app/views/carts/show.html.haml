@@ -11,13 +11,14 @@
       %td 
         %h4 Quantity
     - @cart.items.each do |item|
-      %td= item.name
-      %td= item.description
-      %td= item.price
-      %td
-        = form_tag('/cart', method: :put) do
-          = hidden_field_tag :item_id, item.id
-          = label_tag :quantity, 'Quantity: '
-          = number_field_tag :quantity, @cart.contents[item.id.to_s], {min: 1}
-          = submit_tag 'Update Quantity'
+      %tr{:class => "item item-#{item.id}"}
+        %td= item.name
+        %td= item.description
+        %td= item.price
+        %td
+          = form_tag('/cart', method: :put) do
+            = hidden_field_tag :item_id, item.id
+            = label_tag :quantity, 'Quantity: '
+            = number_field_tag :quantity, @cart.contents[item.id.to_s], {min: 1}
+            = submit_tag 'Update Quantity'
 %h3= "Total: $#{@cart.total_price}"

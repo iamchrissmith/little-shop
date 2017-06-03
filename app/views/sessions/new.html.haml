@@ -1,9 +1,9 @@
 %h1 Login
-= form_for '/login' do |f|
+= form_tag '/login' do
   .form-group
-    = f.label(:email, class:'sr-only required')
-    = f.text_field(:email, class:'form-control', placeholder: 'Email')
+    = label_tag(:email, "Email", class:'sr-only required')
+    = text_field_tag(:email, nil, class:'form-control', placeholder: 'Email')
   .form-group
-    = f.label(:password, class:'sr-only required')
-    = f.text_field(:password, class:'form-control', placeholder: 'Password')
+    = label_tag(:password, "Password", class:'sr-only required')
+    = text_field_tag(:password, nil, class:'form-control', placeholder: 'Password')
   = submit_tag "Login"
