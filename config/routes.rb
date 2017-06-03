@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: 'items#index'
 
   get '/login', to: 'sessions#new'
@@ -10,4 +11,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :categories, only: [:show]
+
+  get '/cart', to: 'carts#show'
+  post '/cart', to: 'carts#create'
 end
