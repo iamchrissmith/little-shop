@@ -45,5 +45,4 @@ class UsersController < ApplicationController
     redirect_to admin_dashboard_path if current_admin?
     @user = current_user
   end
-
 end
