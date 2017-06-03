@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Logged in as #{full_name(@user)}"
+
       redirect_to dashboard_path
     else
       render :new
@@ -41,6 +42,8 @@ class UsersController < ApplicationController
   # end
 
   def set_user
+    redirect_to admin_dashboard_path if current_admin?
     @user = current_user
   end
+
 end

@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/dashboard', to: 'users#show'
+    resources :orders
+    resources :items
   end
-  
+
   get '/cart', to: 'carts#show'
   post '/cart', to: 'carts#create'
 end
