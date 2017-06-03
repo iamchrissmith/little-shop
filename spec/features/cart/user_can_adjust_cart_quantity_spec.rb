@@ -18,7 +18,7 @@ RSpec.feature 'Visitor can adjust cart quantity' do
       expect(page).to have_content("Total: $#{item.price}")
 
       within(".item-#{item.id}") do
-        fill_in "quantity", with: "2"
+        fill_in 'quantity', with: '2'
         click_on('Update Quantity')
       end
 
@@ -45,7 +45,7 @@ RSpec.feature 'Visitor can adjust cart quantity' do
       expect(page).to have_content("Total: $#{item.price * 2}")
 
       within(".item-#{item.id}") do
-        fill_in "quantity", with: "1"
+        fill_in 'quantity', with: '1'
         click_on('Update Quantity')
       end
 

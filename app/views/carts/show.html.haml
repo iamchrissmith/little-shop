@@ -1,6 +1,6 @@
 %h1 Your Cart
 - @cart.items.each do |item|
-  %div{class: "item item-#{item.id}"}
+  %div{ class: "item item-#{item.id}" }
     %p= item.name
     %p= item.description
     %p= item.price
