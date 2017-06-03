@@ -7,24 +7,24 @@ RSpec.describe "User wants to login" do
     visit login_path
   end
 
-  xscenario "and they log in" do
+  scenario "and they log in" do
 
     within("form") do
-      fill_in "email", with: @user.username
-      fill_in "password", with: 'hogwash'
+      fill_in "email", with: @user.email
+      fill_in "password", with: @user.password
       click_on "Login"
     end
 
-    expect(current_path).to eq(user_path(@user))
-    expect(page).to have_content("Successfully logged in!")
-    expect(page).to have_content("#{@user.username}")
+    expect(current_path).to eq(dashboard_path)
+    expect(page).to have_content("Logged in as #{@user.email}")
+    expect(page).to have_content("#{@user.email}")
     expect(page).to have_content("Logout")
   end
 
-  xscenario "and they enter wrong password" do
+  scenario "and they enter wrong password" do
 
     within("form") do
-      fill_in "email", with: @user.username
+      fill_in "email", with: @user.email
       fill_in "password", with: 'hogwash'
       click_on "Login"
     end
@@ -33,11 +33,11 @@ RSpec.describe "User wants to login" do
     expect(page).to have_content('Incorrect Password or Username')
   end
 
-  xscenario "and they enter wrong username" do
+  scenario "and they enter wrong email" do
 
     within("form") do
       fill_in "email", with: 'celinedion'
-      fill_in "password", with: @user.username
+      fill_in "password", with: @user.password
       click_on "Login"
     end
 

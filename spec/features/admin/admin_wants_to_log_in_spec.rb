@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Admin wants to log in' do
 
   xscenario 'and logs in' do
-    admin = create(:user, :as_admin)
+    admin = create(:user, role: :admin)
 
     visit('/login')
 
     within("form") do
       fill_in "email", with: admin.username
-      fill_in "password", with: admin.pasword
+      fill_in "password", with: admin.password
       click_on "Login"
     end
 
@@ -18,5 +18,4 @@ RSpec.describe 'Admin wants to log in' do
     expect(page).to have_content("#{admin.username}")
     expect(page).to have_content("Logout")
   end
-
 end
