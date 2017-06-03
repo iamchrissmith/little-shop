@@ -1,7 +1,18 @@
 %h1 Your Cart
-- @cart.items.each do |item|
-  %p= item.name
-  %p= item.description
-  %p= item.price
-  %p= "Quantity: #{@cart.contents[item.id.to_s]}"
+%table{:board => 0}
+  %tbody
+    %tr
+      %td 
+        %h4 Item
+      %td 
+        %h4 Description
+      %td 
+        %h4 Price
+      %td 
+        %h4 Quantity
+    - @cart.items.each do |item|
+      %td= item.name
+      %td= item.description
+      %td= item.price
+      %td= "Quantity: #{@cart.contents[item.id.to_s]}"
 %h3= "Total: $#{@cart.total_price}"

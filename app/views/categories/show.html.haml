@@ -2,4 +2,6 @@
 
 %h2 All Items
 - @category.items.each do |item|
-  = link_to item.name, item_path(item)
+  %div{class: "item item-#{item.id} col-md-3" }
+    = link_to item.name, item_path(item)
+    = button_to "Add to Cart", cart_path(item_id: item.id), :class => "btn btn_primary"
