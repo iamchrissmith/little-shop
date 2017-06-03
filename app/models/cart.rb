@@ -13,6 +13,10 @@ class Cart
     contents[id.to_s] = (contents[id.to_s] || 0) + 1
   end
 
+  def remove_item(id)
+    contents[id.to_s] = (contents[id.to_s] || 0) - 1
+  end
+
   def items
     Item.where('id in (?)',contents.keys)
   end
