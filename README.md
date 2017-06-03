@@ -11,13 +11,13 @@
 
 # User Stories
 
-## Story 1: Create Wireframes for Most Important Views
+## [x] Story 1: Create Wireframes for Most Important Views
 
  - Think about what you think the workflow should be on the site. Which of those views is most important?
  - In addition to the home page wireframe, create wireframes the page immediately following your Log In and the next most important page for your application.
  - Examples might be: A users' profile page, a product page, an admin dashboard etc...
 
-## Story 2: Visitor can view items
+## [x] Story 2: Visitor can view items
 
 Background: I have several items and each of them has a title, description, price, and image
 
@@ -25,15 +25,15 @@ Background: I have several items and each of them has a title, description, pric
  - When I visit "/items"
  - I can see all existing items
 
-## Story 3: Browsing Items by category
+## [ ] Story 3: Browsing Items by category
 
 Background: I have two categories with titles and each has two different items assigned
 
  - As a visitor
- - When I visit "/:CATEGORY_NAME"
+ - **When I visit "/:CATEGORY_NAME"**
  - I see all items assigned to that category
 
-## Story 4: Adding items to the cart
+## [x] Story 4: Adding items to the cart
 
 Background: Items, and a user that is not logged in
 
@@ -46,7 +46,7 @@ Background: Items, and a user that is not logged in
 - And I should see a small image, title, description and price for the item I just added
 - And there should be a "total" price for the cart that should be the sum of all items in the cart
 
-## Story 5: Removing an item from my cart
+## [x] Story 5: Removing an item from my cart
 
 Background: My cart has an item in it
 
@@ -59,7 +59,7 @@ Background: My cart has an item in it
 - And the title "SOME_ITEM" should be a link to that item in case the user wants to add it back
 - And I should not see the item listed in cart
 
-## Story 6: Adjusting the quantity of an item in the cart
+## [x] Story 6: Adjusting the quantity of an item in the cart
 
 Background: My cart has an item in it
 
@@ -72,7 +72,7 @@ Background: My cart has an item in it
 - And the subtotal for that item should increase
 - And the total for the cart should match that increase
 
-## Story 7:
+## [x] Story 7:
 
 Background: My cart has an item in it
 
@@ -85,7 +85,7 @@ Background: My cart has an item in it
 - And the subtotal for that item should decrease
 - And the total for the cart should match that decrease
 
-## Story 8: Authenticated User
+## [ ] Story 8: Authenticated User
 
 - As a registered user
 - When I visit "/"
@@ -101,7 +101,7 @@ Background: My cart has an item in it
 - And I should not see a link for "Login"
 - And I should see a link for "Logout"
 
-## Story 9: New User Can Create an Account
+## [ ] Story 9: New User Can Create an Account
 
 - As a visitor
 - When I visit "/"
@@ -116,7 +116,7 @@ Background: My cart has an item in it
 - And I should not see a link for "Login"
 - And I should see a link for "Logout"
 
-## Story 10: Guest User
+## [ ] Story 10: Guest User
 
 - As a visitor when I have items in my cart
 - And when I visit "/cart"
@@ -126,14 +126,14 @@ Background: My cart has an item in it
 - And I visit "/cart
 - Then I should see all of the data that was there when I was not logged in
 
-## Story 11: User Can Log Out
+## [ ] Story 11: User Can Log Out
 
 - As a logged in user
 - When I click "Logout"
 - Then I should see see "Login"
 - And I should not see "Logout"
 
-## Story 12: Viewing past orders
+## [ ] Story 12: Viewing past orders
 
 Background: An existing user that has multiple orders
 
@@ -141,7 +141,7 @@ Background: An existing user that has multiple orders
 - When I visit "/orders"
 - Then I should see all orders belonging to me and no other orders
 
-## Story 13: Viewing a past order
+## [ ] Story 13: Viewing a past order
 
 Background: An existing user that has one previous order
 
@@ -159,14 +159,14 @@ Background: An existing user that has one previous order
 If the order was completed or cancelled
 Then I should see a timestamp when the action took place
 
-## Story 14: Retired Items
+## [ ] Story 14: Retired Items
 
 - As a user if I visit an item page and that item has been retired
 - Then I should still be able to access the item page
 - And I should not be able to add the item to their cart
 - And I should see in place of the "Add to Cart" button or link - "Item Retired"
 
-## Story 15: Checking out
+## [ ] Story 15: Checking out
 
 Background: An existing user and a cart with items
 
@@ -184,7 +184,7 @@ Background: An existing user and a cart with items
 - And I should see a message "Order was successfully placed"
 - And I should see the order I just placed in a table
 
-## Story 16: Authenticated users security
+## [ ] Story 16: Authenticated users security
 
 Background: An authenticated user
 
@@ -193,7 +193,7 @@ Background: An authenticated user
 - I cannot view the administrator screens or use admin functionality
 - I cannot make myself an admin
 
-## Story 17: Unauthenticated users security
+## [ ] Story 17: Unauthenticated users security
 
 Background: An unauthenticated user and their abilities
 
@@ -203,7 +203,7 @@ Background: An unauthenticated user and their abilities
 - I cannot view the administrator screens or use administrator functionality.
 - I cannot make myself an administrator.
 
-## Story 18: Admin User Dashboard
+## [ ] Story 18: Admin User Dashboard
 
 - As a logged in Admin
 - When I visit "/admin/dashboard"
@@ -217,19 +217,19 @@ Background: An unauthenticated user and their abilities
 - When I visit "/admin/dashboard"
 - I get a 404
 
-## Story 19: Admin logs in
+## [ ] Story 19: Admin logs in
 
 - As an Admin
 - When I log in
 - Then I am redirected to "/admin/dashboard"
 
-## Story 20: Admin cannot modify users
+## [ ] Story 20: Admin cannot modify users
 
 - As a logged in Admin
 - I can modify my account data
 - But I cannot modify any other user's account data
 
-## Story 21: Admin Orders
+## [ ] Story 21: Admin Orders
 
 - As an Admin
 - When I visit the dashboard
@@ -242,7 +242,7 @@ Background: An unauthenticated user and their abilities
 - I can click on "mark as paid" on orders that are "ordered"
 - I can click on "mark as completed" on orders that are "paid"
 
-## Story 22: Admin views an individual Order
+## [ ] Story 22: Admin views an individual Order
 
 - As an authenticated Admin, when I visit an individual order page
 - Then I can see the order's date and time.
@@ -255,7 +255,7 @@ Background: An unauthenticated user and their abilities
 - And I can see the total for the order.
 - And I can see the status for the order.
 
-## Story 23: Admin Item Creation
+## [ ] Story 23: Admin Item Creation
 
 - As an authenticated Admin:
 - I can create an item.
@@ -266,7 +266,7 @@ Background: An unauthenticated user and their abilities
 - The price must be a valid decimal numeric value and greater than zero.
 - The photo is optional. If not present, a stand-in photo is used. **(PAPERCLIP)**
 
-## Story 24: Admin Viewing items
+## [ ] Story 24: Admin Viewing items
 
 - As an Admin
 - When I visit "/admin/dashboard"
@@ -281,7 +281,7 @@ Background: An unauthenticated user and their abilities
   - Status
   - Actions (Edit)
 
-## Story 25: Admin edits an item
+## [ ] Story 25: Admin edits an item
 
 Background: an existing item
 
