@@ -12,7 +12,6 @@ class CartsController < ApplicationController
   end
 
   def update
-    # binding.pry
     new_quantity = params[:quantity].to_i
     if new_quantity > current_cart.contents[item_id]
       session[:cart] = update_cart(:add_item, item_id)
