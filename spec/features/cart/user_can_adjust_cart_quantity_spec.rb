@@ -1,16 +1,20 @@
 require 'rails_helper'
 
 RSpec.feature "Visitor can adjust cart quantity" do
-  xscenario "a visitor can change quantity of an item in their cart" do
-    context "increase quantity in the cart" do
-      let! (:item) { create(:item) }
-      let! (:order) { create(:order) }
+  describe "a visitor can change quantity of an item in their cart" do
+    let (:item) { create(:item) }
+    let (:cart) { build(:cart, contents: {"#{item.id}" => 1}) }
+
+    scenario "increase quantity in the cart" do
+      @cart = cart
+
+      allow_any_instance_of(ApplicationController).to receive(:current_cart).and_return(cart)
 
       visit cart_path
 
       expect(page).to have_content(item.name)
-      expect(page).to have_content(order.item.quantity)
-      expect(page).to have_content(order.quantity)
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content("Total: $#{item.price}")
 
       #select_quantity_increase
       click_on("Update Cart")
@@ -20,9 +24,7 @@ RSpec.feature "Visitor can adjust cart quantity" do
       expect(page).to have_content(order.quantity + 1)
     end
 
-    context "decrease quantity in the cart" do
-      let! (:item) { create(:item) }
-      let! (:order) { create(:order) }
+    xscenario "decrease quantity in the cart" do
 
       visit_cart_path
 
