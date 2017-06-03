@@ -25,7 +25,10 @@ RSpec.feature "user can add items to a cart" do
       expect(page).to have_content(item.name)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)
-      expect(page).to have_content("Quantity: 2")
+      within(".item-#{item.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="2"]')
+      end
       expect(page).to have_content("Total: $#{item.price * 2}")
 
     end
@@ -53,7 +56,10 @@ RSpec.feature "user can add items to a cart" do
       expect(page).to have_content(item.name)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)
-      expect(page).to have_content("Quantity: 2")
+      within(".item-#{item.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="2"]')
+      end
       expect(page).to have_content("Total: $#{item.price * 2}")
     end
 
@@ -89,8 +95,14 @@ RSpec.feature "user can add items to a cart" do
       expect(page).to have_content(item.name)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)
-      expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Quantity: 2")
+      within(".item-#{item.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="1"]')
+      end
+      within(".item-#{item_2.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="2"]')
+      end
       expect(page).to have_content("Total: $#{((item.price * 1) + (item_2.price * 2))}")
     end
 
@@ -126,11 +138,17 @@ RSpec.feature "user can add items to a cart" do
       expect(page).to have_content(item.name)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)
-      expect(page).to have_content("Quantity: 1")
+      within(".item-#{item.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="1"]')
+      end
       expect(page).to have_content(item_2.name)
       expect(page).to have_content(item_2.description)
       expect(page).to have_content(item_2.price)
-      expect(page).to have_content("Quantity: 2")
+      within(".item-#{item_2.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="2"]')
+      end
       expect(page).to have_content("Total: $#{((item.price * 1) + (item_2.price * 2))}")
     end
 
@@ -155,10 +173,11 @@ RSpec.feature "user can add items to a cart" do
       expect(page).to have_content(item.name)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)
-      expect(page).to have_content("Quantity: 2")
+      within(".item-#{item.id}") do
+        expect(page).to have_content('Quantity: ')
+        expect(page).to have_selector('input[value="2"]')
+      end
       expect(page).to have_content("Total: $#{item.price * 2}")
-
     end
   end
-
 end
