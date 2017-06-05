@@ -5,7 +5,7 @@ RSpec.feature "User can checkout with cart" do
   let(:item_2) { create(:item, price: 100) }
   let(:user) { create(:user) }
   let!(:state) { create(:state) }
-  let!(:address) { create(:address) }
+  # let!(:address) { create(:address) }
 
   context "when the user is logged in" do
     scenario "the user can checkout" do
@@ -47,12 +47,10 @@ RSpec.feature "User can checkout with cart" do
       end
       expect(page).to have_content("Total: $#{total}")
 
-      # expect(page).to have_css('order[address][address]', visible: false)
-      # expect(page).to have_css('order[address][zipcode]', visible: false)
-      # fill_in 'Address', with: '123 Street Ave'
-      # fill_in 'City', with: 'Somewhere'
-      # select state.abbr, from: 'user[address][city][state_id]'
-      # fill_in 'Zipcode', with: '12345'
+      fill_in 'Address', with: '123 Street Ave'
+      fill_in 'City', with: 'Somewhere'
+      select state.abbr, from: 'order[address_attributes][city_attributes][state_id]'
+      fill_in 'Zipcode', with: '12345'
       # select 'Shipping', from: 'address_type'
 
       click_on "Complete Order"
@@ -64,10 +62,10 @@ RSpec.feature "User can checkout with cart" do
       expect(page).to have_content 'Your information'
       expect(page).to have_content full_name(user)
       expect(page).to have_content user.email
-      # expect(page).to have_content '123 Street Ave'
-      # expect(page).to have_content 'Somewhere'
-      # expect(page).to have_content '12345'
-      # expect(page).to have_content 'CO'
+      expect(page).to have_content '123 Street Ave'
+      expect(page).to have_content 'Somewhere'
+      expect(page).to have_content '12345'
+      expect(page).to have_content 'CO'
 
       within(".item-#{item_1.id}") do
         expect(page).to have_content item_1.name
@@ -100,12 +98,6 @@ RSpec.feature "User can checkout with cart" do
       expect(page).to have_content 'Your information'
       expect(page).to have_content full_name(user)
       expect(page).to have_content user.email
-      # expect(page).to have_content '123 Street Ave'
-      # expect(page).to have_content 'Somewhere'
-      # expect(page).to have_content '12345'
-      # expect(page).to have_content 'CO'
-
-      save_and_open_page
 
       expect(page).to have_css(".order-#{current_order.id}.well-lg")
 

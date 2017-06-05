@@ -8,6 +8,12 @@
     %h3 Order #{order.id}
     - recent_order = 'row'
     %p Order Status: #{order.status}
+    %p Order Address:
+    %ul
+      %li #{order.address.address}
+      %li #{order.address.city.name}
+      %li #{order.address.state.abbr}
+      %li #{order.address.zipcode}
     %table{:board => 0, :class => "table table-striped"}
       %tbody
         %tr
