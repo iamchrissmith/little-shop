@@ -3,6 +3,8 @@
   %tbody
     %tr
       %td
+        %h4 Image
+      %td
         %h4 Item
       %td
         %h4 Description
@@ -12,6 +14,7 @@
         %h4 Quantity
     - @cart.items.each do |item|
       %tr{:class => "item item-#{item.id}"}
+        %td
         %td= item.name
         %td= item.description
         %td= item.price
@@ -23,6 +26,7 @@
             = submit_tag 'Update Quantity'
           = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn_primary'
     %tr
+      %td
       %td
       %td
       %td
