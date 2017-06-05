@@ -1,4 +1,5 @@
 %div{class: "item item-#{@item.id}" }
+  %p= @item.photo.url(:large)
   %h1= @item.name
   %p= @item.description
   %h3= @item.price
