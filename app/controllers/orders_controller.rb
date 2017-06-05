@@ -7,8 +7,11 @@ class OrdersController < ApplicationController
   end
 
   def create
+    # binding.pry
     @order = Order.create(order_params)
+    @order.items << @cart.items
     if @order.save
+      session.delete(:cart)
       flash[:success] = 'Order was successfully placed'
       redirect_to orders_path
     else
@@ -23,6 +26,10 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :address_id, :items)
+    params.require(:order).permit(:user_id, :address_id)
+  end
+
+  def method_name
+
   end
 end

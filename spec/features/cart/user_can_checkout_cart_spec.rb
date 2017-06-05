@@ -8,8 +8,7 @@ RSpec.feature "User can checkout with cart" do
 
   context "when the user is logged in" do
     scenario "the user can checkout" do
-      cart = build(:cart, contents: { item.id.to_s => 1 })
-      cart = cart = build(:cart, contents: { item.id.to_s => 1 })
+      cart = build(:cart, contents: { item.id.to_s => 2 })
       allow_any_instance_of(ApplicationController).to receive(:current_cart).and_return(cart)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -17,9 +16,9 @@ RSpec.feature "User can checkout with cart" do
 
       within(".item-#{item.id}") do
         expect(page).to have_content('Quantity: ')
-        expect(page).to have_selector('input[value="1"]')
+        expect(page).to have_selector('input[value="2"]')
       end
-      expect(page).to have_content("Total: $#{item.price}")
+      expect(page).to have_content("Total: $#{item.price * 2}")
 
       click_on("Checkout")
 
@@ -29,9 +28,9 @@ RSpec.feature "User can checkout with cart" do
         expect(page).to have_content item.name
         expect(page).to have_content item.description
         expect(page).to have_content item.price
-        expect(page).to have_content('1')
+        expect(page).to have_content('2')
       end
-      expect(page).to have_content("Total: $#{item.price}")
+      expect(page).to have_content("Total: $#{item.price * 2}")
 
       # expect(page).to have_css('order[address][address]', visible: false)
       # expect(page).to have_css('order[address][zipcode]', visible: false)
@@ -50,9 +49,9 @@ RSpec.feature "User can checkout with cart" do
       expect(page).to have_content item.name
       expect(page).to have_content item.description
       # expect(page).to have_content "Total: $#{item.price}"
-      expect(page).to have_content 'Quantity: 1'
+      # expect(page).to have_content 'Quantity: 2'
       expect(page).to have_content 'Your information'
-      expect(page).to have_content fullname(user)
+      expect(page).to have_content full_name(user)
       expect(page).to have_content user.email
       # expect(page).to have_content '123 Street Ave'
       # expect(page).to have_content 'Somewhere'

@@ -25,9 +25,10 @@
 = form_for @order do |f|
   = f.hidden_field "user_id", value: current_user.id
   = f.hidden_field "address_id", value: '1'
-  -# = f.fields_for :orderitems do |i|
-  - @cart.items.each do |item|
-    = f.hidden_field "items[item_id]", value: item.id
+  -# = f.hidden_field "item_ids", value: @cart.contents
+  -# = f.fields_for :order_items do |i|
+  -#   - @cart.items.each do |item|
+  -#     = i.hidden_field "item_id", value: item.id
   -# = f.fields_for @address do |a|
   -#   .form-group
   -#     = a.label(:address, class:'sr-only')

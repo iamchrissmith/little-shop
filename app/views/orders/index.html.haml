@@ -1,5 +1,8 @@
 %h1 Your purchases
 - @orders.each do |order|
+  %p Your information
+  %p #{full_name(current_user)}
+  %p #{current_user.email}
   %p Order Status: #{order.status}
   %table{:board => 0, :class => "table table-striped"}
     %tbody
