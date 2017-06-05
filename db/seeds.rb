@@ -22,8 +22,8 @@ end
     categories:   Category.all.shuffle.take(2),
     price:        rand(1.00..10.00).round(2),
     status:       0,
-    # photo:        Faker::Fillmurray.image
+    photo:        https://thumbs.dreamstime.com/x/coffee-bean-background-19575047.jpg
   )
 
-  
+
 end
