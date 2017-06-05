@@ -21,6 +21,15 @@ class Cart
     Item.where('id in (?)',contents.keys)
   end
 
+  def items_for_order
+    contents.reduce([]) do |items, (id, quantity)|
+      quantity.times do
+        items << Item.find(id)
+      end
+      items
+    end
+  end
+
   def total_price
     items.reduce(0) do |sum, item|
       sum += contents[item.id.to_s] * item.price
