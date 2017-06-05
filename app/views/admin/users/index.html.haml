@@ -6,6 +6,10 @@
       %td
         %h4 Order ID
       %td
+        %h4 Order Placed
+      %td
+        %h4 Total
+      %td
         %h4 User
       %td
         %h4 Status
@@ -14,10 +18,14 @@
     - @orders.each do |order|
       %tr{:class => "order order-#{order.id}"}
         %td= order.id
+        %td= order.created_at.to_date
+        %td= order.total_price
         %td= order.user_id
         %td= order.status
         %td
-          = form_for [:admin, order] do |f|
-            .form_group
-              = f.collection_select(:status, order.available_status, :first, :first, selected: order.status)            
-            = f.submit
+          - if order.status == 'ordered' || order.status == 'paid'
+            = form_for [:admin, order] do |f|
+              .form_group
+                = f.collection_select(:status, order.available_status, :first, :first, selected: order.status)          
+              = f.submit
+            
