@@ -23,9 +23,9 @@
             = submit_tag 'Update Quantity'
           = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn_primary'
     %tr
-      %td= ""
-      %td= ""
-      %td= ""
+      %td
+      %td
+      %td
       %td
         %h4 Total: $#{@cart.total_price}
 .checkout
