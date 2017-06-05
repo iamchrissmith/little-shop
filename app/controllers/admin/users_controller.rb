@@ -5,7 +5,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def index
-    @orders = Order.all
+    #@orders = Order.all
+    @orders = Order.order('created_at DESC')
   end
 
   private
