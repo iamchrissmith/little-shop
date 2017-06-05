@@ -12,9 +12,20 @@ class Order < ApplicationRecord
 
   enum status: ['ordered', 'paid', 'completed', 'cancelled']
 
-  def available_status; end
+  def available_status
+    if status == 'ordered'
+      {'ordered' => 0, 'paid' => 1, 'cancelled' => 3}
+    elsif status == 'paid'
+      {'paid' => 1, 'completed' => 2, 'cancelled' => 3}
+    elsif status == 'completed'
+      {'completed' => 2}
+    elsif status == 'cancelled'
+      {'cancelled' => 3}
+    end
+  end
 
   def total_price
     order_items.sum(:price)
   end
+
 end
