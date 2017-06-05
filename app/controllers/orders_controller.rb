@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
 
+  before_action :require_user
+
   def new
     @order = Order.new
     @order.address = Address.new
@@ -37,5 +39,12 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:user_id)
+  end
+
+  def require_user
+    unless current_user
+      flash[:warning] = 'You must be logged in to access this page.'
+      redirect_to login_path
+    end
   end
 end
