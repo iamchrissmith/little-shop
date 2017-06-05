@@ -1,1 +1,47 @@
-%h3 Order ORder ORDer ORDEr ORDER!!!
+%h3 Orders
+
+%table{:board => 0, :class => "table table-striped"}
+  %tbody
+    %tr
+      %td
+        %h4 Order ID
+      %td
+        %h4 User
+      %td
+        %h4 Status
+      %td
+        %h4 Actions
+    - @orders.each do |order|
+      %tr{:class => "order order-#{order.id}"}
+        %td= order.id
+        %td= order.user_id
+        %td
+          = form_for [:admin, order] do |f|
+            .form_group
+              = f.collection_select(:status, Order.statuses, :first, :first, selected: order.status)
+            = f.submit
+        %td
+          -# = form_tag('/cart', method: :put) do
+          -#   = hidden_field_tag :item_id, item.id
+          -#   = label_tag :quantity, 'Quantity: '
+          -#   = number_field_tag :quantity, @cart.contents[item.id.to_s], {min: 1}
+          -#   = submit_tag 'Update Quantity'
+          -# = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn_primary'
+
+-# = form_for [:admin, @item] do |f|
+-#   = render partial: 'shared/errors', locals: { target: @item }
+-#   .form-group
+-#     = f.label :name
+-#     = f.text_field :name
+-#   .form-group
+-#     = f.label :description
+-#     = f.text_area :description
+-#   .form-group
+-#     = f.label :price
+-#     = f.text_field :price
+-#   = f.collection_select(:status, Item.statuses, :first, :first, selected: @item.status)
+-#   = f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b|
+-#     = b.label do
+-#       = b.text
+-#       = b.check_box
+-#   = f.submit
