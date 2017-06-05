@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   # end
 
   def set_user
-    redirect_to admin_dashboard_path if current_admin?
     @user = current_user
+    redirect_to admin_user_path(@user) if current_admin?
   end
 end
