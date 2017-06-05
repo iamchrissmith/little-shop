@@ -16,10 +16,8 @@ RSpec.describe 'Admin wants to view an item' do
     expect(page).to have_current_path(admin_items_path)
 
     @items.each do |item|
-      within(page.find_by_id("item_#{item.id}")) do
+      within(page.find(".item-#{item.id}")) do
         expect(page).to have_link(item.name)
-        expect(page).to have_content(item.description)
-        expect(page).to have_content(item.price)
         expect(page).to have_content(item.status)
         expect(page).to have_link('Edit', href: edit_admin_item_path(item))
       end
@@ -30,7 +28,7 @@ RSpec.describe 'Admin wants to view an item' do
     click_link 'Items'
     item = Item.all[2]
 
-    within(page.find_by_id("item_#{item.id}")) do
+    within(page.find(".item-#{item.id}")) do
       click_link "#{item.name}"
     end
 
