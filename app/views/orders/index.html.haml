@@ -4,8 +4,9 @@
 %p #{current_user.email}
 - recent_order = "well well-lg"
 - @orders.each do |order|
-  %div{class:"order #{recent_order}"}
-    - recent_order = ''
+  %div{class:"order order-#{order.id} #{recent_order}"}
+    %h3 Order #{order.id}
+    - recent_order = 'row'
     %p Order Status: #{order.status}
     %table{:board => 0, :class => "table table-striped"}
       %tbody

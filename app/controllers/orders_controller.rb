@@ -20,16 +20,12 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_user.orders
+    @orders = current_user.orders.order('created_at DESC')
   end
 
   private
 
   def order_params
     params.require(:order).permit(:user_id, :address_id)
-  end
-
-  def method_name
-
   end
 end
