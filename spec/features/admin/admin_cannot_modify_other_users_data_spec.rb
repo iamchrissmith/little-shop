@@ -32,7 +32,7 @@ RSpec.describe 'Admin cannot modify other users data' do
   scenario 'admin cannot visit a users dashboard path' do
     visit(dashboard_path)
 
-    expect(page).to have_current_path(admin_dashboard_path)
+    expect(page).to have_current_path(admin_user_path(@admin))
   end
 
   xscenario 'admin cannot see a users cart' do
