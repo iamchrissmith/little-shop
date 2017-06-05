@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   resources :orders, except: %i[index update edit destroy]
 
   namespace :admin do
-    get '/dashboard', to: 'users#show'
+    get '/dashboard', to: 'users#index'
+    resources :users, only: :show
     resources :orders, only: %i[index show update edit]
     resources :items
   end
