@@ -1,0 +1,45 @@
+%h1 Checkout
+%table{:board => 0, :class => "table table-striped"}
+  %tbody
+    %tr
+      %td
+        %h4 Item
+      %td
+        %h4 Description
+      %td
+        %h4 Price
+      %td
+        %h4 Quantity
+    - @cart.items.each do |item|
+      %tr{:class => "item item-#{item.id}"}
+        %td #{item.name}
+        %td #{item.description}
+        %td $#{item.price}
+        %td #{@cart.contents[item.id.to_s]}
+    %tr
+      %td
+      %td
+      %td
+      %td
+        %h4 Total: $#{@cart.total_price}
+= form_for @order do |f|
+  = f.hidden_field "user_id", value: current_user.id
+  = f.hidden_field "address_id", value: '1'
+  -# = f.fields_for :orderitems do |i|
+  - @cart.items.each do |item|
+    = f.hidden_field "items[item_id]", value: item.id
+  -# = f.fields_for @address do |a|
+  -#   .form-group
+  -#     = a.label(:address, class:'sr-only')
+  -#     = a.text_field(:address, class:'form-control', placeholder: 'Street Address')
+  -#   .form-group
+  -#     = a.fields_for :city do |c|
+  -#       = c.label(:name, class:'sr-only')
+  -#       = c.text_field(:name, class:'form-control', placeholder: 'City')
+  -#       .form-group
+  -#         = c.fields_for :city, :state do |s|
+  -#           = c.collection_select(:state_id, State.all, :id, :abbr, prompt: true)
+  -#   .form-group
+  -#     = a.label(:zipcode, class:'sr-only')
+  -#     = a.text_field(:zipcode, class:'form-control', placeholder: 'Zipcode')
+  = f.submit "Complete Order"
