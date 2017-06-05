@@ -1,29 +1,32 @@
 %h1 Your purchases
+%p Your information
+%p #{full_name(current_user)}
+%p #{current_user.email}
+- recent_order = "well well-lg"
 - @orders.each do |order|
-  %p Your information
-  %p #{full_name(current_user)}
-  %p #{current_user.email}
-  %p Order Status: #{order.status}
-  %table{:board => 0, :class => "table table-striped"}
-    %tbody
-      %tr
-        %td
-          %h4 Item
-        %td
-          %h4 Description
-        %td
-          %h4 Price
-        %td
-          %h4 Quantity
-      - order.items.group(:id).each do |item|
-        %tr{:class => "item item-#{item.id}"}
-          %td #{item.name}
-          %td #{item.description}
-          %td $#{item.price}
-          %td #{order.order_items.where(item_id:item.id).count}
-      %tr
-        %td
-        %td
-        %td
-        %td
-          -# %h4 Total: $#{order.total_price}
+  %div{class:"order #{recent_order}"}
+    - recent_order = ''
+    %p Order Status: #{order.status}
+    %table{:board => 0, :class => "table table-striped"}
+      %tbody
+        %tr
+          %td
+            %h4 Item
+          %td
+            %h4 Description
+          %td
+            %h4 Price
+          %td
+            %h4 Quantity
+        - order.items.group(:id).each do |item|
+          %tr{:class => "item item-#{item.id}"}
+            %td #{item.name}
+            %td #{item.description}
+            %td $#{item.price}
+            %td #{order.order_items.where(item_id:item.id).count}
+        %tr
+          %td
+          %td
+          %td
+          %td
+            %h4 Total: $#{order.total_price}

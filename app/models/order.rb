@@ -14,4 +14,8 @@ class Order < ApplicationRecord
   enum status: ['ordered', 'paid', 'completed', 'cancelled']
 
   def available_status; end
+
+  def total_price
+    order_items.sum(:price)
+  end
 end
