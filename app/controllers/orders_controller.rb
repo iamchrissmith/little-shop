@@ -7,10 +7,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # binding.pry
     @order = Order.create(order_params)
-    @order.items << @cart.items
-    if @order.save
+    @order.items << @cart.items_for_order
+    # binding.pry
+    if @order.save!
       session.delete(:cart)
       flash[:success] = 'Order was successfully placed'
       redirect_to orders_path

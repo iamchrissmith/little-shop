@@ -15,12 +15,12 @@
           %h4 Price
         %td
           %h4 Quantity
-      - order.items.each do |item|
+      - order.items.group(:id).each do |item|
         %tr{:class => "item item-#{item.id}"}
           %td #{item.name}
           %td #{item.description}
           %td $#{item.price}
-          -# %td #{@cart.contents[item.id.to_s]}
+          %td #{order.order_items.where(item_id:item.id).count}
       %tr
         %td
         %td
