@@ -25,7 +25,6 @@
 = form_for @order do |f|
   = f.hidden_field "user_id", value: current_user.id
   %h3 Shipping Address
-  -# = f.hidden_field "address_id", value: '1'
   = f.fields_for :address, @order.build_address do |a|
     .form-group
       = a.label(:address, class:'sr-only')

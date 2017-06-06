@@ -23,15 +23,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
-  # def city_params
-  #   params.require(:order).require(:address_attributes).require(:city_attributes).permit(:name, :state_id)
-  # end
-  #
-  # def address_params
-  #   params.require(:order).require(:address_attributes).permit(  )
-  # end
-
   def order_params
     params.require(:order).permit(:user_id, address_attributes: [:address, :zipcode, city_attributes: [:name, :state_id]])
   end
