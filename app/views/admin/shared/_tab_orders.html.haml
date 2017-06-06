@@ -1,14 +1,19 @@
 %ul.nav.nav-tabs
   %li.active
-    %a{"data-toggle" => "tab", :href => "#all"} All Orders
+    %a{"data-toggle" => "tab", :href => "#all"} 
+      %h5= "All Orders (#{@orders.count})"
   %li
-    %a{"data-toggle" => "tab", :href => "#ordered"} Ordered
+    %a{"data-toggle" => "tab", :href => "#ordered"}
+      %h5= "Ordered (#{@ordered_orders.count})"
   %li
-    %a{"data-toggle" => "tab", :href => "#paid"} Paid
+    %a{"data-toggle" => "tab", :href => "#paid"} 
+      %h5= "Paid (#{@paid_orders.count})"
   %li
-    %a{"data-toggle" => "tab", :href => "#completed"} Completed
+    %a{"data-toggle" => "tab", :href => "#completed"} 
+      %h5= "Completed (#{@completed_orders.count})"
   %li
-    %a{"data-toggle" => "tab", :href => "#cancelled"} Cancelled
+    %a{"data-toggle" => "tab", :href => "#cancelled"}
+      %h5= "Cancelled (#{@cancelled_orders.count})"
 .tab-content
   #all.tab-pane.fade.in.active
     %table{:board => 0, :class => "table table-striped"}
