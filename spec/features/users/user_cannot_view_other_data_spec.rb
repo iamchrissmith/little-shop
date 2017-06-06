@@ -34,8 +34,6 @@ RSpec.feature 'User security' do
 
       expect(page).to have_content 'The page you were looking for doesn\'t exist.'
     end
-
-    scenario 'I cannot become an admin'
   end
 
   context 'as an unauthenticated user' do
@@ -62,7 +60,5 @@ RSpec.feature 'User security' do
 
       expect(page).to have_content 'The page you were looking for doesn\'t exist.'
     end
-
-    scenario 'I cannot become an admin'
   end
 end
