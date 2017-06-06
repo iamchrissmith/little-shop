@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   include ApplicationHelper
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :check_admin, only: :show
 
-  before_action :require_user, only: [:show]
+  before_action :require_user, only: [:show, :edit, :update]
 
   def new
     @user = User.new
@@ -16,7 +15,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = "Logged in as #{full_name(@user)}"
 
-      redirect_to dashboard_path
+      redirect_to_dashboard
     else
       render :new
     end
@@ -25,9 +24,10 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    if @user = User.update(user_params)
+
+    if @user.update(user_params)
       flash[:success] = "Profile Updated"
-      redirect_to @user
+      redirect_to_dashboard
     else
       render :edit
     end
@@ -45,7 +45,12 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def check_admin
-    redirect_to admin_user_path(@user) if current_admin?
+  def redirect_to_dashboard
+    if current_admin?
+      redirect_to user_path
+    else
+      redirect_to dashboard_path
+    end
   end
+
 end
