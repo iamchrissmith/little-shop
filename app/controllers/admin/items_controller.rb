@@ -1,5 +1,5 @@
 class Admin::ItemsController < Admin::BaseController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.all
@@ -35,7 +35,7 @@ class Admin::ItemsController < Admin::BaseController
 
   private
 
-  def set_user
+  def set_item
     @item = Item.find(params[:id])
   end
 

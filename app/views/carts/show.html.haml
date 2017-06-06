@@ -3,6 +3,8 @@
   %tbody
     %tr
       %td
+        %h4 Image
+      %td
         %h4 Item
       %td
         %h4 Description
@@ -12,9 +14,10 @@
         %h4 Quantity
     - @cart.items.each do |item|
       %tr{:class => "item item-#{item.id}"}
-        %td #{item.name}
-        %td #{item.description}
-        %td $#{item.price}
+        %td
+        %td= item.name
+        %td= item.description
+        %td= item.price
         %td
           = form_tag('/cart', method: :put, class: "form-inline pull-right") do
             = hidden_field_tag :item_id, item.id
@@ -25,6 +28,7 @@
               = submit_tag 'Update', class: "btn btn-default pull-right"
           = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn-danger form-inline pull-right'
     %tr
+      %td
       %td
       %td
       %td
