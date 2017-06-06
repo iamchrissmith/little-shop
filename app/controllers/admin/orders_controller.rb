@@ -1,5 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
-  before_action :set_order, only: [:update]
+  before_action :set_order, only: [:update, :show]
 
   def update
     if @order.update(order_params)
@@ -10,6 +10,8 @@ class Admin::OrdersController < Admin::BaseController
       redirect_to admin_dashboard_path
     end
   end
+
+  def show ; end
 
   private
 
