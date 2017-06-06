@@ -1,39 +1,40 @@
-%h1 Your Cart
-%table{:board => 0, :class => "table table-striped"}
-  %tbody
-    %tr
-      %td
-        %h4 Item
-      %td
-        %h4 Description
-      %td
-        %h4 Price
-      %td
-        %h4 Quantity
-    - @cart.items.each do |item|
-      %tr{:class => "item item-#{item.id}"}
-        %td #{item.name}
-        %td #{item.description}
-        %td $#{item.price}
+%main
+  %h1 Your Cart
+  %table{:board => 0, :class => "table table-striped"}
+    %tbody
+      %tr
         %td
-          = form_tag('/cart', method: :put, class: "form-inline pull-right") do
-            = hidden_field_tag :item_id, item.id
-            .input-group.col-lg-8
-              = label_tag :quantity, 'Quantity: ', class: "input-group-addon"
-              = number_field_tag :quantity, @cart.contents[item.id.to_s], {min: 1, class: "form-control"}
-            .input-group.col-lg-4.pull-right
-              = submit_tag 'Update', class: "btn btn-default pull-right"
-          = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn-danger form-inline pull-right'
-    %tr
-      %td
-      %td
-      %td
-      %td
-        %h4 Total: $#{@cart.total_price}
-.checkout.pull-right.text-right
-  - if current_user
-    = link_to "Checkout", new_order_path, class: "btn btn-success btn-lg"
-  - else
-    %h3 You must be signed in to checkout
-    = link_to "Create Account", new_user_path, class: "btn btn-default"
-    = link_to "Login", login_path, class: "btn btn-default"
+          %h4 Item
+        %td
+          %h4 Description
+        %td
+          %h4 Price
+        %td
+          %h4 Quantity
+      - @cart.items.each do |item|
+        %tr{:class => "item item-#{item.id}"}
+          %td #{item.name}
+          %td #{item.description}
+          %td $#{item.price}
+          %td
+            = form_tag('/cart', method: :put, class: "form-inline pull-right") do
+              = hidden_field_tag :item_id, item.id
+              .input-group.col-lg-8
+                = label_tag :quantity, 'Quantity: ', class: "input-group-addon"
+                = number_field_tag :quantity, @cart.contents[item.id.to_s], {min: 1, class: "form-control"}
+              .input-group.col-lg-4.pull-right
+                = submit_tag 'Update', class: "btn btn-default pull-right"
+            = button_to "Remove", cart_path(item_id: item.id), method: :delete, :class => 'btn btn-danger form-inline pull-right'
+      %tr
+        %td
+        %td
+        %td
+        %td
+          %h4 Total: $#{@cart.total_price}
+  .checkout.pull-right.text-right
+    - if current_user
+      = link_to "Checkout", new_order_path, class: "btn btn-success btn-lg"
+    - else
+      %h3 You must be signed in to checkout
+      = link_to "Create Account", new_user_path, class: "btn btn-default"
+      = link_to "Login", login_path, class: "btn btn-default"

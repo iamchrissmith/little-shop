@@ -1,5 +1,4 @@
 %h1 Category: #{@category.name}
-
-%h2 All Items
-- @category.items.each do |item|
-  = render partial: 'items/item', locals: { item: item }
+%main
+  - @category.items.each do |item|
+    = render partial: 'items/item', locals: { item: item }
