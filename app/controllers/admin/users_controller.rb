@@ -6,10 +6,10 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     @orders = Order.order('created_at DESC')
-    @ordered_orders = Order.where(status: "ordered").order('created_at DESC')
-    @paid_orders = Order.where(status: "paid").order('created_at DESC')
-    @completed_orders = Order.where(status: "completed").order('created_at DESC')
-    @cancelled_orders = Order.where(status: "cancelled").order('created_at DESC')
+    @ordered_orders = Order.ordered.order('created_at DESC')
+    @paid_orders = Order.paid.order('created_at DESC')
+    @completed_orders = Order.completed.order('created_at DESC')
+    @cancelled_orders = Order.cancelled.order('created_at DESC')
   end
 
   private
