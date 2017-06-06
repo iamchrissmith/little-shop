@@ -17,8 +17,8 @@ RSpec.feature 'Logged In User can View Past Orders' do
 
     click_link user.orders[0].id
 
-    expect(current_path).to eq("user/#{user.id}/orders/#{user.order[0].id}")
-    expect(page).to have_content("Order: #{user.order[0].id}")
+    expect(current_path).to eq("/orders/#{user.orders[0].id}")
+    expect(page).to have_content("Order #{user.orders[0].id}")
 
     #how to check for listed out items?
   end
