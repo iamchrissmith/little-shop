@@ -1,120 +1,116 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin wants to change status of orders' do
+  let(:admin) { create(:user, role: 'admin') }
 
   before do
-    @admin = create(:user, :as_admin)
-
-    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(admin)
-    visit(admin_dashboard_path(@admin))
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
   end
 
-  xscenario 'cancel an order' do
+  describe "cancelling an order" do
+    context "when order is 'ordered'" do
+      scenario 'order can be cancelled' do
+        order = create(:order)
 
-    it 'can cancel an ordered order' do
-      order = create(:order)
+        visit(admin_dashboard_path(admin))
 
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Ordered')
-        expect(page).to have_select(dropdown, :options => ['Paid', 'Completed', 'Cancelled'])
+        within("#all .order-#{order.id}") do
+          expect(page).to have_select('order_status', :selected => 'Ordered')
+          expect(page).to have_select('order_status', :options => ['Ordered', 'Paid', 'Cancelled'])
 
-        select 'Cancel', from: 'status'
-        click_on 'Update'
-
-        expect(page).to have_select(dropdown, :selected => 'Cancelled')
+          select 'Cancelled', from: 'order_status'
+          click_on 'Update'
+        end
+        within("#all .order-#{order.id}") do
+          expect(page).not_to have_select('order_status')
+          expect(page).to have_content 'Cancelled'
+        end
       end
     end
 
-    it 'can cancel a paid order' do
-      order = create(:order, :as_paid)
+    context "when order is 'paid'" do
+      scenario 'order can be cancelled' do
+        order = create(:order, status: 'paid')
 
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Paid')
-        expect(page).to have_select(dropdown, :options => ['Completed', 'Cancelled'])
+        visit(admin_dashboard_path(admin))
 
-        select 'Cancelled', from: 'status'
-        click_on 'Update'
+        within("#all .order-#{order.id}") do
+          expect(page).to have_select('order_status', :selected => 'Paid')
+          expect(page).to have_select('order_status', :options => ['Paid', 'Completed', 'Cancelled'])
 
-        expect(page).to have_select(dropdown, :selected => 'Cancelled')
-      end
-    end
-
-    it 'cannot cancel a completed order' do
-      order = create(:order, :as_compeleted)
-
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Completed')
-        expect(page).to_not have_select(dropdown, :options => ['Ordered', 'Paid', 'Cancelled'])
-      end
-    end
-  end
-
-  xscenario 'mark as paid' do
-
-    it 'can mark ordered as paid' do
-      order = create(:order)
-
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Ordered')
-        expect(page).to have_select(dropdown, :options => ['Paid', 'Completed', 'Cancelled'])
-
-        select 'Paid', from: 'status'
-        click_on 'Update'
-
-        expect(page).to have_select(dropdown, :selected => 'Paid')
-      end
-    end
-
-    it 'cannot mark cancelled as paid' do
-      order = create(:order, :as_cancelled)
-
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Cancelled')
-        expect(page).to_not have_select(dropdown, :options => ['Ordered', 'Paid', 'Completed'])
-      end
-    end
-
-    it 'cannot mark completed as paid' do
-      order = create(:order, :as_completed)
-
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Completed')
-        expect(page).to_not have_select(dropdown, :options => ['Ordered', 'Paid', 'Cancelled'])
+          select 'Cancelled', from: 'order_status'
+          click_on 'Update'
+        end
+        within("#all .order-#{order.id}") do
+          expect(page).not_to have_select('order_status')
+          expect(page).to have_content 'Cancelled'
+        end
       end
     end
   end
 
-  xscenario 'mark as completed' do
-
-    it 'can mark paid as completed' do
-      order = create(:order, :as_paid)
-
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Paid')
-        expect(page).to have_select(dropdown, :options => ['Completed', 'Cancelled'])
-
-        select 'Completed', from: 'status'
-        click_on 'Update'
-
-        expect(page).to have_select(dropdown, :selected => 'Completed')
-      end
-    end
-
-    it 'cannot mark ordered completed' do
+  context "when order is 'ordered'" do
+    scenario 'order can be paid' do
       order = create(:order)
 
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Ordered')
-        expect(page).to_not have_select(dropdown, :options => ['Completed'])
+      visit(admin_dashboard_path(admin))
+
+      within("#all .order-#{order.id}") do
+        expect(page).to have_select('order_status', :selected => 'Ordered')
+        expect(page).to have_select('order_status', :options => ['Ordered', 'Paid', 'Cancelled'])
+
+        select 'Paid', from: 'order_status'
+        click_on 'Update'
+      end
+      within("#all .order-#{order.id}") do
+        expect(page).to have_select('order_status', :selected => 'Paid')
+        expect(page).to have_content 'Paid'
       end
     end
+  end
 
-    it 'cannot mark cancelled as completed' do
-      order = create(:order, :as_cancelled)
+  context "when order is 'paid'" do
+    scenario 'order can be completed' do
+      order = create(:order, status: 'paid')
 
-      within(find('div', text: order.id)) do
-        expect(page).to have_select(dropdown, :selected => 'Cancelled')
-        expect(page).to_not have_select(dropdown, :options => ['Ordered', 'Paid', 'Completed'])
+      visit(admin_dashboard_path(admin))
+
+      within("#all .order-#{order.id}") do
+        expect(page).to have_select('order_status', :selected => 'Paid')
+        expect(page).to have_select('order_status', :options => ['Paid', 'Completed', 'Cancelled'])
+
+        select 'Completed', from: 'order_status'
+        click_on 'Update'
+      end
+      within("#all .order-#{order.id}") do
+        expect(page).not_to have_select('order_status')
+        expect(page).to have_content 'Completed'
+      end
+    end
+  end
+
+  context "when order is 'cancelled'" do
+    scenario 'order status cannot be changed' do
+      order = create(:order, status: 'cancelled')
+
+      visit(admin_dashboard_path(admin))
+
+      within("#all .order-#{order.id}") do
+        expect(page).to have_content 'Cancelled'
+        expect(page).not_to have_select('order_status')
+      end
+    end
+  end
+
+  context "when order is 'completed'" do
+    scenario 'order status cannot be changed' do
+      order = create(:order, status: 'completed')
+
+      visit(admin_dashboard_path(admin))
+
+      within("#all .order-#{order.id}") do
+        expect(page).to have_content 'Completed'
+        expect(page).not_to have_select('order_status')
       end
     end
   end
