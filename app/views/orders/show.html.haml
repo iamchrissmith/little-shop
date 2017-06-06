@@ -1,7 +1,9 @@
 %div{class:"order order-#{@order.id}"}
   %h3 Order #{@order.id}
-  %p Order Status: #{@order.status}
-  %p Placed at: #{@order.placed_at}
+  %p
+    = "Order Status: #{@order.status.capitalize}"
+    = render 'closed' if @order.completed? || @order.cancelled?
+  %p Placed at: #{@order.created_at.to_s(:long)}
   %p Order Address:
   %ul
     %li #{@order.address.address}
