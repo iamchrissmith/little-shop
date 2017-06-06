@@ -1,6 +1,6 @@
 %header
   = render "admin/shared/nav" if current_admin?
-  %nav.navbar.navbar-inverse
+  %nav.navbar.navbar-inverse.navbar-main
     %ul.nav.navbar-nav
       %li= link_to "Home", items_path
       %li.dropdown
@@ -14,3 +14,5 @@
     %ul.nav.navbar-nav.navbar-right
       %li= link_to "Cart: #{@cart.total_count}", cart_path
       = render "shared/accounts-nav"
+= render "shared/flash"
+%div.row
