@@ -25,13 +25,12 @@
 = form_for @order do |f|
   = f.hidden_field "user_id", value: current_user.id
   %h3 Shipping Address
-  -# = f.hidden_field "address_id", value: '1'
-  = f.fields_for :address do |a|
+  = f.fields_for :address, @order.build_address do |a|
     .form-group
       = a.label(:address, class:'sr-only')
       = a.text_field(:address, class:'form-control', placeholder: 'Street Address')
     .form-group
-      = a.fields_for :city do |c|
+      = a.fields_for :city, a.object.build_city do |c|
         = c.label(:name, "City", class:'sr-only')
         = c.text_field(:name, class:'form-control', placeholder: 'City')
         .form-group

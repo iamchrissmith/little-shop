@@ -9,4 +9,9 @@ class Address < ApplicationRecord
   validates :city_id, presence: true
   validates :address, presence: true
   validates :zipcode, presence: true
+
+  def city_attributes=(city_attributes)
+    city = City.create(city_attributes)
+    self.city = city
+  end
 end
