@@ -10,6 +10,8 @@ FactoryGirl.define do
     before(:create) do |item|
       item.categories << create(:category)
     end
+
+    photo img[src*='https://thumbs.dreamstime.com/x/coffee-bean-background-19575047.jpg']
   end
 
   # trait :with_photo do

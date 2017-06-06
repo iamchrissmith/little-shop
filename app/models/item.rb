@@ -8,7 +8,7 @@ class Item < ApplicationRecord
     large:'450x450>',
   }
 
-  validates_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  validates_attachment_presence :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_presence_of :name, :description, :price, :categories
   validates_uniqueness_of :name
   validates_numericality_of :price
