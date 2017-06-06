@@ -1,6 +1,9 @@
 %div{class:"order order-#{@order.id}"}
   %h3 Order #{@order.id}
-  %p Order Status: #{@order.status}
+  %p
+    = "Order Status: #{@order.status.capitalize}"
+    = render 'closed' if @order.completed? || @order.cancelled?
+  %p Placed at: #{@order.created_at.to_s(:long)}
   %p Order Address:
   %ul
     %li #{@order.address.address}
@@ -20,7 +23,7 @@
           %h4 Quantity
       - @order.items.group(:id).each do |item|
         %tr{:class => "item item-#{item.id}"}
-          %td #{item.name}
+          %td= link_to item.name, item_path(item)
           %td #{item.description}
           %td $#{item.price}
           %td #{@order.order_items.where(item_id:item.id).count}
