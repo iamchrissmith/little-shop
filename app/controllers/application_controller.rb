@@ -29,6 +29,13 @@ class ApplicationController < ActionController::Base
       end
   end
 
+  def require_user
+    unless current_user
+      flash[:warning] = 'You must be logged in to access this page.'
+      redirect_to login_path
+    end
+  end
+
   private
 
   def set_cart

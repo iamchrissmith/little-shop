@@ -8,125 +8,128 @@ RSpec.describe 'Admin wants to see all orders' do
     @orders << create_list(:order, 3, :as_cancelled)
     @orders << create_list(:order, 3, :as_completed)
 
-    @admin = create(:user, :as_admin)
+    @admin = create(:user, role: 'admin')
 
-    allow_any_instance_of(ApplicationController).to recieve(:current_user).and_return(admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
 
-  xscenario 'and sees all orders' do
+  scenario 'and sees all orders' do
     visit(admin_dashboard_path(@admin))
 
-    within(page.find('orders-view')) do
-      Order.all do |order|
-        expect(page).to have_content(order.id)
+    Order.all do |order|
+      expect(page).to have_content(order.id)
+    end
+  end
+
+  scenario 'and sees total counts for each order status' do
+    visit(admin_dashboard_path(@admin))
+
+    expect(page).to have_content("All Orders (#{Order.all.count})")
+
+    Order.all.each do |order|
+      expect(page).to have_content(order.id)
+    end
+  end
+
+  scenario 'sees all ordered orders' do
+    visit(admin_dashboard_path(@admin))
+
+    expect(page).to have_content("Ordered (#{Order.ordered.count})")
+
+    within("div#ordered") do
+      Order.cancelled.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
+      end
+
+      Order.ordered.each do |order|
+        within(".order-#{order.id} .order-id") do
+          expect(page).to have_content(order.id)
+        end
+      end
+
+      Order.paid.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
+      end
+
+      Order.completed.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
       end
     end
   end
 
-  xscenario 'and sees total counts for each order status' do
+  scenario 'sees all paid orders' do
     visit(admin_dashboard_path(@admin))
 
-    it 'sees all ordered orders' do
-      within(page.find('div', text: 'Ordered')) do
-        expect(page).to have_content(Order.all_ordered.count)
+    expect(page).to have_content("Paid (#{Order.paid.count})")
 
-        click_link 'Filter'
+    within("div#paid") do
+      Order.cancelled.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
       end
 
-      within(page.find('orders-view')) do
-        Order.all_ordered.each do |order|
+      Order.ordered.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
+      end
+
+      Order.paid.each do |order|
+        within(".order-#{order.id} .order-id") do
           expect(page).to have_content(order.id)
         end
+      end
 
-        Order.all_paid.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
-
-        Order.all_cancelled.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
-
-        Order.all_completed.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
+      Order.completed.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
       end
     end
+  end
 
-    xit 'sees all paid orders' do
-      within(page.find('div', text: 'Paid')) do
-        expect(page).to have_content(Order.all_paid.count)
+  scenario 'sees all cancelled orders' do
+    visit(admin_dashboard_path(@admin))
 
-        click_link 'Filter'
-      end
+    expect(page).to have_content("Cancelled (#{Order.cancelled.count})")
 
-
-      within(page.find('orders-view')) do
-        Order.all_paid.each do |order|
+    within("div#cancelled") do
+      Order.cancelled.each do |order|
+        within(".order-#{order.id} .order-id") do
           expect(page).to have_content(order.id)
         end
+      end
 
-        Order.all_ordered.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
+      Order.ordered.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
+      end
 
-        Order.all_cancelled.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
+      Order.paid.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
+      end
 
-        Order.all_completed.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
+      Order.completed.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
       end
     end
+  end
 
-    xit 'sees all cancelled orders' do
-      within(page.find('div', text: 'Cancelled')) do
-        expect(page).to have_content(Order.all_cancelled.count)
+  scenario 'sees all completed orders' do
+    visit(admin_dashboard_path(@admin))
 
-        click_link 'Filter'
+    expect(page).to have_content("Completed (#{Order.completed.count})")
+
+    within("div#completed") do
+      Order.cancelled.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
       end
 
-      within(page.find('orders-view')) do
-        Order.all_cancelled.each do |order|
+      Order.ordered.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
+      end
+
+      Order.paid.each do |order|
+        expect(page).to_not have_css(".order-#{order.id}")
+      end
+
+      Order.completed.each do |order|
+        within(".order-#{order.id} .order-id") do
           expect(page).to have_content(order.id)
-        end
-
-        Order.all_ordered.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
-
-        Order.all_paid.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
-
-        Order.all_completed.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
-      end
-    end
-
-    xit 'sees all completed orders' do
-      within(page.find('div', text: 'Completed')) do
-        expect(page).to have_content(Order.all_completed.count)
-
-        click_link 'Filter'
-      end
-
-      within(page.find('orders-view')) do
-        Order.all_completed.each do |order|
-          expect(page).to have_content(order.id)
-        end
-
-        Order.all_ordered.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
-
-        Order.all_paid.each do |order|
-          expect(page).to_not have_content(order.id)
-        end
-
-        Order.all_cancelled.each do |order|
-          expect(page).to_not have_content(order.id)
         end
       end
     end
