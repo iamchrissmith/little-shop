@@ -4,15 +4,10 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @order.address = Address.new
-    @order.address.city = City.new
   end
 
   def create
-    address = Address.create(address_params)
-    address.city = City.create(city_params)
     @order = Order.create(order_params)
-    @order.address = address
     @order.items << @cart.items_for_order
     if @order.save!
       session.delete(:cart)
@@ -27,24 +22,12 @@ class OrdersController < ApplicationController
     @orders = current_user.orders.order('created_at DESC')
   end
 
+  def show
+    @order = current_user.orders.find(params[:id])
+  end
+
   private
-
-  def city_params
-    params.require(:order).require(:address_attributes).require(:city_attributes).permit(:name, :state_id)
-  end
-
-  def address_params
-    params.require(:order).require(:address_attributes).permit( :address, :zipcode )
-  end
-
   def order_params
-    params.require(:order).permit(:user_id)
-  end
-
-  def require_user
-    unless current_user
-      flash[:warning] = 'You must be logged in to access this page.'
-      redirect_to login_path
-    end
+    params.require(:order).permit(:user_id, address_attributes: [:address, :zipcode, city_attributes: [:name, :state_id]])
   end
 end
