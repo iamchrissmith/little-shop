@@ -1,4 +1,11 @@
-%h1 Your Profile
-
-%h3= full_name(@user)
-%p= @user.email
+%main
+  %section{class: 'profile'}
+    %h2 Your Profile
+    %div{class: 'profile-row'}
+      %h4 Name:
+      %span= full_name(@user)
+    %div{class: 'profile-row'}
+      %h4 Email:
+      %span= @user.email
+    %footer
+      = link_to "Edit Profile", edit_user_path(@user), class: 'btn btn-default btn-xs'
