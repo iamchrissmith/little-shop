@@ -38,4 +38,8 @@ class Order < ApplicationRecord
     order_items.sum(:price)
   end
 
+  def address_attributes=(address_attributes)
+    address = Address.create(address_attributes)
+    self.address = address
+  end
 end
