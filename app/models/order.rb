@@ -24,6 +24,16 @@ class Order < ApplicationRecord
     end
   end
 
+  # def self.order_status
+  #   {
+  #   all: Order.order('created_at DESC'),
+  #   ordered: Order.where(status: "ordered").order('created_at DESC'),
+  #   paid: Order.where(status: "paid").order('created_at DESC'),
+  #   completed: Order.where(status: "completed").order('created_at DESC'),
+  #   cancelled: Order.where(status: "cancelled").order('created_at DESC')
+  #   }
+  # end
+
   def total_price
     order_items.sum(:price)
   end

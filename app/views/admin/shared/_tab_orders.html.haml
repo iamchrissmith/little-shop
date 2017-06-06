@@ -1,0 +1,168 @@
+%ul.nav.nav-tabs
+  %li.active
+    %a{"data-toggle" => "tab", :href => "#all"} All Orders
+  %li
+    %a{"data-toggle" => "tab", :href => "#ordered"} Ordered
+  %li
+    %a{"data-toggle" => "tab", :href => "#paid"} Paid
+  %li
+    %a{"data-toggle" => "tab", :href => "#completed"} Completed
+  %li
+    %a{"data-toggle" => "tab", :href => "#cancelled"} Cancelled
+.tab-content
+  #all.tab-pane.fade.in.active
+    %table{:board => 0, :class => "table table-striped"}
+      %tbody
+        %tr
+          %td
+            %h4 Order ID
+          %td
+            %h4 Date Placed
+          %td
+            %h4 Total
+          %td
+            %h4 User
+          %td
+            %h4 Status
+          %td
+            %h4 Actions
+        - if @orders.count > 0
+          - @orders.each do |order|
+            %tr{:class => "order order-#{order.id}"}
+              %td= order.id
+              %td= order.created_at.to_date
+              %td= order.total_price
+              %td= order.user_id
+              %td= order.status
+              %td
+                -# I tried to make this a partial but using = render partial 'orders/form', locals: { order: order } wasn't working 
+                - if order.status == 'ordered' || order.status == 'paid'
+                  = form_for [:admin, order] do |f|
+                    .form_group
+                      = f.collection_select(:status, order.available_status, :first, :first, selected: order.status)          
+                    = f.submit
+            
+  #ordered.tab-pane.fade
+    %table{:board => 0, :class => "table table-striped"}
+      %tbody
+        %tr
+          %td
+            %h4 Order ID
+          %td
+            %h4 Date Placed
+          %td
+            %h4 Total
+          %td
+            %h4 User
+          %td
+            %h4 Status
+          %td
+            %h4 Actions
+        - if @ordered_orders.count > 0
+          - @ordered_orders.each do |order|
+            %tr{:class => "order order-#{order.id}"}
+              %td= order.id
+              %td= order.created_at.to_date
+              %td= order.total_price
+              %td= order.user_id
+              %td= order.status
+              %td
+                -# I tried to make this a partial but using = render partial 'orders/form', locals: { order: order } wasn't working 
+                - if order.status == 'ordered' || order.status == 'paid'
+                  = form_for [:admin, order] do |f|
+                    .form_group
+                      = f.collection_select(:status, order.available_status, :first, :first, selected: order.status)          
+                    = f.submit          
+  #paid.tab-pane.fade
+    %table{:board => 0, :class => "table table-striped"}
+      %tbody
+        %tr
+          %td
+            %h4 Order ID
+          %td
+            %h4 Date Placed
+          %td
+            %h4 Total
+          %td
+            %h4 User
+          %td
+            %h4 Status
+          %td
+            %h4 Actions
+        - if @paid_orders.count > 0
+          - @paid_orders.each do |order|
+            %tr{:class => "order order-#{order.id}"}
+              %td= order.id
+              %td= order.created_at.to_date
+              %td= order.total_price
+              %td= order.user_id
+              %td= order.status
+              %td
+                -# I tried to make this a partial but using = render partial 'orders/form', locals: { order: order } wasn't working 
+                - if order.status == 'ordered' || order.status == 'paid'
+                  = form_for [:admin, order] do |f|
+                    .form_group
+                      = f.collection_select(:status, order.available_status, :first, :first, selected: order.status)          
+                    = f.submit
+  #completed.tab-pane.fade
+    %table{:board => 0, :class => "table table-striped"}
+      %tbody
+        %tr
+          %td
+            %h4 Order ID
+          %td
+            %h4 Date Placed
+          %td
+            %h4 Total
+          %td
+            %h4 User
+          %td
+            %h4 Status
+          %td
+            %h4 Actions
+        - if @completed_orders.count > 0
+          - @completed_orders.each do |order|
+            %tr{:class => "order order-#{order.id}"}
+              %td= order.id
+              %td= order.created_at.to_date
+              %td= order.total_price
+              %td= order.user_id
+              %td= order.status
+              %td
+                -# I tried to make this a partial but using = render partial 'orders/form', locals: { order: order } wasn't working 
+                - if order.status == 'ordered' || order.status == 'paid'
+                  = form_for [:admin, order] do |f|
+                    .form_group
+                      = f.collection_select(:status, order.available_status, :first, :first, selected: order.status)          
+                    = f.submit
+  #cancelled.tab-pane.fade
+    %table{:board => 0, :class => "table table-striped"}
+      %tbody
+        %tr
+          %td
+            %h4 Order ID
+          %td
+            %h4 Date Placed
+          %td
+            %h4 Total
+          %td
+            %h4 User
+          %td
+            %h4 Status
+          %td
+            %h4 Actions
+        - if @cancelled_orders.count > 0
+          - @cancelled_orders.each do |order|
+            %tr{:class => "order order-#{order.id}"}
+              %td= order.id
+              %td= order.created_at.to_date
+              %td= order.total_price
+              %td= order.user_id
+              %td= order.status
+              %td
+                -# I tried to make this a partial but using = render partial 'orders/form', locals: { order: order } wasn't working 
+                - if order.status == 'ordered' || order.status == 'paid'
+                  = form_for [:admin, order] do |f|
+                    .form_group
+                      = f.collection_select(:status, order.available_status, :first, :first, selected: order.status)          
+                    = f.submit

@@ -6,7 +6,7 @@ class Admin::OrdersController < Admin::BaseController
       flash[:success] = "Order Status #{@order.id} Updated to #{@order.status}"
       redirect_to admin_dashboard_path
     else
-      flash[:failure] = "Order #{@order.id} Failed to Update"
+      flash[:error] = "Order #{@order.id} Failed to Update"
       redirect_to admin_dashboard_path
     end
   end
