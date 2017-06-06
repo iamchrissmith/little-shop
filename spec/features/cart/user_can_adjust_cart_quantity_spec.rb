@@ -19,7 +19,7 @@ RSpec.feature 'Visitor can adjust cart quantity' do
 
       within(".item-#{item.id}") do
         fill_in 'quantity', with: '2'
-        click_on('Update Quantity')
+        click_on('Update')
       end
 
       expect(current_path).to eq(cart_path)
@@ -46,7 +46,7 @@ RSpec.feature 'Visitor can adjust cart quantity' do
 
       within(".item-#{item.id}") do
         fill_in 'quantity', with: '1'
-        click_on('Update Quantity')
+        click_on('Update')
       end
 
       expect(current_path).to eq(cart_path)
