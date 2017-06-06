@@ -34,7 +34,7 @@
         - if @orders.count > 0
           - @orders.each do |order|
             %tr{:class => "order order-#{order.id}"}
-              %td= order.id
+              %td.order_id= order.id
               %td= order.created_at.to_date
               %td= order.total_price
               %td= order.user_id
@@ -66,7 +66,8 @@
         - if @ordered_orders.count > 0
           - @ordered_orders.each do |order|
             %tr{:class => "order order-#{order.id}"}
-              %td= order.id
+              %td{:class => "order-id"}
+                = order.id
               %td= order.created_at.to_date
               %td= order.total_price
               %td= order.user_id
@@ -97,7 +98,8 @@
         - if @paid_orders.count > 0
           - @paid_orders.each do |order|
             %tr{:class => "order order-#{order.id}"}
-              %td= order.id
+              %td{:class => "order-id"}
+                = order.id
               %td= order.created_at.to_date
               %td= order.total_price
               %td= order.user_id
@@ -128,7 +130,8 @@
         - if @completed_orders.count > 0
           - @completed_orders.each do |order|
             %tr{:class => "order order-#{order.id}"}
-              %td= order.id
+              %td{:class => "order-id"}
+                = order.id
               %td= order.created_at.to_date
               %td= order.total_price
               %td= order.user_id
@@ -159,7 +162,8 @@
         - if @cancelled_orders.count > 0
           - @cancelled_orders.each do |order|
             %tr{:class => "order order-#{order.id}"}
-              %td= order.id
+              %td{:class => "order-id"}
+                = order.id
               %td= order.created_at.to_date
               %td= order.total_price
               %td= order.user_id
