@@ -1,3 +1,4 @@
-%h1 All Items
-- @items.each do |item|
-  = render partial: 'items/item', locals: { item: item }
+%main
+  %header
+  - @items.each do |item|
+    = render partial: 'items/item', locals: { item: item }

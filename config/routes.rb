@@ -12,11 +12,11 @@ Rails.application.routes.draw do
 
   resources :items, only: [:index, :show]
   resources :categories, only: [:show]
-  resources :orders, except: %i[index update edit destroy]
+  resources :orders, except: %i[update edit destroy]
 
   namespace :admin do
     get '/dashboard', to: 'users#index'
-    resources :users, only: :show
+    resources :users, only: [:show, :index]
     resources :orders, only: %i[index show update edit]
     resources :items
   end
