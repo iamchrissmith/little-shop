@@ -1,3 +1,5 @@
+include ActionDispatch::TestProcess
+
 FactoryGirl.define do
   factory :item do
     sequence(:name) do |n|
@@ -11,7 +13,7 @@ FactoryGirl.define do
       item.categories << create(:category)
     end
 
-    photo img[src*='https://thumbs.dreamstime.com/x/coffee-bean-background-19575047.jpg']
+    photo { fixture_file_upload(Rails.root.join("spec", "support", "coffee-beans-shot.jpg"), 'image/jpg') }
   end
 
   # trait :with_photo do
