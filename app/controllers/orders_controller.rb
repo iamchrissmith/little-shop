@@ -4,15 +4,10 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @order.address = Address.new
-    @order.address.city = City.new
   end
 
   def create
-    address = Address.create(address_params)
-    address.city = City.create(city_params)
     @order = Order.create(order_params)
-    @order.address = address
     @order.items << @cart.items_for_order
     if @order.save!
       session.delete(:cart)
@@ -29,16 +24,16 @@ class OrdersController < ApplicationController
 
   private
 
-  def city_params
-    params.require(:order).require(:address_attributes).require(:city_attributes).permit(:name, :state_id)
-  end
-
-  def address_params
-    params.require(:order).require(:address_attributes).permit( :address, :zipcode )
-  end
+  # def city_params
+  #   params.require(:order).require(:address_attributes).require(:city_attributes).permit(:name, :state_id)
+  # end
+  #
+  # def address_params
+  #   params.require(:order).require(:address_attributes).permit(  )
+  # end
 
   def order_params
-    params.require(:order).permit(:user_id)
+    params.require(:order).permit(:user_id, address_attributes: [:address, :zipcode, city_attributes: [:name, :state_id]])
   end
 
   def require_user
