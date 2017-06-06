@@ -12,5 +12,13 @@ RSpec.feature "User can see retired items" do
       expect(page).to have_content("Item Retired")
 
     end
+
+    scenario "it can view all items (including retired)" do
+      visit items_path
+
+      expect(page).not_to have_content("Add to Cart")
+      expect(page).to have_content("Retired")
+
+    end
   end
 end
