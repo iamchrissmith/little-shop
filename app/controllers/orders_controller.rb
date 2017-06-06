@@ -22,6 +22,10 @@ class OrdersController < ApplicationController
     @orders = current_user.orders.order('created_at DESC')
   end
 
+  def show
+    @order = current_user.orders.find(params[:id])
+  end
+
   private
   def order_params
     params.require(:order).permit(:user_id, address_attributes: [:address, :zipcode, city_attributes: [:name, :state_id]])
