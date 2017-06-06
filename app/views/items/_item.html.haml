@@ -1,5 +1,6 @@
 %div{class: "item-#{item.id} item small" }
   %img{class: 'img-box'}
+    =image_tag item.photo.url(:large)
   %h3= link_to item.name, item_path(item), class: 'center-block text-center'
   = button_to "Add to Cart", cart_path(item_id: item.id), :class => "btn btn_primary center-block"
   %span{class: "pull-left btn-xs"}

@@ -7,6 +7,8 @@ RSpec.feature 'user can add items to a cart' do
       visit items_path
       expect(page).to have_content(item.name)
 
+      save_and_open_page
+
       click_button "Add to Cart"
       expect(page).to have_content("You now have 1 #{item.name} in your cart.")
       expect(page).to have_content("Cart: 1")
@@ -21,7 +23,7 @@ RSpec.feature 'user can add items to a cart' do
       end
 
       expect(page).to have_current_path('/cart')
-      #expect(page).to have_css("img[src*='https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macos-sierra-macbook-pro-thunderbolt3-hero.jpg']")
+      expect(page).to have_css("img[src*='coffe-beans-shot.jpg']")
       expect(page).to have_content(item.name)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)
