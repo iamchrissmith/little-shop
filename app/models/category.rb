@@ -18,7 +18,7 @@ class Category < ApplicationRecord
   private
 
   def fill_slug
-    self.slug = name.downcase.gsub(' ', '_')
+    self.slug = name.downcase.gsub(' ', '_') if name.present?
   end
 
 end
