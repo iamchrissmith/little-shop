@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_many :categories, through: :item_categories
   has_many :order_items
   has_many :orders, through: :order_items
-  has_attached_file :photo, default_url: ':style/coffee-beans-shot.jpg', styles: {
+  has_attached_file :photo, default_url: ':style/coffee-beans-shot.png', styles: {
     thumb: '300x300>',
     large: '450x450>'
   }
