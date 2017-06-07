@@ -14,25 +14,15 @@ class Order < ApplicationRecord
 
   def available_status
     if status == 'ordered'
-      {'ordered' => 0, 'paid' => 1, 'cancelled' => 3}
+      {'ordered' => 'Ordered', 'paid' => 'Paid', 'cancelled' => 'Cancelled'}
     elsif status == 'paid'
-      {'paid' => 1, 'completed' => 2, 'cancelled' => 3}
+      {'paid' => 'Paid', 'completed' => 'Completed', 'cancelled' => 'Cancelled'}
     elsif status == 'completed'
-      {'completed' => 2}
+      {'completed' => 'Completed'}
     elsif status == 'cancelled'
-      {'cancelled' => 3}
+      {'cancelled' => 'Cancelled'}
     end
   end
-
-  # def self.order_status
-  #   {
-  #   all: Order.order('created_at DESC'),
-  #   ordered: Order.where(status: "ordered").order('created_at DESC'),
-  #   paid: Order.where(status: "paid").order('created_at DESC'),
-  #   completed: Order.where(status: "completed").order('created_at DESC'),
-  #   cancelled: Order.where(status: "cancelled").order('created_at DESC')
-  #   }
-  # end
 
   def total_price
     order_items.sum(:price)

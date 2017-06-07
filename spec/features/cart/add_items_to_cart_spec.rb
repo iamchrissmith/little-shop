@@ -7,8 +7,6 @@ RSpec.feature 'user can add items to a cart' do
       visit items_path
       expect(page).to have_content(item.name)
 
-      save_and_open_page
-
       click_button "Add to Cart"
       expect(page).to have_content("You now have 1 #{item.name} in your cart.")
       expect(page).to have_content("Cart: 1")

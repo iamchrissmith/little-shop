@@ -1,0 +1,2 @@
+%h4= @item.status.capitalize
+= button_to "Add to Cart", cart_path(item_id: @item.id), :class => "btn btn_primary"
