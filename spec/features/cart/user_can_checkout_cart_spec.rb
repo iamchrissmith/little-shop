@@ -44,7 +44,7 @@ RSpec.feature "User can checkout with cart" do
         expect(page).to have_content item_2.price
         expect(page).to have_content('1')
       end
-      
+
       expect(page).to have_content("Total: $#{total}")
 
       fill_in 'Address', with: '123 Street Ave'
@@ -59,13 +59,6 @@ RSpec.feature "User can checkout with cart" do
       expect(page).to have_content 'Order was successfully placed'
       expect(page).to have_content 'Your purchases'
       expect(page).to have_content 'Order Status: ordered'
-      expect(page).to have_content 'Your information'
-      expect(page).to have_content full_name(user)
-      expect(page).to have_content user.email
-      expect(page).to have_content '123 Street Ave'
-      expect(page).to have_content 'Somewhere'
-      expect(page).to have_content '12345'
-      expect(page).to have_content 'CO'
 
       within(".item-#{item_1.id}") do
         expect(page).to have_content item_1.name
