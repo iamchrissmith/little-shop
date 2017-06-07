@@ -1,7 +1,11 @@
 require 'faker'
 
-Category.destroy_all
 Item.destroy_all
+Category.destroy_all
+User.destroy_all
+State.destroy_all
+City.destroy_all
+Address.destroy_all
 
 puts "Creating categories"
 
@@ -15,7 +19,7 @@ puts "Creating Items"
 images = (1..27).collect { |n| "#{n}.png" }
 
 27.times do |i|
-  Item.create!(
+  item = Item.create!(
     name:         Faker::Coffee.unique.blend_name,
     description:  "#{Faker::Coffee.notes}. #{Faker::TwinPeaks.quote}",
     categories:   Category.all.shuffle.take(rand(1..3)),
@@ -23,6 +27,7 @@ images = (1..27).collect { |n| "#{n}.png" }
     status:       0,
     photo:        File.open("app/assets/images/coffee/#{images[i]}")
   )
+  puts "Item #{item.name} created."
 end
 
 puts "Created #{Item.all.count} items"
