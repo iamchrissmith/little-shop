@@ -21,7 +21,7 @@
       %td
       %td
       %td
-        %h4= "Total: #{number_to_currency(@order.total_price)}"
+        %h4= "Total: #{number_to_currency(@cart.total_price)}"
 = form_for @order do |f|
   = f.hidden_field "user_id", value: current_user.id
   %h3 Shipping Address

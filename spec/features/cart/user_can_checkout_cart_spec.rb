@@ -44,6 +44,7 @@ RSpec.feature "User can checkout with cart" do
         expect(page).to have_content item_2.price
         expect(page).to have_content('1')
       end
+      
       expect(page).to have_content("Total: $#{total}")
 
       fill_in 'Address', with: '123 Street Ave'
