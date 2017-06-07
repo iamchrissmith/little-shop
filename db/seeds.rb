@@ -8,6 +8,7 @@ User.destroy_all
 State.destroy_all
 City.destroy_all
 Address.destroy_all
+Order.destroy_all
 
 puts "Creating categories"
 10.times do
