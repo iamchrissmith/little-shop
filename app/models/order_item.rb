@@ -9,5 +9,4 @@ class OrderItem < ApplicationRecord
   def set_price
     self.price = item.price
   end
-
 end

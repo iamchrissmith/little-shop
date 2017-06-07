@@ -1,12 +1,3 @@
-%section
+%main
   - @items.each do |item|
-    %div{:id => "item_#{item.id}"}
-      %span
-        Name: #{link_to item.name, admin_item_path(item)}
-      %p
-        Description: #{item.description}
-      %span
-        Price: #{item.price}
-      %span
-        Status: #{item.status}
-      %span= link_to 'Edit', edit_admin_item_path(item)
+    = render partial: 'items/item', locals: { item: item }

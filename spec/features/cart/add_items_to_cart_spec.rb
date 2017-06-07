@@ -21,7 +21,7 @@ RSpec.feature 'user can add items to a cart' do
       end
 
       expect(page).to have_current_path('/cart')
-      #expect(page).to have_css("img[src*='https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macbookpro/macos-sierra-macbook-pro-thunderbolt3-hero.jpg']")
+      # expect(page).to have_css("img[src*='coffe-beans-shot.jpg']")
       expect(page).to have_content(item.name)
       expect(page).to have_content(item.description)
       expect(page).to have_content(item.price)

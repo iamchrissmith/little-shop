@@ -17,7 +17,7 @@ RSpec.describe 'Admin want to edit and item' do
     it 'sees the item with form filled in' do
       item = Item.all[4]
 
-      within(page.find_by_id("item_#{item.id}")) do
+      within(page.find(".item-#{item.id}")) do
         click_link 'Edit'
       end
 
