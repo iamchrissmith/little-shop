@@ -1,5 +1,5 @@
 %main
-  %div{class:"order order-#{@order.id}"}
+  %div{class:"order order-#{@order.id} well well-lg"}
     %h3 Order #{@order.id}
     %p
       = "Order Status: #{@order.status.capitalize}"
@@ -34,5 +34,5 @@
           %td
           %td
             %h4= "Total: #{number_to_currency(@order.total_price)}"
-            
+
   %p= link_to "All Orders", orders_path
