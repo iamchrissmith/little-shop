@@ -6,6 +6,7 @@ RSpec.describe Category do
 
     it { should have_many(:items).through(:item_categories) }
     it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:slug) }
 
   end
 
