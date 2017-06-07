@@ -21,11 +21,12 @@ RSpec.feature 'user can add items to a cart' do
       end
 
       expect(page).to have_current_path('/cart')
-      # expect(page).to have_css("img[src*='coffe-beans-shot.jpg']")
-      expect(page).to have_content(item.name)
-      expect(page).to have_content(item.description)
-      expect(page).to have_content(item.price)
+
       within(".item-#{item.id}") do
+        expect(page).to have_css('td img')
+        expect(page).to have_content(item.name)
+        expect(page).to have_content(item.description)
+        expect(page).to have_content(item.price)
         expect(page).to have_content('Quantity: ')
         expect(page).to have_selector('input[value="2"]')
       end

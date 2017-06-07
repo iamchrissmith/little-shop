@@ -1,6 +1,6 @@
-= form_for [:admin, @item] do |f|
-  = render partial: 'shared/errors', locals: { target: @item }
-  %section{class: 'form'}
+%section{class: 'form'}
+  = form_for [:admin, @item] do |f|
+    = render partial: 'shared/errors', locals: { target: @item }
     .form-group
       = f.label :name
       = f.text_field :name
@@ -10,6 +10,9 @@
     .form-group
       = f.label :price
       = f.text_field :price
+    .form-group
+      = f.label :photo
+      = f.file_field :photo
     = f.collection_select(:status, Item.statuses, :first, :first, selected: @item.status)
     %h4 Categories
     %div
