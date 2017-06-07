@@ -20,14 +20,19 @@ RSpec.describe 'Admin wants to see an order' do
     expect(page).to have_content(@order.user.first_name)
     expect(page).to have_content(@order.address.address)
     expect(page).to have_content(@order.total_price)
-    save_and_open_page
-    expect(page).to have_select('order_status', :selected => @order.status)
+    expect(page).to have_select('order_status', :selected => @order.status.capitalize)
+    expect(page).to have_select('order_status', :options => ['Ordered', 'Paid', 'Cancelled'])
+    
+    select 'Paid', from: 'order_status'
+    click_on 'Update'
 
-    @order.item_orders.each do |item_order|
-      expect(page).to have_link(item_order.item.name, href: "/items/#{item.id}" )
-      expect(page).to have_content(item_order.quantity)
-      expect(page).to have_content(item_order.item.price)
-      expect(page).to have_content(item_order.sub_total)
+    expect(page).to have_select('order_status', :selected => 'Paid')
+
+    @order.order_items.each do |order_item|
+      expect(page).to have_link(order_item.item.name, href: "/items/#{item.id}" )
+      expect(page).to have_content(order_item.quantity)
+      expect(page).to have_content(order_item.item.price)
+      expect(page).to have_content(order_item.sub_total)
     end
   end
 end
