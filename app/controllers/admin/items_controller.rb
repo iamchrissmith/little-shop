@@ -25,6 +25,7 @@ class Admin::ItemsController < Admin::BaseController
   def edit; end
 
   def update
+    # binding.pry
     if @item.update(item_params)
       flash[:success] = "Item #{@item.id} Updated"
       redirect_to admin_items_path
@@ -40,7 +41,7 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :price, :status, :category_ids => [])
+    params.require(:item).permit(:name, :description, :price, :status, :photo, :category_ids => [])
   end
 
 end

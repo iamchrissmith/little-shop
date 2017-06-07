@@ -25,7 +25,7 @@ Background: I have several items and each of them has a title, description, pric
  - When I visit "/items"
  - I can see all existing items
 
-## [ ] Story 3: Browsing Items by category
+## [X] Story 3: Browsing Items by category
 
 Background: I have two categories with titles and each has two different items assigned
 
@@ -133,7 +133,7 @@ Background: My cart has an item in it
 - Then I should see see "Login"
 - And I should not see "Logout"
 
-## [ ] Story 12: Viewing past orders
+## [X] Story 12: Viewing past orders
 
 Background: An existing user that has multiple orders
 
@@ -141,7 +141,7 @@ Background: An existing user that has multiple orders
 - When I visit "/orders"
 - Then I should see all orders belonging to me and no other orders
 
-## [ ] Story 13: Viewing a past order
+## [X] Story 13: Viewing a past order
 
 Background: An existing user that has one previous order
 
@@ -159,14 +159,14 @@ Background: An existing user that has one previous order
 If the order was completed or cancelled
 Then I should see a timestamp when the action took place
 
-## [ ] Story 14: Retired Items
+## [X] Story 14: Retired Items
 
 - As a user if I visit an item page and that item has been retired
 - Then I should still be able to access the item page
 - And I should not be able to add the item to their cart
 - And I should see in place of the "Add to Cart" button or link - "Item Retired"
 
-## [ ] Story 15: Checking out
+## [X] Story 15: Checking out
 
 Background: An existing user and a cart with items
 
@@ -184,7 +184,7 @@ Background: An existing user and a cart with items
 - **And I should see a message "Order was successfully placed"**
 - **And I should see the order I just placed in a table**
 
-## [ ] Story 16: Authenticated users security
+## [X] Story 16: Authenticated users security
 
 Background: An authenticated user
 
@@ -193,7 +193,7 @@ Background: An authenticated user
 - I cannot view the administrator screens or use admin functionality
 - I cannot make myself an admin
 
-## [ ] Story 17: Unauthenticated users security
+## [X] Story 17: Unauthenticated users security
 
 Background: An unauthenticated user and their abilities
 
@@ -223,13 +223,13 @@ Background: An unauthenticated user and their abilities
 - When I log in
 - Then I am redirected to "/admin/dashboard"
 
-## [ ] Story 20: Admin cannot modify users
+## [X] Story 20: Admin cannot modify users
 
 - As a logged in Admin
 - I can modify my account data
 - But I cannot modify any other user's account data
 
-## [ ] Story 21: Admin Orders
+## [X] Story 21: Admin Orders
 
 - As an Admin
 - When I visit the dashboard
@@ -242,7 +242,7 @@ Background: An unauthenticated user and their abilities
 - I can click on "mark as paid" on orders that are "ordered"
 - I can click on "mark as completed" on orders that are "paid"
 
-## [ ] Story 22: Admin views an individual Order
+## [X] Story 22: Admin views an individual Order
 
 - As an authenticated Admin, when I visit an individual order page
 - Then I can see the order's date and time.
@@ -255,7 +255,7 @@ Background: An unauthenticated user and their abilities
 - And I can see the total for the order.
 - And I can see the status for the order.
 
-## [ ] Story 23: Admin Item Creation
+## [X] Story 23: Admin Item Creation
 
 - As an authenticated Admin:
 - I can create an item.
