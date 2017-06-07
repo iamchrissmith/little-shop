@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   # validates_attachment_presence :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   validates_presence_of :name, :description, :price, :categories
   validates_uniqueness_of :name
-  validates_numericality_of :price
+  validates_numericality_of :price, greater_than: 0
 
   enum status: ['active', 'retired']
 end
