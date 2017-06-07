@@ -27,7 +27,7 @@ images = (1..27).collect { |n| "#{n}.png" }
     status:       0,
     photo:        File.open("app/assets/images/coffee/#{images[i]}")
   )
-  puts "Item #{item.name} created."
+  puts "Item #{item.name} created. (#{i})"
 end
 
 puts "Created #{Item.all.count} items"
