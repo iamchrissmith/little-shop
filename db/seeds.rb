@@ -12,7 +12,7 @@ Item.destroy_all
 
 puts "Creating categories and items"
 3.times do
-  Category.create!(name: Faker::Coffee.unique.variety)
+  Category.create(name: Faker::Coffee.unique.variety)
 end
 
 10.times do

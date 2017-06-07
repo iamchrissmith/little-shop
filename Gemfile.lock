@@ -86,6 +86,7 @@ GEM
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
     ffi (1.9.18)
+    friendly_id (4.0.10)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     haml (5.0.1)
@@ -258,6 +259,7 @@ DEPENDENCIES
   erb2haml
   factory_girl_rails (~> 4.0)
   faker!
+  friendly_id (~> 4.0.0.beta8)
   haml (~> 5.0)
   jbuilder (~> 2.5)
   launchy
