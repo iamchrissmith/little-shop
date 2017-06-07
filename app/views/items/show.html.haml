@@ -1,5 +1,5 @@
 %div{class: "item-#{@item.id} item large" }
-  = image_tag @item.photo.url(:large), class: 'img-box-large'
+  = item_image(@item, :large, class: 'img-box-large')
   %div{class: 'item-info'}
     %h1{class: 'center-block text-center'}
       = @item.name
