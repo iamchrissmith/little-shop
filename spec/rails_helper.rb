@@ -43,13 +43,6 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  config.after(:all) do
-    if Rails.env.test?
-      test_uploads = Dir["#{Rails.root}/test_uploads"]
-      FileUtils.rm_rf(test_uploads)
-    end
-  end
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
