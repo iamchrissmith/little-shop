@@ -240,3 +240,10 @@ td.cart-thumbnail img {
 td.cart-thumbnail {
     width: 100px;
 }
+
+.nav > li > a > img {
+  max-width: 75px;
+  padding-bottom: 7px;
+  margin: -35px;
+  margin-right: 0px;
+}
