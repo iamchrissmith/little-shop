@@ -1,7 +1,15 @@
-%nav.navbar.navbar-default.navbar-admin
-  %ul.nav.navbar-nav
-    %li= link_to 'Admin Dashboard', admin_dashboard_path
-  %ul.nav.navbar-nav.navbar-right
-    %li= link_to 'Orders', admin_dashboard_path
-    %li= link_to 'Items', admin_items_path
-    %li= link_to 'New Item', new_admin_item_path
+%nav.navbar.navbar-default.navbar-admin{:role => "navigation"}
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-2", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    .collapse.navbar-collapse#bs-example-navbar-collapse-2
+      %ul.nav.navbar-nav
+        %li= link_to 'Admin Dashboard', admin_dashboard_path
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Orders', admin_dashboard_path
+        %li= link_to 'Items', admin_items_path
+        %li= link_to 'New Item', new_admin_item_path

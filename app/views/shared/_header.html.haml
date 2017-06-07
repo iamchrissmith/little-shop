@@ -1,18 +1,27 @@
 %header
   = render "admin/shared/nav" if current_admin?
-  %nav.navbar.navbar-inverse.navbar-main
-    %ul.nav.navbar-nav
-      %li= link_to "Home", items_path
-      %li.dropdown
-        %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
-          Categories
-          %b.caret
-        %ul.dropdown-menu{"role" => "menu"}
-          -categories.each do |category|
-            %li
-              = link_to category.name, category_path(category)
-    %ul.nav.navbar-nav.navbar-right
-      %li= link_to "Cart: #{@cart.total_count}", cart_path
-      = render "shared/accounts-nav"
+  %nav.navbar.navbar-inverse.navbar-main{:role => "navigation"}
+    .container-fluid
+      .navbar-header
+        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+      .collapse.navbar-collapse#bs-example-navbar-collapse-1
+        %ul.nav.navbar-nav
+          %li= link_to "Home", items_path
+          %li.dropdown
+            %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
+              Categories
+              %b.caret
+            %ul.dropdown-menu{"role" => "menu"}
+              -categories.each do |category|
+                %li
+                  = link_to category.name, category_path(category)
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to "Cart: #{@cart.total_count}", cart_path
+          = render "shared/accounts-nav"
 = render "shared/flash"
 %div.row
+

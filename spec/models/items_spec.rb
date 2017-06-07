@@ -31,6 +31,7 @@ RSpec.describe Item, type: :model do
       expect(@item.price).to be_a(Float)
       expect(@item.categories.count).to eq(1)
       expect(@item.categories.first).to be_a(Category)
+      expect(@item.photo).to be_a(Paperclip::Attachment)
     end
 
     it 'should have traits' do

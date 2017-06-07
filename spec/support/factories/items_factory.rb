@@ -12,11 +12,11 @@ FactoryGirl.define do
     before(:create) do |item|
       item.categories << create(:category)
     end
-
-    photo { fixture_file_upload(Rails.root.join("spec", "support", "coffee-beans-shot.jpg"), 'image/jpg') }
   end
 
-  # trait :with_photo do
+  trait :with_photo do
+    photo { fixture_file_upload(Rails.root.join("spec", "support", "fixtures", "coffee-beans-shot.jpg"), 'image/jpg') }
+  end
 
   trait :with_more_categories do
     transient {category_count 2}

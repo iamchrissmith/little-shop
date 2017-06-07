@@ -4,6 +4,7 @@
     %tbody
       %tr
         %td
+        %td
           %h4 Item
         %td
           %h4 Description
@@ -13,6 +14,7 @@
           %h4 Quantity
       - @cart.items.each do |item|
         %tr{:class => "item item-#{item.id}"}
+          %td= image_tag item.photo.url(:thumb)
           %td #{item.name}
           %td #{item.description}
           %td $#{item.price}

@@ -18,7 +18,6 @@ RSpec.describe 'Admin wants to view an item' do
     @items.each do |item|
       within(page.find(".item-#{item.id}")) do
         expect(page).to have_link(item.name)
-        expect(page).to have_content(item.status.capitalize)
         expect(page).to have_link('Edit', href: edit_admin_item_path(item))
       end
     end
