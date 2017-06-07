@@ -37,7 +37,7 @@
               %td{:class => "order-id"}
                 = link_to order.id, admin_order_path(order)
               %td= order.created_at.to_date
-              %td= order.total_price
+              %td= number_to_currency(order.total_price)
               %td= order.user_id
               %td= order.status.capitalize
               %td
@@ -70,7 +70,7 @@
               %td{:class => "order-id"}
                 = link_to order.id, admin_order_path(order)
               %td= order.created_at.to_date
-              %td= order.total_price
+              %td= number_to_currency(order.total_price)
               %td= order.user_id
               %td= order.status.capitalize
               %td
@@ -102,7 +102,7 @@
               %td{:class => "order-id"}
                 = link_to order.id, admin_order_path(order)
               %td= order.created_at.to_date
-              %td= order.total_price
+              %td= number_to_currency(order.total_price)
               %td= order.user_id
               %td= order.status.capitalize
               %td
@@ -134,7 +134,7 @@
               %td{:class => "order-id"}
                 = link_to order.id, admin_order_path(order)
               %td= order.created_at.to_date
-              %td= order.total_price
+              %td= number_to_currency(order.total_price)
               %td= order.user_id
               %td= order.status.capitalize
               %td
@@ -166,7 +166,7 @@
               %td{:class => "order-id"}
                 = link_to order.id, admin_order_path(order)
               %td= order.created_at.to_date
-              %td= order.total_price
+              %td= number_to_currency(order.total_price)
               %td= order.user_id
               %td= order.status.capitalize
               %td
