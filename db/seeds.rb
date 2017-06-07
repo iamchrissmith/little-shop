@@ -1,29 +1,36 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
 Category.destroy_all
 Item.destroy_all
 
-puts "Creating categories and items"
-3.times do
+puts "Creating categories"
+
+10.times do
   Category.create(name: Faker::Coffee.unique.variety)
 end
 
-10.times do
+puts "#{Category.all.count} Categories created"
+puts "Creating Items"
+
+images = (1..27).collect { |n| "#{n}.png" }
+
+27.times do |i|
   Item.create!(
     name:         Faker::Coffee.unique.blend_name,
-    description:  Faker::Coffee.notes,
-    categories:   Category.all.shuffle.take(2),
-    price:        rand(1.00..10.00).round(2),
+    description:  "#{Faker::Coffee.notes}. #{Faker::TwinPeaks.quote}",
+    categories:   Category.all.shuffle.take(rand(1..3)),
+    price:        rand(10.00..1000.00).round(2),
     status:       0,
-    photo:        'https://thumbs.dreamstime.com/x/coffee-bean-background-19575047.jpg'
+    photo:        File.open("app/assets/images/coffee/#{images[i]}")
   )
-
-
 end
+
+puts "Created #{Item.all.count} items"
+puts "Creating Users"
+
+User.create(email: 'admin@admin.com', first_name: 'Madman', last_name: 'Max', password: 'password', role: 'admin')
+User.create(email: 'user@user.com', first_name: 'Sorrow', last_name: 'Sal', password: 'password')
+
+puts "Creating States"
+
+50.times { State.create(name: Faker::Address.state, abbr: Faker::Address.state_abbr)}
