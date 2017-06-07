@@ -196,6 +196,25 @@ main header {
 .profile footer {
   display: flex;
   justify-content: center;
+  justify-content: space-between;
+}
+
+.order {
+  margin: 10px;
+  border-style: solid;
+  border-width: medium;
+  border-color: rgba(100, 100, 100, 1);
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.old-orders {
+  border-width: thin;
+  border-color: rgba(100, 100, 100, 0.75);
 }
 
 .form-body {

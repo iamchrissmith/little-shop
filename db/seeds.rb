@@ -15,18 +15,35 @@ puts "Creating categories"
 end
 puts "#{Category.all.count} Categories created"
 
-puts "Creating Items"
+puts "Gathering Image Urls"
 images = (1..27).collect { |n| "#{n}.png" }
+puts "Gathered #{images.count} Image Urls"
 
-items = 27.times.map do |i|
+puts "Creating Items"
+27.times.map do |i|
   Item.create!( name:         Faker::Coffee.unique.blend_name,
                 description:  "#{Faker::Coffee.notes}. #{Faker::TwinPeaks.quote}",
                 categories:   Category.all.shuffle.take(rand(1..3)),
                 price:        rand(10.00..1000.00).round(2),
                 status:       0,
                 photo:        File.open("app/assets/images/coffee/#{images[i]}"))
-                puts "Item #{item.name} created. (#{i})"
+
+  puts "Item #{Item.last.name} created. (#{i})"
 end
+
+def grab_items
+  items = []
+  rand(1..10).times do
+    item = Item.all.sample
+    if rand(1..10) == 5
+      rand(1..5).times { items << item }
+    else
+      items << item
+    end
+  end
+  items
+end
+
 puts "Created #{Item.count} items"
 
 puts "Creating Admin"
@@ -50,6 +67,5 @@ addresses = 100.times.map { Address.create(address: Faker::Address.street_addres
 puts "Created #{Address.count} Addresses"
 
 puts "Creating Orders"
-1000.times { Order.create(address: addresses.sample, items: items.sample(rand(1..10)), status: rand(0..3), user: users.sample) }
+1000.times { Order.create(address: addresses.sample, items: grab_items, status: rand(0..3), user: users.sample) }
 puts "Created #{Order.count} Orders"
-
