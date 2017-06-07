@@ -18,7 +18,7 @@
             %ul.dropdown-menu{"role" => "menu"}
               -categories.each do |category|
                 %li
-                  = link_to category.name, category_path(category)
+                  = link_to category.name, category_path(category.id)
         %ul.nav.navbar-nav.navbar-right
           %li= link_to "Cart: #{@cart.total_count}", cart_path
           = render "shared/accounts-nav"
