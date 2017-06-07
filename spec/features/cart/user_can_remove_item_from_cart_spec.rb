@@ -39,10 +39,19 @@ RSpec.feature 'visitor can remove an item in the cart' do
       click_on "Remove"
 
       expect(current_path).to eq("/cart")
-      # expect(page).to have_css(".alert-success", text: "Successfully removed #{item.name} from your cart")
-      expect(page).to have_content("Successfully removed #{item.name} from your cart")
-      expect(page).not_to have_link("#{item.name}", href: item_path(item))
-      expect(page).to have_content("Cart: 0")
+      # save_and_open_page
+      within('.alert-success') do
+        expect(page).to have_content("Successfully removed #{item.name} from your cart")
+        expect(page).to have_link item.name, href: item_path(item)
+      end
+
+      within('.table') do
+        expect(page).not_to have_link item.name, href: item_path(item)
+      end
+
+      within ('header') do
+        expect(page).to have_content("Cart: 0")
+      end
     end
   end
 end
