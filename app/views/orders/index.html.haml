@@ -29,11 +29,11 @@
           %tr{:class => "item item-#{item.id}"}
             %td #{item.name}
             %td #{item.description}
-            %td $#{item.price}
+            %td= number_to_currency(item.price)
             %td #{order.order_items.where(item_id:item.id).count}
         %tr
           %td
           %td
           %td
           %td
-            %h4 Total: $#{order.total_price}
+            %h4= "Total: #{number_to_currency(@order.total_price)}"
