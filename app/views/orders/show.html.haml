@@ -4,7 +4,7 @@
     %p
       = "Order Status: #{@order.status.capitalize}"
       = render 'closed' if @order.completed? || @order.cancelled?
-    %p Placed at: #{@order.created_at.to_s(:long)}
+    %p Date Placed: #{@order.created_at.to_s(:long)}
     %p Order Address:
     %ul
       %li #{@order.address.address}
@@ -26,12 +26,13 @@
           %tr{:class => "item item-#{item.id}"}
             %td= link_to item.name, item_path(item)
             %td #{item.description}
-            %td $#{item.price}
+            %td= number_to_currency(item.price)
             %td #{@order.order_items.where(item_id:item.id).count}
         %tr
           %td
           %td
           %td
           %td
-            %h4 Total: $#{@order.total_price}
+            %h4= "Total: #{number_to_currency(@order.total_price)}"
+            
   %p= link_to "All Orders", orders_path
