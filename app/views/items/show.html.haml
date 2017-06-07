@@ -1,5 +1,5 @@
 %div{class: "item-#{@item.id} item large" }
-  %img.img-box-large{:src => @item.photo.url(:large)}
+  = image_tag @item.photo.url(:large), class: 'img-box-large'
   %div{class: 'item-info'}
     %h1{class: 'center-block text-center'}
       = @item.name
@@ -9,3 +9,5 @@
     %footer
       = link_to 'Edit', edit_admin_item_path(@item), class: 'btn btn-xs btn-success' if current_admin?
       = render partial: "items/#{@item.status}", locals: {item: @item}
+      %h4= @item.status
+      = button_to "Add to Cart", cart_path(item_id: @item.id), :class => "btn btn_primary"
