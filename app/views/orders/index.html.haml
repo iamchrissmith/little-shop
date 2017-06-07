@@ -1,9 +1,6 @@
 %main
   %header
     %h3 Your purchases
-    -# %p Your information
-    -# %p #{full_name(current_user)}
-    -# %p #{current_user.email}
   - recent_order = "well well-lg"
   - @orders.each do |order|
     %div{class:"order order-#{order.id} #{recent_order}"}
@@ -38,4 +35,4 @@
             %td
             %td
             %td
-              %h4 Total: $#{order.total_price}
+              %h4= "Total: #{number_to_currency(order.total_price)}"
