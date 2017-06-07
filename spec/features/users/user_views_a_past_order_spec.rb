@@ -19,7 +19,7 @@ RSpec.feature 'Logged In User can View Past Orders' do
 
     expect(current_path).to eq("/orders/#{user.orders[0].id}")
     expect(page).to have_content("Order #{user.orders[0].id}")
-    expect(page).to have_content("Placed at: #{user.orders[0].created_at.to_s(:long)}")
+    expect(page).to have_content("Date Placed: #{user.orders[0].created_at.to_s(:long)}")
     user.orders[0].items.each do |item|
       within(".item-#{item.id}") do
         expect(page).to have_link item.name, href: item_path(item)
@@ -42,7 +42,7 @@ RSpec.feature 'Logged In User can View Past Orders' do
       expect(page).to have_content("Order #{user.orders[0].id}")
       expect(page).to have_content("Order Status: Completed")
       expect(page).to have_content("(at #{user.orders[0].updated_at.to_s(:long)})")
-      expect(page).to have_content("Placed at: #{user.orders[0].created_at.to_s(:long)}")
+      expect(page).to have_content("Date Placed: #{user.orders[0].created_at.to_s(:long)}")
     end
   end
 
@@ -58,7 +58,7 @@ RSpec.feature 'Logged In User can View Past Orders' do
       expect(page).to have_content("Order #{user.orders[0].id}")
       expect(page).to have_content("Order Status: Cancelled")
       expect(page).to have_content("(at #{user.orders[0].updated_at.to_s(:long)})")
-      expect(page).to have_content("Placed at: #{user.orders[0].created_at.to_s(:long)}")
+      expect(page).to have_content("Date Placed: #{user.orders[0].created_at.to_s(:long)}")
     end
   end
 end

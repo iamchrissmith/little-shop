@@ -1,43 +1,46 @@
-%div{class:"order order-#{@order.id}"}
-  %h3 Order #{@order.id}
-  %p Date Placed: #{@order.created_at.to_date}
-  %p User ID: #{@order.user.id}
-  %p User: #{@order.user.first_name} #{@order.user.last_name}
-  %p Order Address:
-  %ul
-    %li #{@order.address.address}
-    %li #{@order.address.city.name}
-    %li #{@order.address.state.abbr}
-    %li #{@order.address.zipcode}
-  %table{:board => 0, :class => "table table-striped"}
-    %tbody
-      %tr
-        %td
-          %h4 Item
-        %td
-          %h4 Description
-        %td
-          %h4 Price
-        %td
-          %h4 Quantity
-      - @order.items.group(:id).each do |item|
-        %tr{:class => "item item-#{item.id}"}
-          %td #{item.name}
-          %td #{item.description}
-          %td= number_to_currency(item.price)
-          %td #{@order.order_items.where(item_id:item.id).count}
-      %tr
-        %td
-        %td
-        %td
-        %td
-          %h4= "Total: #{number_to_currency(@order.total_price)}"
+%main  
+  %div{class:"order order-#{@order.id} well well-lg"}
+    %h3 Order #{@order.id}
+    %p
+      = "Order Status: #{@order.status.capitalize}"
+    %p Date Placed: #{@order.created_at.to_date}
+    %p User ID: #{@order.user.id}
+    %p User: #{@order.user.first_name} #{@order.user.last_name}
+    %p Order Address:
+    %ul
+      %li #{@order.address.address}
+      %li #{@order.address.city.name}
+      %li #{@order.address.state.abbr}
+      %li #{@order.address.zipcode}
+    %table{:board => 0, :class => "table table-striped"}
+      %tbody
+        %tr
+          %td
+            %h4 Item
+          %td
+            %h4 Description
+          %td
+            %h4 Price
+          %td
+            %h4 Quantity
+        - @order.items.group(:id).each do |item|
+          %tr{:class => "item item-#{item.id}"}
+            %td= link_to item.name, item_path(item)
+            %td #{item.description}
+            %td= number_to_currency(item.price)
+            %td #{@order.order_items.where(item_id:item.id).count}
+        %tr
+          %td
+          %td
+          %td
+          %td
+            %h4= "Total: #{number_to_currency(@order.total_price)}"
 
--# I tried to make this a partial but using = render partial 'orders/form', locals: { order: order } wasn't working
-- if @order.status == 'ordered' || @order.status == 'paid'
-  = form_for [:admin, @order] do |f|
-    .form_group
-      = f.collection_select(:status, @order.available_status, :first, :last, selected: @order.status)
-    = f.submit
+  -# I tried to make this a partial but using = render partial 'orders/form', locals: { order: order } wasn't working
+  - if @order.status == 'ordered' || @order.status == 'paid'
+    = form_for [:admin, @order] do |f|
+      .form_group
+        = f.collection_select(:status, @order.available_status, :first, :last, selected: @order.status)
+      = f.submit
 
-%p= link_to "All Orders", admin_dashboard_path
+  %p= link_to "All Orders", admin_dashboard_path

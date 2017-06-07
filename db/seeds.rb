@@ -68,5 +68,5 @@ addresses = 100.times.map { Address.create(address: Faker::Address.street_addres
 puts "Created #{Address.count} Addresses"
 
 puts "Creating Orders"
-1000.times { Order.create(address: addresses.sample, items: grab_items, status: rand(0..3), user: users.sample) }
+350.times { Order.create(address: addresses.sample, items: grab_items, status: rand(0..3), user: users.sample) }
 puts "Created #{Order.count} Orders"
