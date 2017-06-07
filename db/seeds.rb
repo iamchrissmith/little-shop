@@ -2,8 +2,12 @@ require 'faker'
 require_relative 'helpers/state_seeder'
 include StateSeeder
 
-Category.destroy_all
 Item.destroy_all
+Category.destroy_all
+User.destroy_all
+State.destroy_all
+City.destroy_all
+Address.destroy_all
 
 puts "Creating categories"
 10.times do
@@ -21,6 +25,7 @@ items = 27.times.map do |i|
                 price:        rand(10.00..1000.00).round(2),
                 status:       0,
                 photo:        File.open("app/assets/images/coffee/#{images[i]}"))
+                puts "Item #{item.name} created. (#{i})"
 end
 puts "Created #{Item.count} items"
 
@@ -47,3 +52,4 @@ puts "Created #{Address.count} Addresses"
 puts "Creating Orders"
 1000.times { Order.create(address: addresses.sample, items: items.sample(rand(1..10)), status: rand(0..3), user: users.sample) }
 puts "Created #{Order.count} Orders"
+

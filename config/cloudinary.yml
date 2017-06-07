@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: hzagr9blc
+  api_key: '244486797254119'
+  api_secret: Xzw6rRpdIWcwFignfttngH8KKp8
+  enhance_image_tag: true
+  static_image_support: true
+production:
+  cloud_name: hzagr9blc
+  api_key: '244486797254119'
+  api_secret: Xzw6rRpdIWcwFignfttngH8KKp8
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: hzagr9blc
+  api_key: '244486797254119'
+  api_secret: Xzw6rRpdIWcwFignfttngH8KKp8
+  enhance_image_tag: true
+  static_image_support: true
