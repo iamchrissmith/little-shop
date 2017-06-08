@@ -1,6 +1,6 @@
-=image_tag "logo/coffee_banner.jpg", :class => "coffee-banner"
+=image_tag "logo/roasted_coffee_banner.jpg", :class => "coffee-banner"
 %main
   %header
-    %h2 Items
+    %h1 Browse our Beans
   - @items.each do |item|
     = render partial: 'items/item', locals: { item: item }

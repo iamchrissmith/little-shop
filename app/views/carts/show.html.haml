@@ -35,7 +35,7 @@
         %td
         %td
           %h4= "Total: #{number_to_currency(@cart.total_price)}"
-  .checkout.pull-right.text-right
+  .checkout
     - if current_user
       - if @cart.total_count > 0
         = link_to "Checkout", new_order_path, class: "btn btn-success btn-lg"
