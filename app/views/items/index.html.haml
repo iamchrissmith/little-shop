@@ -1,4 +1,6 @@
+=image_tag "logo/coffee_banner.jpg", :class => "coffee-banner"
 %main
   %header
+    %h2 Items
   - @items.each do |item|
     = render partial: 'items/item', locals: { item: item }

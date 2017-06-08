@@ -22,6 +22,11 @@
   outline-style: solid;
 }*/
 
+img.coffee-banner {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
 table {
   margin: 0 auto;
 }
@@ -44,6 +49,8 @@ main {
   flex-flow: wrap;
   justify-content: center;
   align-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 main header {
@@ -96,6 +103,7 @@ main header {
   flex-direction: column;
   flex-grow: 1;
   padding: 20px;
+  max-width: 60%;
 }
 
 .item-info p {
@@ -104,11 +112,11 @@ main header {
 }
 
 .item-info h3 {
-  text-align: right
+  text-align: right;
 }
 
 .item-info footer {
-  display: flex;
+  /*display: flex;*/
   justify-content: space-between;
   align-items: center;
 }
