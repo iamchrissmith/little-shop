@@ -14,7 +14,8 @@
           %h4 Quantity
       - @cart.items.each do |item|
         %tr{:class => "item item-#{item.id}"}
-          %td= image_tag item.photo.url(:thumb)
+          %td{:class => "cart-thumbnail"}
+            = image_tag item.photo.url(:thumb)
           %td #{item.name}
           %td #{item.description}
           %td= number_to_currency(item.price)
