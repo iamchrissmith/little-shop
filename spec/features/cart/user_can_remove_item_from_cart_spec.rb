@@ -17,10 +17,19 @@ RSpec.feature 'visitor can remove an item in the cart' do
       click_on "Remove"
 
       expect(current_path).to eq("/cart")
-      # expect(page).to have_css(".alert-success", text: "Successfully removed #{item.name} from your cart")
-      expect(page).to have_content("Successfully removed #{item.name} from your cart")
-      expect(page).not_to have_link("#{item.name}", href: item_path(item))
-      expect(page).to have_content("Cart: 0")
+
+      within('.alert-success') do
+        expect(page).to have_content("Successfully removed #{item.name} from your cart")
+        expect(page).to have_link item.name, href: item_path(item)
+      end
+
+      within('.table') do
+        expect(page).not_to have_link item.name, href: item_path(item)
+      end
+
+      within ('header') do
+        expect(page).to have_content("Cart: 0")
+      end
     end
 
     scenario 'a visitor sees and removes multiple items from the cart' do
@@ -39,10 +48,19 @@ RSpec.feature 'visitor can remove an item in the cart' do
       click_on "Remove"
 
       expect(current_path).to eq("/cart")
-      # expect(page).to have_css(".alert-success", text: "Successfully removed #{item.name} from your cart")
-      expect(page).to have_content("Successfully removed #{item.name} from your cart")
-      expect(page).not_to have_link("#{item.name}", href: item_path(item))
-      expect(page).to have_content("Cart: 0")
+
+      within('.alert-success') do
+        expect(page).to have_content("Successfully removed #{item.name} from your cart")
+        expect(page).to have_link item.name, href: item_path(item)
+      end
+
+      within('.table') do
+        expect(page).not_to have_link item.name, href: item_path(item)
+      end
+
+      within ('header') do
+        expect(page).to have_content("Cart: 0")
+      end
     end
   end
 end

@@ -26,10 +26,6 @@ RSpec.feature 'Logged In User can View Past Orders' do
       visit orders_path
       expect(page).to have_content 'Your purchases'
 
-      expect(page).to have_content 'Your information'
-      expect(page).to have_content full_name(user)
-      expect(page).to have_content user.email
-
       expect(page).to have_css(".order-#{current_order.id}.well-lg")
 
       within(".order-#{current_order.id}") do

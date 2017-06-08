@@ -24,7 +24,7 @@ class CartsController < ApplicationController
   def destroy
     @cart.remove_item(item_id)
     session[:cart] = @cart.contents
-    cart_link = "<a href=\"#{url_for(item)}\">#{item.name}</a>"
+    cart_link = "<a href=\"#{item_path(item)}\">#{item.name}</a>"
     flash[:notice] = "Successfully removed #{cart_link} from your cart"
     redirect_to cart_path
   end

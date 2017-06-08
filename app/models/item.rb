@@ -4,7 +4,6 @@ class Item < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
   has_attached_file :photo,
-                    default_url: ':style/coffee-beans-shot.png',
                     :storage => :cloudinary,
                     :path => ':style/:filename',
                     styles: {
