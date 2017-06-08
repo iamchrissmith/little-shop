@@ -175,6 +175,10 @@ main header {
   justify-content: space-around;
 }
 
+.form-group {
+  margin-top: 10px;
+}
+
 .add-item div {
   display: block;
 }
@@ -266,4 +270,8 @@ td.cart-thumbnail {
   padding-bottom: 7px;
   margin: -35px;
   margin-right: 0px;
+}
+
+.item h4 {
+  text-align: center;
 }

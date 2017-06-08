@@ -1,7 +1,7 @@
 %div{class: "item-#{item.id} item small" }
   = item_image(item, :thumb, class: "#{item.photo} img-box")
   %h3= link_to item.name, item_path(item), class: 'center-block text-center'
-  = render partial: "items/#{item.status}", locals: {item: item}
   %h4= number_to_currency(item.price)
+  = render partial: "items/#{item.status}", locals: {item: item}
   %span{class: "pull-left btn-xs"}
   = link_to 'Edit', edit_admin_item_path(item), class: 'pull-right btn-xs btn-success' if current_admin?
