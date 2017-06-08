@@ -1,8 +1,9 @@
-%main  
+%main
   %div{class:"order order-#{@order.id} well well-lg"}
     %h3 Order #{@order.id}
     %p
       = "Order Status: #{@order.status.capitalize}"
+      = render 'orders/closed' if @order.completed? || @order.cancelled?
     %p Date Placed: #{@order.created_at.to_date}
     %p User ID: #{@order.user.id}
     %p User: #{@order.user.first_name} #{@order.user.last_name}
