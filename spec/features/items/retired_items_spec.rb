@@ -9,7 +9,7 @@ RSpec.feature "User can see retired items" do
 
       expect(current_path).to eq(item_path(item))
       expect(page).not_to have_content("Add to Cart")
-      expect(page).to have_content("Item Retired")
+      expect(page).to have_content("Retired")
 
     end
 

@@ -22,6 +22,11 @@
   outline-style: solid;
 }*/
 
+img.coffee-banner {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
 table {
   margin: 0 auto;
 }
