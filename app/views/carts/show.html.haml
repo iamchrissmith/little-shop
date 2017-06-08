@@ -37,7 +37,8 @@
           %h4= "Total: #{number_to_currency(@cart.total_price)}"
   .checkout.pull-right.text-right
     - if current_user
-      = link_to "Checkout", new_order_path, class: "btn btn-success btn-lg"
+      - if @cart.total_count > 0
+        = link_to "Checkout", new_order_path, class: "btn btn-success btn-lg"
     - else
       %h3 You must be signed in to checkout
       = link_to "Create Account", new_user_path, class: "btn btn-default"

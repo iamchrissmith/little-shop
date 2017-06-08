@@ -53,6 +53,10 @@ main {
   margin: 0 auto;
 }
 
+main.admin-orders-table {
+  justify-content: left;
+}
+
 main header {
   display: flex;
   justify-content: center;
@@ -61,6 +65,10 @@ main header {
 
 .btn {
   margin-top: 5px;
+}
+
+.btn .add-to-cart {
+
 }
 
 .navbar {
@@ -167,6 +175,10 @@ main header {
   justify-content: space-around;
 }
 
+.form-group {
+  margin-top: 10px;
+}
+
 .add-item div {
   display: block;
 }
@@ -258,4 +270,8 @@ td.cart-thumbnail {
   padding-bottom: 7px;
   margin: -35px;
   margin-right: 0px;
+}
+
+.item h4 {
+  text-align: center;
 }
