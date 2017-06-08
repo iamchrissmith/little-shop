@@ -45,6 +45,6 @@
     = form_for [:admin, @order] do |f|
       .form_group
         = f.collection_select(:status, @order.available_status, :first, :last, selected: @order.status)
-      = f.submit
+      = f.submit 'Update Order', :class => "btn btn-success"
 
   %p= link_to "All Orders", admin_dashboard_path
