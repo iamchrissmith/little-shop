@@ -10,7 +10,9 @@
           %span.icon-bar
       .collapse.navbar-collapse#bs-example-navbar-collapse-1
         %ul.nav.navbar-nav
-          %li= link_to "Home", items_path
+          -# %li= link_to "Home", items_path
+          %li= link_to image_tag( 'logo/coffee_cup.png'), items_path
+          %li= link_to "Shop", items_path
           %li.dropdown
             %a.dropdown-toggle{:href => "#", "role" => "button", "data-toggle" => "dropdown", "data-target" => "#"}
               Categories
